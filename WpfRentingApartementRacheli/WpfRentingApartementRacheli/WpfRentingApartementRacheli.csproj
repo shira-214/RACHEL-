@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43B99ECC-4882-45DC-85FD-C83F43C9D70B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WpfRentingApartementRacheli</RootNamespace>
+    <AssemblyName>WpfRentingApartementRacheli</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AddApartement.xaml.cs">
+      <DependentUpon>AddApartement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerApartments.xaml.cs">
+      <DependentUpon>AddManagerApartments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerAraesCitiesStreet.xaml.cs">
+      <DependentUpon>AddManagerAraesCitiesStreet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerAreas.xaml.cs">
+      <DependentUpon>AddManagerAreas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerCities.xaml.cs">
+      <DependentUpon>AddManagerCities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerExtras.xaml.cs">
+      <DependentUpon>AddManagerExtras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerHirers.xaml.cs">
+      <DependentUpon>AddManagerHirers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerImages.xaml.cs">
+      <DependentUpon>AddManagerImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerStreetNames.xaml.cs">
+      <DependentUpon>AddManagerStreetNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="ImageManager.cs" />
+    <Compile Include="LookForApartement.xaml.cs">
+      <DependentUpon>LookForApartement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageLogin.xaml.cs">
+      <DependentUpon>pageLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pageRenting.xaml.cs">
+      <DependentUpon>pageRenting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="USC\USCApartement.xaml.cs">
+      <DependentUpon>USCApartement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validation.cs" />
+    <Compile Include="AllApartments.xaml.cs">
+      <DependentUpon>AllApartments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllAraesCitiesStreet.xaml.cs">
+      <DependentUpon>AllAraesCitiesStreet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllAreas.xaml.cs">
+      <DependentUpon>AllAreas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllCities.xaml.cs">
+      <DependentUpon>AllCities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllExtras.xaml.cs">
+      <DependentUpon>AllExtras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllExtrasApartements.xaml.cs">
+      <DependentUpon>AllExtrasApartements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllHirers.xaml.cs">
+      <DependentUpon>AllHirers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllImages.xaml.cs">
+      <DependentUpon>AllImages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllRentings.xaml.cs">
+      <DependentUpon>AllRentings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllStreetsNames.xaml.cs">
+      <DependentUpon>AllStreetsNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerPage.xaml.cs">
+      <DependentUpon>ManagerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Image.xaml.cs">
+      <DependentUpon>Image.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PSearch.xaml.cs">
+      <DependentUpon>PSearch.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddApartement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerApartments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerAraesCitiesStreet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerAreas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerCities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerExtras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerHirers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerStreetNames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllApartments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllAraesCitiesStreet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllAreas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllCities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllExtras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllExtrasApartements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllHirers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllRentings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllStreetsNames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LookForApartement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="PAdd.xaml.cs">
+      <DependentUpon>PAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="pageLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pageRenting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Image.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="USC\USCApartement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Connected Services\ServiceReference1\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\Service1.wsdl" />
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOApartments.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOAreas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOCities.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOExtras.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOHirers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOImages.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTORentings.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

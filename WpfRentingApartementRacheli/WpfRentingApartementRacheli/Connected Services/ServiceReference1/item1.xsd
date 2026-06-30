@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfDTOApartments">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOApartments" nillable="true" type="tns:DTOApartments" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOApartments" nillable="true" type="tns:ArrayOfDTOApartments" />
+  <xs:complexType name="DTOApartments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExtraForBed" type="xs:int" />
+      <xs:element minOccurs="0" name="Floor" type="xs:int" />
+      <xs:element minOccurs="0" name="IdApartment" type="xs:int" />
+      <xs:element minOccurs="0" name="IdCities" nillable="true" type="tns:DTOCities" />
+      <xs:element minOccurs="0" name="IdStreet" nillable="true" type="tns:DTOStreetsNames" />
+      <xs:element minOccurs="0" name="MinimumPrice" type="xs:int" />
+      <xs:element minOccurs="0" name="NameOwner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberBeds" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberHouse" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberRooms" type="xs:int" />
+      <xs:element minOccurs="0" name="PhoneOwner" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+      <xs:element minOccurs="0" name="note" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOApartments" nillable="true" type="tns:DTOApartments" />
+  <xs:complexType name="DTOCities">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdCity" type="xs:int" />
+      <xs:element minOccurs="0" name="NameCity" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOCities" nillable="true" type="tns:DTOCities" />
+  <xs:complexType name="DTOStreetsNames">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdStreet" type="xs:int" />
+      <xs:element minOccurs="0" name="StreetName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOStreetsNames" nillable="true" type="tns:DTOStreetsNames" />
+  <xs:complexType name="ArrayOfDTOAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOAreas" nillable="true" type="tns:DTOAreas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOAreas" nillable="true" type="tns:ArrayOfDTOAreas" />
+  <xs:complexType name="DTOAreas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdArea" type="xs:int" />
+      <xs:element minOccurs="0" name="NameArea" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOAreas" nillable="true" type="tns:DTOAreas" />
+  <xs:complexType name="ArrayOfDTOAraesCitiesStreet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOAraesCitiesStreet" nillable="true" type="tns:DTOAraesCitiesStreet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOAraesCitiesStreet" nillable="true" type="tns:ArrayOfDTOAraesCitiesStreet" />
+  <xs:complexType name="DTOAraesCitiesStreet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdArea" nillable="true" type="tns:DTOAreas" />
+      <xs:element minOccurs="0" name="IdCities" nillable="true" type="tns:DTOCities" />
+      <xs:element minOccurs="0" name="IdStreetDTo" nillable="true" type="tns:DTOStreetsNames" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOAraesCitiesStreet" nillable="true" type="tns:DTOAraesCitiesStreet" />
+  <xs:complexType name="ArrayOfDTOCities">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOCities" nillable="true" type="tns:DTOCities" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOCities" nillable="true" type="tns:ArrayOfDTOCities" />
+  <xs:complexType name="ArrayOfDTOExtras">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOExtras" nillable="true" type="tns:DTOExtras" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOExtras" nillable="true" type="tns:ArrayOfDTOExtras" />
+  <xs:complexType name="DTOExtras">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdExtra" type="xs:int" />
+      <xs:element minOccurs="0" name="NameExtra" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOExtras" nillable="true" type="tns:DTOExtras" />
+  <xs:complexType name="ArrayOfDTOExtrasApartements">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOExtrasApartements" nillable="true" type="tns:DTOExtrasApartements" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOExtrasApartements" nillable="true" type="tns:ArrayOfDTOExtrasApartements" />
+  <xs:complexType name="DTOExtrasApartements">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdAapartment" nillable="true" type="tns:DTOApartments" />
+      <xs:element minOccurs="0" name="IdExtra" nillable="true" type="tns:DTOExtras" />
+      <xs:element minOccurs="0" name="Status" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOExtrasApartements" nillable="true" type="tns:DTOExtrasApartements" />
+  <xs:complexType name="ArrayOfDTOHirers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOHirers" nillable="true" type="tns:DTOHirers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOHirers" nillable="true" type="tns:ArrayOfDTOHirers" />
+  <xs:complexType name="DTOHirers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="C_IDHirer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FhoneNumberHirer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameHirer" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOHirers" nillable="true" type="tns:DTOHirers" />
+  <xs:complexType name="ArrayOfDTOImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOImages" nillable="true" type="tns:DTOImages" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOImages" nillable="true" type="tns:ArrayOfDTOImages" />
+  <xs:complexType name="DTOImages">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="IdApartement" nillable="true" type="tns:DTOApartments" />
+      <xs:element minOccurs="0" name="Image1" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="NumImage" type="xs:int" />
+      <xs:element minOccurs="0" name="Stataus" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTOImages" nillable="true" type="tns:DTOImages" />
+  <xs:complexType name="ArrayOfDTORentings">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTORentings" nillable="true" type="tns:DTORentings" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTORentings" nillable="true" type="tns:ArrayOfDTORentings" />
+  <xs:complexType name="DTORentings">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IdHirer" nillable="true" type="tns:DTOHirers" />
+      <xs:element minOccurs="0" name="IdRenting" type="xs:int" />
+      <xs:element minOccurs="0" name="KodHapartment" nillable="true" type="tns:DTOApartments" />
+      <xs:element minOccurs="0" name="SumBeds" type="xs:int" />
+      <xs:element minOccurs="0" name="SumPayment" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DTORentings" nillable="true" type="tns:DTORentings" />
+  <xs:complexType name="ArrayOfDTOStreetsNames">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DTOStreetsNames" nillable="true" type="tns:DTOStreetsNames" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDTOStreetsNames" nillable="true" type="tns:ArrayOfDTOStreetsNames" />
+</xs:schema>

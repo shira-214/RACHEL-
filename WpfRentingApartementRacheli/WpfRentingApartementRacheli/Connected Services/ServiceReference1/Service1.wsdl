@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/Design_Time_Addresses/Server/Service1/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_GetApartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApartments" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetApartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddApartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddApartments" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddApartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddApartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAreas_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAreas" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetAreas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAreasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddArea_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddArea" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddArea_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAreaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOAraesCitiesStreets_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOAraesCitiesStreets" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOAraesCitiesStreets_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOAraesCitiesStreetsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddAraesCitiesStreet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAraesCitiesStreet" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddAraesCitiesStreet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAraesCitiesStreetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOCities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOCities" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOCities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddCities_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCities" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddCities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExtras_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExtras" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetExtras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExtrasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExtras_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddExtras" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExtras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddExtrasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOExtrasApartements_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOExtrasApartements" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOExtrasApartements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOExtrasApartementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExtrasApartements_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddExtrasApartements" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddExtrasApartements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddExtrasApartementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOHirers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOHirers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTOHirers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTOHirersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddHirers_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddHirers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddHirers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddHirersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImages" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddImages" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTORentings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTORentings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetTORentings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTORentingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Addentings_InputMessage">
+    <wsdl:part name="parameters" element="tns:Addentings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Addentings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddentingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetStreetsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetsNames" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetStreetsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStreetsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddStreetsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddStreetsNames" />
+  </wsdl:message>
+  <wsdl:message name="IService1_AddStreetsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddStreetsNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateArae_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateArae" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateArae_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAraeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateApartments_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApartments" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateApartments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateApartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateraesCitiesStreet_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateraesCitiesStreet" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateraesCitiesStreet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateraesCitiesStreetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateCities_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCities" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateCities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Updatextras_InputMessage">
+    <wsdl:part name="parameters" element="tns:Updatextras" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Updatextras_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatextrasResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateExtrasApartements_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateExtrasApartements" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateExtrasApartements_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateExtrasApartementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateHirers_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHirers" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateHirers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateHirersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateImages_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateImages" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateImages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateImagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateRentings_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRentings" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateRentings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRentingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateStreetsNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStreetsNames" />
+  </wsdl:message>
+  <wsdl:message name="IService1_UpdateStreetsNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStreetsNamesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="GetApartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetApartments" message="tns:IService1_GetApartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetApartmentsResponse" message="tns:IService1_GetApartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddApartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddApartments" message="tns:IService1_AddApartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddApartmentsResponse" message="tns:IService1_AddApartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAreas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAreas" message="tns:IService1_GetAreas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetAreasResponse" message="tns:IService1_GetAreas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddArea">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddArea" message="tns:IService1_AddArea_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddAreaResponse" message="tns:IService1_AddArea_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTOAraesCitiesStreets">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTOAraesCitiesStreets" message="tns:IService1_GetTOAraesCitiesStreets_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTOAraesCitiesStreetsResponse" message="tns:IService1_GetTOAraesCitiesStreets_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAraesCitiesStreet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddAraesCitiesStreet" message="tns:IService1_AddAraesCitiesStreet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddAraesCitiesStreetResponse" message="tns:IService1_AddAraesCitiesStreet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTOCities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTOCities" message="tns:IService1_GetTOCities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTOCitiesResponse" message="tns:IService1_GetTOCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddCities" message="tns:IService1_AddCities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddCitiesResponse" message="tns:IService1_AddCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExtras">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetExtras" message="tns:IService1_GetExtras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetExtrasResponse" message="tns:IService1_GetExtras_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddExtras">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddExtras" message="tns:IService1_AddExtras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddExtrasResponse" message="tns:IService1_AddExtras_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTOExtrasApartements">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTOExtrasApartements" message="tns:IService1_GetTOExtrasApartements_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTOExtrasApartementsResponse" message="tns:IService1_GetTOExtrasApartements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddExtrasApartements">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddExtrasApartements" message="tns:IService1_AddExtrasApartements_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddExtrasApartementsResponse" message="tns:IService1_AddExtrasApartements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTOHirers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTOHirers" message="tns:IService1_GetTOHirers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTOHirersResponse" message="tns:IService1_GetTOHirers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHirers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddHirers" message="tns:IService1_AddHirers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddHirersResponse" message="tns:IService1_AddHirers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetImages" message="tns:IService1_GetImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetImagesResponse" message="tns:IService1_GetImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddImages" message="tns:IService1_AddImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddImagesResponse" message="tns:IService1_AddImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTORentings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetTORentings" message="tns:IService1_GetTORentings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetTORentingsResponse" message="tns:IService1_GetTORentings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Addentings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Addentings" message="tns:IService1_Addentings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddentingsResponse" message="tns:IService1_Addentings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetStreetsNames" message="tns:IService1_GetStreetsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetStreetsNamesResponse" message="tns:IService1_GetStreetsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddStreetsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/AddStreetsNames" message="tns:IService1_AddStreetsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/AddStreetsNamesResponse" message="tns:IService1_AddStreetsNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArae">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateArae" message="tns:IService1_UpdateArae_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateAraeResponse" message="tns:IService1_UpdateArae_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApartments">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateApartments" message="tns:IService1_UpdateApartments_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateApartmentsResponse" message="tns:IService1_UpdateApartments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateraesCitiesStreet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateraesCitiesStreet" message="tns:IService1_UpdateraesCitiesStreet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateraesCitiesStreetResponse" message="tns:IService1_UpdateraesCitiesStreet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateCities" message="tns:IService1_UpdateCities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateCitiesResponse" message="tns:IService1_UpdateCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Updatextras">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Updatextras" message="tns:IService1_Updatextras_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdatextrasResponse" message="tns:IService1_Updatextras_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExtrasApartements">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateExtrasApartements" message="tns:IService1_UpdateExtrasApartements_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateExtrasApartementsResponse" message="tns:IService1_UpdateExtrasApartements_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHirers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateHirers" message="tns:IService1_UpdateHirers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateHirersResponse" message="tns:IService1_UpdateHirers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateImages" message="tns:IService1_UpdateImages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateImagesResponse" message="tns:IService1_UpdateImages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRentings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateRentings" message="tns:IService1_UpdateRentings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateRentingsResponse" message="tns:IService1_UpdateRentings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStreetsNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/UpdateStreetsNames" message="tns:IService1_UpdateStreetsNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/UpdateStreetsNamesResponse" message="tns:IService1_UpdateStreetsNames_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetApartments">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetApartments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddApartments">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddApartments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAreas">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetAreas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddArea">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddArea" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTOAraesCitiesStreets">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTOAraesCitiesStreets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAraesCitiesStreet">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddAraesCitiesStreet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTOCities">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTOCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddCities">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExtras">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetExtras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddExtras">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddExtras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTOExtrasApartements">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTOExtrasApartements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddExtrasApartements">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddExtrasApartements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTOHirers">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTOHirers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHirers">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddHirers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImages">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddImages">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTORentings">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetTORentings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Addentings">
+      <soap:operation soapAction="http://tempuri.org/IService1/Addentings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStreetsNames">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetStreetsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddStreetsNames">
+      <soap:operation soapAction="http://tempuri.org/IService1/AddStreetsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateArae">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateArae" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApartments">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateApartments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateraesCitiesStreet">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateraesCitiesStreet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCities">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Updatextras">
+      <soap:operation soapAction="http://tempuri.org/IService1/Updatextras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExtrasApartements">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateExtrasApartements" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateHirers">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateHirers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateImages">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateImages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRentings">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateRentings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStreetsNames">
+      <soap:operation soapAction="http://tempuri.org/IService1/UpdateStreetsNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/Server/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

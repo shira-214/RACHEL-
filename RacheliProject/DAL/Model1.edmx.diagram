@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="85e63a7d838e4191a23bbd07e94e3293" Name="Diagram1">
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Apartment" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.AraesCitiesStreet" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Area" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.City" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Extra" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.ExtrasApartement" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Hirer" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Image" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.Renting" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RentingAppartmentRacheliModel.StreetsName" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_Apartments_ToCities" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_Apartments_ToStreetsNames" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_ExtrasApartements_ToApartments" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_Images_ToApartments" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_Rentings_ToApartment" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_AraesCitiesStreet_ToAreas" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_AraesCitiesStreet_ToCities" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_AraesCitiesStreet_ToStreetsName" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_ExtrasApartements_ToExtras" ManuallyRouted="false" />
+        <AssociationConnector Association="RentingAppartmentRacheliModel.FK_Rentings_ToHirers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

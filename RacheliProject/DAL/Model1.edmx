@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RentingAppartmentRacheliModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="IdApartment" />
+          </Key>
+          <Property Name="IdApartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOwner" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="NumberHouse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Floor" Type="int" Nullable="false" />
+          <Property Name="NumberRooms" Type="int" Nullable="false" />
+          <Property Name="NumberBeds" Type="int" Nullable="false" />
+          <Property Name="MinimumPrice" Type="int" Nullable="false" />
+          <Property Name="ExtraForBed" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IdCities" Type="int" Nullable="false" />
+          <Property Name="PhoneOwner" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AraesCitiesStreet">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="IdCities" />
+          </Key>
+          <Property Name="IdStreet" Type="int" Nullable="false" />
+          <Property Name="IdCities" Type="int" Nullable="false" />
+          <Property Name="IdArea" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Areas">
+          <Key>
+            <PropertyRef Name="IdArea" />
+          </Key>
+          <Property Name="IdArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameArea" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCity" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Extras">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+          </Key>
+          <Property Name="IdExtra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameExtra" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExtrasApartements">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+            <PropertyRef Name="IdAapartment" />
+          </Key>
+          <Property Name="IdExtra" Type="int" Nullable="false" />
+          <Property Name="IdAapartment" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hirers">
+          <Key>
+            <PropertyRef Name=" IDHirer" />
+          </Key>
+          <Property Name=" IDHirer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameHirer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FhoneNumberHirer" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="IdApartement" />
+            <PropertyRef Name="NumImage" />
+          </Key>
+          <Property Name="IdApartement" Type="int" Nullable="false" />
+          <Property Name="NumImage" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Stataus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rentings">
+          <Key>
+            <PropertyRef Name="IdRenting" />
+          </Key>
+          <Property Name="IdRenting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdHirer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="KodHapartment" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="SumPayment" Type="int" Nullable="false" />
+          <Property Name="SumBeds" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StreetsNames">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+          </Key>
+          <Property Name="IdStreet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Apartments_ToCities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="IdCities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartments_ToStreetsNames">
+          <End Role="StreetsNames" Type="Self.StreetsNames" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetsNames">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToAreas">
+          <End Role="Areas" Type="Self.Areas" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="IdArea" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToCities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdCities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToStreetsName">
+          <End Role="StreetsNames" Type="Self.StreetsNames" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetsNames">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasApartements_ToApartments">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="ExtrasApartements" Type="Self.ExtrasApartements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="ExtrasApartements">
+              <PropertyRef Name="IdAapartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasApartements_ToExtras">
+          <End Role="Extras" Type="Self.Extras" Multiplicity="1" />
+          <End Role="ExtrasApartements" Type="Self.ExtrasApartements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extras">
+              <PropertyRef Name="IdExtra" />
+            </Principal>
+            <Dependent Role="ExtrasApartements">
+              <PropertyRef Name="IdExtra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_ToApartments">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="IdApartement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rentings_ToApartment">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
+          <End Role="Rentings" Type="Self.Rentings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="Rentings">
+              <PropertyRef Name="KodHapartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rentings_ToHirers">
+          <End Role="Hirers" Type="Self.Hirers" Multiplicity="1" />
+          <End Role="Rentings" Type="Self.Rentings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hirers">
+              <PropertyRef Name=" IDHirer" />
+            </Principal>
+            <Dependent Role="Rentings">
+              <PropertyRef Name="IdHirer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RentingAppartmentRacheliModelStoreContainer">
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AraesCitiesStreet" EntityType="Self.AraesCitiesStreet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Extras" EntityType="Self.Extras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExtrasApartements" EntityType="Self.ExtrasApartements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hirers" EntityType="Self.Hirers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rentings" EntityType="Self.Rentings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StreetsNames" EntityType="Self.StreetsNames" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Apartments_ToCities" Association="Self.FK_Apartments_ToCities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartments_ToStreetsNames" Association="Self.FK_Apartments_ToStreetsNames">
+            <End Role="StreetsNames" EntitySet="StreetsNames" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToAreas" Association="Self.FK_AraesCitiesStreet_ToAreas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToCities" Association="Self.FK_AraesCitiesStreet_ToCities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToStreetsName" Association="Self.FK_AraesCitiesStreet_ToStreetsName">
+            <End Role="StreetsNames" EntitySet="StreetsNames" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasApartements_ToApartments" Association="Self.FK_ExtrasApartements_ToApartments">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ExtrasApartements" EntitySet="ExtrasApartements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasApartements_ToExtras" Association="Self.FK_ExtrasApartements_ToExtras">
+            <End Role="Extras" EntitySet="Extras" />
+            <End Role="ExtrasApartements" EntitySet="ExtrasApartements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_ToApartments" Association="Self.FK_Images_ToApartments">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rentings_ToApartment" Association="Self.FK_Rentings_ToApartment">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Rentings" EntitySet="Rentings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rentings_ToHirers" Association="Self.FK_Rentings_ToHirers">
+            <End Role="Hirers" EntitySet="Hirers" />
+            <End Role="Rentings" EntitySet="Rentings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RentingAppartmentRacheliModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="IdApartment" />
+          </Key>
+          <Property Name="IdApartment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="NumberHouse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Floor" Type="Int32" Nullable="false" />
+          <Property Name="NumberRooms" Type="Int32" Nullable="false" />
+          <Property Name="NumberBeds" Type="Int32" Nullable="false" />
+          <Property Name="MinimumPrice" Type="Int32" Nullable="false" />
+          <Property Name="ExtraForBed" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCities" Type="Int32" Nullable="false" />
+          <Property Name="PhoneOwner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Apartments_ToCities" FromRole="Apartments" ToRole="Cities" />
+          <NavigationProperty Name="StreetsName" Relationship="Self.FK_Apartments_ToStreetsNames" FromRole="Apartments" ToRole="StreetsNames" />
+          <NavigationProperty Name="ExtrasApartements" Relationship="Self.FK_ExtrasApartements_ToApartments" FromRole="Apartments" ToRole="ExtrasApartements" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Images_ToApartments" FromRole="Apartments" ToRole="Images" />
+          <NavigationProperty Name="Rentings" Relationship="Self.FK_Rentings_ToApartment" FromRole="Apartments" ToRole="Rentings" />
+        </EntityType>
+        <EntityType Name="AraesCitiesStreet">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+            <PropertyRef Name="IdCities" />
+          </Key>
+          <Property Name="IdStreet" Type="Int32" Nullable="false" />
+          <Property Name="IdCities" Type="Int32" Nullable="false" />
+          <Property Name="IdArea" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_AraesCitiesStreet_ToAreas" FromRole="AraesCitiesStreet" ToRole="Areas" />
+          <NavigationProperty Name="City" Relationship="Self.FK_AraesCitiesStreet_ToCities" FromRole="AraesCitiesStreet" ToRole="Cities" />
+          <NavigationProperty Name="StreetsName" Relationship="Self.FK_AraesCitiesStreet_ToStreetsName" FromRole="AraesCitiesStreet" ToRole="StreetsNames" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="IdArea" />
+          </Key>
+          <Property Name="IdArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AraesCitiesStreets" Relationship="Self.FK_AraesCitiesStreet_ToAreas" FromRole="Areas" ToRole="AraesCitiesStreet" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK_Apartments_ToCities" FromRole="Cities" ToRole="Apartments" />
+          <NavigationProperty Name="AraesCitiesStreets" Relationship="Self.FK_AraesCitiesStreet_ToCities" FromRole="Cities" ToRole="AraesCitiesStreet" />
+        </EntityType>
+        <EntityType Name="Extra">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+          </Key>
+          <Property Name="IdExtra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameExtra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ExtrasApartements" Relationship="Self.FK_ExtrasApartements_ToExtras" FromRole="Extras" ToRole="ExtrasApartements" />
+        </EntityType>
+        <EntityType Name="ExtrasApartement">
+          <Key>
+            <PropertyRef Name="IdExtra" />
+            <PropertyRef Name="IdAapartment" />
+          </Key>
+          <Property Name="IdExtra" Type="Int32" Nullable="false" />
+          <Property Name="IdAapartment" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_ExtrasApartements_ToApartments" FromRole="ExtrasApartements" ToRole="Apartments" />
+          <NavigationProperty Name="Extra" Relationship="Self.FK_ExtrasApartements_ToExtras" FromRole="ExtrasApartements" ToRole="Extras" />
+        </EntityType>
+        <EntityType Name="Hirer">
+          <Key>
+            <PropertyRef Name="C_IDHirer" />
+          </Key>
+          <Property Name="C_IDHirer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameHirer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FhoneNumberHirer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Rentings" Relationship="Self.FK_Rentings_ToHirers" FromRole="Hirers" ToRole="Rentings" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="IdApartement" />
+            <PropertyRef Name="NumImage" />
+          </Key>
+          <Property Name="IdApartement" Type="Int32" Nullable="false" />
+          <Property Name="NumImage" Type="Int32" Nullable="false" />
+          <Property Name="Image1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stataus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Images_ToApartments" FromRole="Images" ToRole="Apartments" />
+        </EntityType>
+        <EntityType Name="Renting">
+          <Key>
+            <PropertyRef Name="IdRenting" />
+          </Key>
+          <Property Name="IdRenting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdHirer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KodHapartment" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SumPayment" Type="Int32" Nullable="false" />
+          <Property Name="SumBeds" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Rentings_ToApartment" FromRole="Rentings" ToRole="Apartments" />
+          <NavigationProperty Name="Hirer" Relationship="Self.FK_Rentings_ToHirers" FromRole="Rentings" ToRole="Hirers" />
+        </EntityType>
+        <EntityType Name="StreetsName">
+          <Key>
+            <PropertyRef Name="IdStreet" />
+          </Key>
+          <Property Name="IdStreet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK_Apartments_ToStreetsNames" FromRole="StreetsNames" ToRole="Apartments" />
+          <NavigationProperty Name="AraesCitiesStreets" Relationship="Self.FK_AraesCitiesStreet_ToStreetsName" FromRole="StreetsNames" ToRole="AraesCitiesStreet" />
+        </EntityType>
+        <Association Name="FK_Apartments_ToCities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="IdCities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apartments_ToStreetsNames">
+          <End Role="StreetsNames" Type="Self.StreetsName" Multiplicity="1" />
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetsNames">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasApartements_ToApartments">
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="ExtrasApartements" Type="Self.ExtrasApartement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="ExtrasApartements">
+              <PropertyRef Name="IdAapartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_ToApartments">
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="Images" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="IdApartement" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rentings_ToApartment">
+          <End Role="Apartments" Type="Self.Apartment" Multiplicity="1" />
+          <End Role="Rentings" Type="Self.Renting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="IdApartment" />
+            </Principal>
+            <Dependent Role="Rentings">
+              <PropertyRef Name="KodHapartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToAreas">
+          <End Role="Areas" Type="Self.Area" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Areas">
+              <PropertyRef Name="IdArea" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToCities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdCities" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AraesCitiesStreet_ToStreetsName">
+          <End Role="StreetsNames" Type="Self.StreetsName" Multiplicity="1" />
+          <End Role="AraesCitiesStreet" Type="Self.AraesCitiesStreet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StreetsNames">
+              <PropertyRef Name="IdStreet" />
+            </Principal>
+            <Dependent Role="AraesCitiesStreet">
+              <PropertyRef Name="IdStreet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExtrasApartements_ToExtras">
+          <End Role="Extras" Type="Self.Extra" Multiplicity="1" />
+          <End Role="ExtrasApartements" Type="Self.ExtrasApartement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Extras">
+              <PropertyRef Name="IdExtra" />
+            </Principal>
+            <Dependent Role="ExtrasApartements">
+              <PropertyRef Name="IdExtra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rentings_ToHirers">
+          <End Role="Hirers" Type="Self.Hirer" Multiplicity="1" />
+          <End Role="Rentings" Type="Self.Renting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hirers">
+              <PropertyRef Name="C_IDHirer" />
+            </Principal>
+            <Dependent Role="Rentings">
+              <PropertyRef Name="IdHirer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RentingAppartmentRacheliEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apartments" EntityType="Self.Apartment" />
+          <EntitySet Name="AraesCitiesStreets" EntityType="Self.AraesCitiesStreet" />
+          <EntitySet Name="Areas" EntityType="Self.Area" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Extras" EntityType="Self.Extra" />
+          <EntitySet Name="ExtrasApartements" EntityType="Self.ExtrasApartement" />
+          <EntitySet Name="Hirers" EntityType="Self.Hirer" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="Rentings" EntityType="Self.Renting" />
+          <EntitySet Name="StreetsNames" EntityType="Self.StreetsName" />
+          <AssociationSet Name="FK_Apartments_ToCities" Association="Self.FK_Apartments_ToCities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apartments_ToStreetsNames" Association="Self.FK_Apartments_ToStreetsNames">
+            <End Role="StreetsNames" EntitySet="StreetsNames" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasApartements_ToApartments" Association="Self.FK_ExtrasApartements_ToApartments">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="ExtrasApartements" EntitySet="ExtrasApartements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_ToApartments" Association="Self.FK_Images_ToApartments">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rentings_ToApartment" Association="Self.FK_Rentings_ToApartment">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Rentings" EntitySet="Rentings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToAreas" Association="Self.FK_AraesCitiesStreet_ToAreas">
+            <End Role="Areas" EntitySet="Areas" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToCities" Association="Self.FK_AraesCitiesStreet_ToCities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AraesCitiesStreet_ToStreetsName" Association="Self.FK_AraesCitiesStreet_ToStreetsName">
+            <End Role="StreetsNames" EntitySet="StreetsNames" />
+            <End Role="AraesCitiesStreet" EntitySet="AraesCitiesStreets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExtrasApartements_ToExtras" Association="Self.FK_ExtrasApartements_ToExtras">
+            <End Role="Extras" EntitySet="Extras" />
+            <End Role="ExtrasApartements" EntitySet="ExtrasApartements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rentings_ToHirers" Association="Self.FK_Rentings_ToHirers">
+            <End Role="Hirers" EntitySet="Hirers" />
+            <End Role="Rentings" EntitySet="Rentings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RentingAppartmentRacheliModelStoreContainer" CdmEntityContainer="RentingAppartmentRacheliEntities1">
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Apartment">
+              <MappingFragment StoreEntitySet="Apartments">
+                <ScalarProperty Name="IdApartment" ColumnName="IdApartment" />
+                <ScalarProperty Name="NameOwner" ColumnName="NameOwner" />
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="NumberHouse" ColumnName="NumberHouse" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="NumberRooms" ColumnName="NumberRooms" />
+                <ScalarProperty Name="NumberBeds" ColumnName="NumberBeds" />
+                <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+                <ScalarProperty Name="ExtraForBed" ColumnName="ExtraForBed" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="IdCities" ColumnName="IdCities" />
+                <ScalarProperty Name="PhoneOwner" ColumnName="PhoneOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AraesCitiesStreets">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.AraesCitiesStreet">
+              <MappingFragment StoreEntitySet="AraesCitiesStreet">
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="IdCities" ColumnName="IdCities" />
+                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Areas">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Area">
+              <MappingFragment StoreEntitySet="Areas">
+                <ScalarProperty Name="IdArea" ColumnName="IdArea" />
+                <ScalarProperty Name="NameArea" ColumnName="NameArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="NameCity" ColumnName="NameCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Extras">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Extra">
+              <MappingFragment StoreEntitySet="Extras">
+                <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+                <ScalarProperty Name="NameExtra" ColumnName="NameExtra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtrasApartements">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.ExtrasApartement">
+              <MappingFragment StoreEntitySet="ExtrasApartements">
+                <ScalarProperty Name="IdExtra" ColumnName="IdExtra" />
+                <ScalarProperty Name="IdAapartment" ColumnName="IdAapartment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hirers">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Hirer">
+              <MappingFragment StoreEntitySet="Hirers">
+                <ScalarProperty Name="C_IDHirer" ColumnName=" IDHirer" />
+                <ScalarProperty Name="NameHirer" ColumnName="NameHirer" />
+                <ScalarProperty Name="FhoneNumberHirer" ColumnName="FhoneNumberHirer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="IdApartement" ColumnName="IdApartement" />
+                <ScalarProperty Name="NumImage" ColumnName="NumImage" />
+                <ScalarProperty Name="Image1" ColumnName="Image" />
+                <ScalarProperty Name="Stataus" ColumnName="Stataus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rentings">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.Renting">
+              <MappingFragment StoreEntitySet="Rentings">
+                <ScalarProperty Name="IdRenting" ColumnName="IdRenting" />
+                <ScalarProperty Name="IdHirer" ColumnName="IdHirer" />
+                <ScalarProperty Name="KodHapartment" ColumnName="KodHapartment" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SumPayment" ColumnName="SumPayment" />
+                <ScalarProperty Name="SumBeds" ColumnName="SumBeds" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StreetsNames">
+            <EntityTypeMapping TypeName="RentingAppartmentRacheliModel.StreetsName">
+              <MappingFragment StoreEntitySet="StreetsNames">
+                <ScalarProperty Name="IdStreet" ColumnName="IdStreet" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
