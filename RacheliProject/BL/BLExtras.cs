@@ -53,5 +53,10 @@ namespace BL
 
         }
 
+        public bool DeleteExtra(int id)
+        {
+            return new DALExtras().Delete(id);
+        }
+
     }
 }

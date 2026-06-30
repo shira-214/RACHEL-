@@ -60,5 +60,18 @@ namespace DAL
             }
         }
 
+        public bool Delete(int id)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                StreetsName ent = db.StreetsNames.Find(id);
+                if (ent == null)
+                    return false;
+                db.StreetsNames.Remove(ent);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
     }
 }

@@ -58,6 +58,11 @@ namespace BL
 
         }
 
+        public bool DeleteHirer(string id)
+        {
+            return new DALHirers().Delete(id);
+        }
+
     }
 }
 

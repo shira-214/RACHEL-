@@ -58,6 +58,11 @@ namespace BL
 
         }
 
+        public bool DeleteExtrasApartement(int idExtra, int idApartment)
+        {
+            return new DALExtrasApartements().Delete(idExtra, idApartment);
+        }
+
     }
 }
 //public DTOExtras IdExtra { get; set; }

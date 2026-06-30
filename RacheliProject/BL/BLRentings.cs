@@ -66,5 +66,10 @@ namespace BL
 
         }
 
+        public bool DeleteRenting(int id)
+        {
+            return new DALRentings().Delete(id);
+        }
+
     }
 }

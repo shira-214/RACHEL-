@@ -58,6 +58,11 @@ namespace BL
 
         }
 
+        public bool DeleteImage(int idApartment, int numImage)
+        {
+            return new DALImages().Delete(idApartment, numImage);
+        }
+
     }
 }
 

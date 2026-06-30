@@ -52,5 +52,10 @@ namespace BL
 
         }
 
+        public bool DeleteCity(int id)
+        {
+            return new DALCities().Delete(id);
+        }
+
     }
 }

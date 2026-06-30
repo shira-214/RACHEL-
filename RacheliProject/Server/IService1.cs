@@ -101,6 +101,36 @@ namespace Server
         [OperationContract]
         bool UpdateStreetsNames(DTOStreetsNames streetsName);
 
+        [OperationContract]
+        bool DeleteApartment(int id);
+
+        [OperationContract]
+        bool DeleteArea(int id);
+
+        [OperationContract]
+        bool DeleteCity(int id);
+
+        [OperationContract]
+        bool DeleteExtra(int id);
+
+        [OperationContract]
+        bool DeleteStreetsName(int id);
+
+        [OperationContract]
+        bool DeleteHirer(string id);
+
+        [OperationContract]
+        bool DeleteRenting(int id);
+
+        [OperationContract]
+        bool DeleteAraesCitiesStreet(int idStreet, int idCities, int idArea);
+
+        [OperationContract]
+        bool DeleteExtrasApartement(int idExtra, int idApartment);
+
+        [OperationContract]
+        bool DeleteImage(int idApartment, int numImage);
+
     }
 }
 

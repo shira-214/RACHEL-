@@ -14,10 +14,14 @@ namespace DAL
     {
         public List<Image> GetImages()
         {
-            RacheliEntities db = new RacheliEntities();
-            
-                return db.Images.ToList();
-            
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                return db.Images
+                    .Include(x => x.Apartment)
+                    .Include(x => x.Apartment.StreetsName)
+                    .Include(x => x.Apartment.City)
+                    .ToList();
+            }
         }
         public bool AddImages(Image image)
         {
@@ -55,6 +59,19 @@ namespace DAL
                     Debug.WriteLine(ex.InnerException.Message);
 
                 return false;
+            }
+        }
+
+        public bool Delete(int idApartment, int numImage)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                Image ent = db.Images.Find(idApartment, numImage);
+                if (ent == null)
+                    return false;
+                db.Images.Remove(ent);
+                db.SaveChanges();
+                return true;
             }
         }
 

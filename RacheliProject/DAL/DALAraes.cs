@@ -57,7 +57,7 @@ namespace DAL
                 return false;
             }
         }
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             using (RacheliEntities db = new RacheliEntities())
             {

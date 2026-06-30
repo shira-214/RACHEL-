@@ -18,6 +18,7 @@ namespace BL
             aprtmntDTO.IdApartment = aprtmnt.IdApartment;
             aprtmntDTO.IdStreet = new BLStreetsNames().ConvertToDTO(aprtmnt.StreetsName);
             aprtmntDTO.NameOwner = aprtmnt.NameOwner;
+            aprtmntDTO.NumberHouse = aprtmnt.NumberHouse;
             aprtmntDTO.NumberBeds = aprtmnt.NumberBeds;
             aprtmntDTO.Floor = aprtmnt.Floor;
             aprtmntDTO.NumberRooms = aprtmnt.NumberRooms;
@@ -61,6 +62,11 @@ namespace BL
         public bool AddApartment(DTOApartments apartments)
         {
             return new DALApartments().AddApartments(ConvertToDAL(apartments));
+        }
+
+        public bool DeleteApartment(int id)
+        {
+            return new DALApartments().Delete(id);
         }
         public List<DTOApartments> GetAllApartments()
         {

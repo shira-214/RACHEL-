@@ -56,6 +56,18 @@ namespace DAL
             }
         }
 
+        public bool Delete(string id)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                Hirer ent = db.Hirers.Find(id);
+                if (ent == null)
+                    return false;
+                db.Hirers.Remove(ent);
+                db.SaveChanges();
+                return true;
+            }
+        }
 
     }
 }

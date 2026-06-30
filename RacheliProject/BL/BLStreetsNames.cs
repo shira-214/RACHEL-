@@ -55,6 +55,11 @@ namespace BL
 
         }
 
+        public bool DeleteStreetsName(int id)
+        {
+            return new DALStreetsNames().Delete(id);
+        }
+
     }
 }
 

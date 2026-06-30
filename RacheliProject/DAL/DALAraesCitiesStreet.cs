@@ -12,11 +12,14 @@ namespace DAL
     {
         public List<AraesCitiesStreet> GetAraesCitiesStreet()
         {
-            RacheliEntities db = new RacheliEntities();
-            
-                return db.AraesCitiesStreets.ToList();
-
-            
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                return db.AraesCitiesStreets
+                    .Include(x => x.StreetsName)
+                    .Include(x => x.City)
+                    .Include(x => x.Area)
+                    .ToList();
+            }
         }
         public bool AddAraesCitiesStreet(AraesCitiesStreet araesCitiesStreet)
         {
@@ -56,18 +59,20 @@ namespace DAL
                 return false;
             }
         }
-        //public bool Delete(string id)
-        //{
-        //    using (RacheliEntities db = new RacheliEntities())
-        //    {
-        //        AraesCitiesStreet ent = db.AraesCitiesStreets.Find(id);
-        //        if (ent == null)
-        //            return false;
-        //        db.Areas.Remove(ent);
-        //        db.SaveChanges();
-        //        return true;
-        //    }
-        //}
+
+        public bool Delete(int idStreet, int idCities, int idArea)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                AraesCitiesStreet ent = db.AraesCitiesStreets.FirstOrDefault(x =>
+                    x.IdStreet == idStreet && x.IdCities == idCities && x.IdArea == idArea);
+                if (ent == null)
+                    return false;
+                db.AraesCitiesStreets.Remove(ent);
+                db.SaveChanges();
+                return true;
+            }
+        }
 
     }
 }

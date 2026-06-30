@@ -56,6 +56,11 @@ namespace BL
             //להפעיל את הפעולות שבדאל
 
         }
+
+        public bool DeleteArea(int id)
+        {
+            return new DALAraes().Delete(id);
+        }
     }
 
 }

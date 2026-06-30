@@ -10,7 +10,7 @@ namespace BL
 {
     public class ImageClass
     {
-        private const string BasePath = @"c:\Users\1\Downloads\Project\";
+        private const string BasePath = @"C:\Users\1\Downloads\פרוייקט\";
 
         public static string GetCurrentPath()
         {

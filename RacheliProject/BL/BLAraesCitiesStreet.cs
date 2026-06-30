@@ -61,6 +61,11 @@ namespace BL
 
         }
 
+        public bool DeleteAraesCitiesStreet(int idStreet, int idCities, int idArea)
+        {
+            return new DALAraesCitiesStreet().Delete(idStreet, idCities, idArea);
+        }
+
     }
 
 }

@@ -14,6 +14,8 @@ namespace Host
         {
             try
             {
+                SeedData.SeedIfEmpty();
+
                 using (ServiceHost myservice = new ServiceHost(typeof(Server.Service1)))
                 {
                     myservice.Open();

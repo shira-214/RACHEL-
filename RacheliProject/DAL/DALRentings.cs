@@ -13,11 +13,15 @@ namespace DAL
     {
         public List<Renting> GetRentings()
         {
-            RacheliEntities db = new RacheliEntities();
-
-            return db.Rentings.ToList();
-
-
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                return db.Rentings
+                    .Include(r => r.Hirer)
+                    .Include(r => r.Apartment)
+                    .Include(r => r.Apartment.StreetsName)
+                    .Include(r => r.Apartment.City)
+                    .ToList();
+            }
         }
         public bool AddRentings(Renting renting)
         {
@@ -54,6 +58,19 @@ namespace DAL
                     Debug.WriteLine(ex.InnerException.Message);
 
                 return false;
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                Renting ent = db.Rentings.Find(id);
+                if (ent == null)
+                    return false;
+                db.Rentings.Remove(ent);
+                db.SaveChanges();
+                return true;
             }
         }
 

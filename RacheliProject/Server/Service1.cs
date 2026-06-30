@@ -78,8 +78,14 @@ namespace Server
 
         public bool AddApartments(DTOApartments apartments)
         {
-            new BLApartments().AddApartment(apartments);
-            return true;
+            try
+            {
+                return new BLApartments().AddApartment(apartments);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOAreas> GetAreas()
@@ -89,8 +95,14 @@ namespace Server
 
         public bool AddArea(DTOAreas areas)
         {
-            new BLAraes().AddAraes(areas);
-            return true;
+            try
+            {
+                return new BLAraes().AddAraes(areas);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOAraesCitiesStreet> GetTOAraesCitiesStreets()
@@ -100,8 +112,14 @@ namespace Server
 
         public bool AddAraesCitiesStreet(DTOAraesCitiesStreet araesCitiesStreet)
         {
-            new BLAraesCitiesStreet().AddraesCitiesStreet(araesCitiesStreet);
-            return true;
+            try
+            {
+                return new BLAraesCitiesStreet().AddraesCitiesStreet(araesCitiesStreet);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOCities> GetTOCities()
@@ -111,8 +129,14 @@ namespace Server
 
         public bool AddCities(DTOCities cities)
         {
-            new BLCities().AddCities(cities);
-            return true;
+            try
+            {
+                return new BLCities().AddCities(cities);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOExtras> GetExtras()
@@ -122,8 +146,14 @@ namespace Server
 
         public bool AddExtras(DTOExtras extras)
         {
-            new BLExtras().AddExtras(extras);
-            return true;
+            try
+            {
+                return new BLExtras().AddExtras(extras);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOExtrasApartements> GetTOExtrasApartements()
@@ -133,8 +163,14 @@ namespace Server
 
         public bool AddExtrasApartements(DTOExtrasApartements extrasApartements)
         {
-            new BLExtrasApartements().AddExtrasApartements(extrasApartements);
-            return true;
+            try
+            {
+                return new BLExtrasApartements().AddExtrasApartements(extrasApartements);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOHirers> GetTOHirers()
@@ -144,8 +180,14 @@ namespace Server
 
         public bool AddHirers(DTOHirers hirers)
         {
-            new BLHirers().AddHirers(hirers);
-            return true;
+            try
+            {
+                return new BLHirers().AddHirers(hirers);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOImages> GetImages()
@@ -155,8 +197,14 @@ namespace Server
 
         public bool AddImages(DTOImages images)
         {
-            new BLImages().AddImages(images);
-            return true;
+            try
+            {
+                return new BLImages().AddImages(images);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTORentings> GetTORentings()
@@ -166,8 +214,14 @@ namespace Server
 
         public bool Addentings(DTORentings rentings)
         {
-            new BLRentings().AddRentings(rentings);
-            return true;
+            try
+            {
+                return new BLRentings().AddRentings(rentings);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public List<DTOStreetsNames> GetStreetsNames()
@@ -177,8 +231,64 @@ namespace Server
 
         public bool AddStreetsNames(DTOStreetsNames streetsNames)
         {
-            new BLStreetsNames().AddStreetsNames(streetsNames);
-            return true;
+            try
+            {
+                return new BLStreetsNames().AddStreetsNames(streetsNames);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteApartment(int id)
+        {
+            return new BLApartments().DeleteApartment(id);
+        }
+
+        public bool DeleteArea(int id)
+        {
+            return new BLAraes().DeleteArea(id);
+        }
+
+        public bool DeleteCity(int id)
+        {
+            return new BLCities().DeleteCity(id);
+        }
+
+        public bool DeleteExtra(int id)
+        {
+            return new BLExtras().DeleteExtra(id);
+        }
+
+        public bool DeleteStreetsName(int id)
+        {
+            return new BLStreetsNames().DeleteStreetsName(id);
+        }
+
+        public bool DeleteHirer(string id)
+        {
+            return new BLHirers().DeleteHirer(id);
+        }
+
+        public bool DeleteRenting(int id)
+        {
+            return new BLRentings().DeleteRenting(id);
+        }
+
+        public bool DeleteAraesCitiesStreet(int idStreet, int idCities, int idArea)
+        {
+            return new BLAraesCitiesStreet().DeleteAraesCitiesStreet(idStreet, idCities, idArea);
+        }
+
+        public bool DeleteExtrasApartement(int idExtra, int idApartment)
+        {
+            return new BLExtrasApartements().DeleteExtrasApartement(idExtra, idApartment);
+        }
+
+        public bool DeleteImage(int idApartment, int numImage)
+        {
+            return new BLImages().DeleteImage(idApartment, numImage);
         }
 
 

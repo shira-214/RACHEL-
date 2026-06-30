@@ -13,11 +13,15 @@ namespace DAL
     {
         public List<ExtrasApartement> GetExtrasApartements()
         {
-            RacheliEntities db = new RacheliEntities();
-            
-                return db.ExtrasApartements.ToList();
-
-            
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                return db.ExtrasApartements
+                    .Include(x => x.Extra)
+                    .Include(x => x.Apartment)
+                    .Include(x => x.Apartment.StreetsName)
+                    .Include(x => x.Apartment.City)
+                    .ToList();
+            }
         }
 
         public bool AddExtrasApartements(ExtrasApartement extraApartement )
@@ -58,6 +62,18 @@ namespace DAL
             }
         }
 
+        public bool Delete(int idExtra, int idApartment)
+        {
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                ExtrasApartement ent = db.ExtrasApartements.Find(idExtra, idApartment);
+                if (ent == null)
+                    return false;
+                db.ExtrasApartements.Remove(ent);
+                db.SaveChanges();
+                return true;
+            }
+        }
 
     }
 }

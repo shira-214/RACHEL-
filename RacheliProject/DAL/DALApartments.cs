@@ -13,10 +13,13 @@ namespace DAL
     {
         public List<Apartment> GetApartment()
         {
-            RacheliEntities db = new RacheliEntities();
-
-            return db.Apartments.ToList();
-
+            using (RacheliEntities db = new RacheliEntities())
+            {
+                return db.Apartments
+                    .Include(a => a.StreetsName)
+                    .Include(a => a.City)
+                    .ToList();
+            }
         }
 
         public bool AddApartments(Apartment apartment)
@@ -57,7 +60,7 @@ namespace DAL
                 return false;
             }
         }
-        public bool Delete(string id)
+        public bool Delete(int id)
         {
             using (RacheliEntities db = new RacheliEntities())
             {
