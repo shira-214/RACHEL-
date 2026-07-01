@@ -27,19 +27,21 @@ namespace WpfRentingApartementRacheli
         // יצירת מופע של השרת
         Service1Client service = new Service1Client();
         List<DTOApartments> lApartments;
+        List<DTORentings> lRentings;
+
         public SearchW()
         {
             InitializeComponent();
 
-            ApartmentCities.ItemsSource = service.GetTOCities();
-            ApartmentStreetsNames.ItemsSource = service.GetStreetsNames(); // הוספתי סוגריים
-            lApartments = service.GetApartments().ToList();
-            List<DTOApartments> lApartment = service.GetApartments().ToList();
-            foreach (var item in lApartment)
-                    {
-                USCApartement uc = new USCApartement(item);
-                wrp.Children.Add(uc);
+            if (Global.CurrentRole != Global.UserRole.Hirer)
+            {
+                MessageBox.Show("יש להתחבר כשוכר", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new pageLogin());
+                return;
             }
+
+            ApartmentCities.ItemsSource = service.GetTOCities();
+            ApartmentStreetsNames.ItemsSource = service.GetStreetsNames();
             RefreshData();
         }
 
@@ -51,17 +53,58 @@ namespace WpfRentingApartementRacheli
 
         private void RefreshData()
         {
-            // כרגע לא פעיל, נשאר כפי שהיה
+            lApartments = service.GetApartments().ToList();
+            lRentings = service.GetTORentings().ToList();
+
+            IEnumerable<DTOApartments> filtered = lApartments.Where(a => a.Status);
+
+            if (ApartmentCities.SelectedItem is DTOCities selectedCity)
+            {
+                filtered = filtered.Where(a =>
+                    a.IdCities != null && a.IdCities.IdCity == selectedCity.IdCity);
+            }
+
+            if (ApartmentStreetsNames.SelectedItem is DTOStreetsNames selectedStreet)
+            {
+                filtered = filtered.Where(a =>
+                    a.IdStreet != null && a.IdStreet.IdStreet == selectedStreet.IdStreet);
+            }
+
+            int maxPrice = (int)slPrice.Value;
+            filtered = filtered.Where(a => a.MinimumPrice <= maxPrice);
+
+            int minBeds = (int)slBeds.Value;
+            filtered = filtered.Where(a => a.NumberBeds >= minBeds);
+
+            if (dp.SelectedDate.HasValue)
+            {
+                DateTime searchDate = dp.SelectedDate.Value.Date;
+                var bookedApartmentIds = lRentings
+                    .Where(r => r.KodHapartment != null && r.Date.Date == searchDate)
+                    .Select(r => r.KodHapartment.IdApartment)
+                    .ToList();
+
+                filtered = filtered.Where(a => !bookedApartmentIds.Contains(a.IdApartment));
+            }
+
+            wrp.Children.Clear();
+            foreach (DTOApartments apartment in filtered)
+            {
+                wrp.Children.Add(new USCApartement(apartment));
+            }
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            Global.selectedDate = dp.SelectedDate.Value;
+            if (dp.SelectedDate.HasValue)
+                Global.selectedDate = dp.SelectedDate.Value;
+
+            RefreshData();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            RefreshData();
         }
     }
 }

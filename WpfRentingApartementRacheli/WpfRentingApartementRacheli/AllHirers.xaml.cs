@@ -48,7 +48,20 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvHirers.SelectedItem is DTOHirers hirer))
+            {
+                MessageBox.Show("יש לבחור שוכר למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            bool ok = server.DeleteHirer(hirer.C_IDHirer);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvHirers.ItemsSource = server.GetTOHirers();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות (הזמנות). מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

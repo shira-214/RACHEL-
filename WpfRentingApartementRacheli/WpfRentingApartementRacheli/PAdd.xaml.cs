@@ -1,85 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
-
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AddW.xaml
-    /// </summary>
     public partial class AddW : Page
     {
         Service1Client server = new Service1Client();
-        DTOApartments Apartment;//אוביקט מסוג משתמש עליו עובדים
-        bool Add;
+        DTOApartments Apartment;
 
         public AddW()
         {
             InitializeComponent();
+
+            if (Global.CurrentRole != Global.UserRole.Owner && Global.CurrentRole != Global.UserRole.None)
+            {
+                MessageBox.Show("יש להתחבר כמשכיר", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new OwnerLoginPage());
+                return;
+            }
+
             Apartment = new DTOApartments();
-            this.DataContext = Apartment;
-            Add = true;
-           ApartmentCities.ItemsSource = server.GetTOCities();
+            DataContext = Apartment;
+            ApartmentCities.ItemsSource = server.GetTOCities();
 
+            if (Global.CurrentRole == Global.UserRole.Owner && Global.CurrentOwner != null)
+            {
+                Apartment.NameOwner = Global.CurrentOwner.NameOwner;
+                Apartment.PhoneOwner = Global.CurrentOwner.PhoneOwner;
+                ApartmentsNameOwner.IsReadOnly = true;
+                txtPhoneOwner.IsReadOnly = true;
+            }
         }
 
-        private void ShowLogin_Click(object sender, RoutedEventArgs e)
+        private void ApartmentCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoginPanel.Visibility = Visibility.Visible; // מציג התחברות
-            RegisterPanel.Visibility = Visibility.Collapsed; // מסתיר הרשמה
+            ApartmentStreetsNames.ItemsSource = null;
+            ApartmentStreetsNames.SelectedItem = null;
 
+            if (ApartmentCities.SelectedItem is DTOCities city)
+            {
+                ApartmentStreetsNames.ItemsSource = server.GetTOAraesCitiesStreets()
+                    .Where(x => x.IdCities != null && x.IdCities.IdCity == city.IdCity && x.IdStreetDTo != null)
+                    .GroupBy(x => x.IdStreetDTo.IdStreet)
+                    .Select(g => g.First().IdStreetDTo)
+                    .ToList();
+            }
         }
 
-        // מעבר למסך הרשמה
-        private void ShowRegister_Click(object sender, RoutedEventArgs e)
-        {
-            LoginPanel.Visibility = Visibility.Collapsed;
-            RegisterPanel.Visibility = Visibility.Visible;
-
-            // עדכון צבעי הכפתורים
-        }
-
-        // לחיצה על כפתור סיום הרשמה
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            // כאן תכניסי את הקוד ששומר את המשתמש החדש
-            if (Validation.GetHasError(ApartmentsNameOwner) == true || Validation.GetHasError(ApartmentCities) == true || Validation.GetHasError(ApartmentStreetsNames) == true || Validation.GetHasError(txtNumberHouse) == true || Validation.GetHasError(txtFloor) == true || Validation.GetHasError(txtNumberRooms) == true || Validation.GetHasError(txtNumberBeds) == true || Validation.GetHasError(txtMinimumPrice) == true || Validation.GetHasError(txtExtraForBed) == true || Validation.GetHasError(txtnote) == true || Validation.GetHasError(txtPhoneOwner) == true)
+            if (Validation.GetHasError(ApartmentsNameOwner) || Validation.GetHasError(txtPhoneOwner) ||
+                Validation.GetHasError(txtNumberHouse) || Validation.GetHasError(txtFloor) ||
+                Validation.GetHasError(txtNumberRooms) || Validation.GetHasError(txtNumberBeds) ||
+                Validation.GetHasError(txtMinimumPrice) || Validation.GetHasError(txtExtraForBed))
             {
-                MessageBox.Show("נתונים שגויים!");
+                MessageBox.Show("נתונים שגויים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (ApartmentsNameOwner.Text == "" || txtPhoneOwner.Text == "" ||
+                ApartmentCities.SelectedItem == null || ApartmentStreetsNames.SelectedItem == null ||
+                txtNumberHouse.Text == "" || txtFloor.Text == "" || txtNumberRooms.Text == "" ||
+                txtNumberBeds.Text == "" || txtMinimumPrice.Text == "" || txtExtraForBed.Text == "" ||
+                txtnote.Text == "")
+            {
+                MessageBox.Show("נתונים חסרים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Apartment.IdCities = (DTOCities)ApartmentCities.SelectedItem;
+            Apartment.IdStreet = (DTOStreetsNames)ApartmentStreetsNames.SelectedItem;
+            Apartment.Status = true;
+
+            if (server.AddApartments(Apartment))
+            {
+                Global.currentApartments = Apartment;
+                Global.CurrentRole = Global.UserRole.Owner;
+                MessageBox.Show("הדירה נוספה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService?.Navigate(new OwnerDashboardPage());
             }
             else
             {
-                //בדיקה שאין נתונים ריקים
-                if (ApartmentsNameOwner.Text == "" || ApartmentCities.SelectedItem == null || ApartmentStreetsNames.SelectedItem == null || (txtNumberHouse.Text == "") || (txtFloor.Text == "") || (txtNumberRooms.Text == "") || (txtNumberBeds.Text == "") || txtMinimumPrice.Text == "" || txtExtraForBed.Text == "" || txtnote.Text == "" || txtPhoneOwner.Text == "")
-                {
-                    MessageBox.Show("נתונים חסרים!");
-                }
-                else
-                {
-                    Apartment.Status = true;
-                    server.AddApartments(Apartment);
-                    NavigationService.Navigate(new AllApartments());
-                }
+                MessageBox.Show("שגיאה בהוספת הדירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
-
-

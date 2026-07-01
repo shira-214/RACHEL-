@@ -1,33 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AddManagerImages.xaml
-    /// </summary>
     public partial class AddManagerImages : Page
     {
+        Service1Client server = new Service1Client();
+        byte[] selectedImage;
+
         public AddManagerImages()
         {
             InitializeComponent();
+            cmbApartment.ItemsSource = server.GetApartments();
+        }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            selectedImage = ImageManager.UploadImage_Dlg();
+            if (selectedImage != null)
+                imagePreview.Source = ImageManager.GetImage(selectedImage);
         }
 
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
+            if (!(cmbApartment.SelectedItem is DTOApartments apartment))
+            {
+                MessageBox.Show("יש לבחור דירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            if (selectedImage == null)
+            {
+                MessageBox.Show("יש לבחור תמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            int nextNum = server.GetImages()
+                .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
+                .Select(x => x.NumImage)
+                .DefaultIfEmpty(0)
+                .Max() + 1;
+
+            DTOImages imageDto = new DTOImages
+            {
+                IdApartement = apartment,
+                NumImage = nextNum,
+                Image1 = selectedImage,
+                Stataus = true
+            };
+
+            if (server.AddImages(imageDto))
+            {
+                MessageBox.Show("התמונה נשמרה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService?.Navigate(new AllImages());
+            }
+            else
+                MessageBox.Show("שגיאה בשמירת התמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

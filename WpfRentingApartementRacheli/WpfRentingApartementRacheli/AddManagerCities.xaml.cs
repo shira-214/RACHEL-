@@ -1,83 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
-
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AddManagerCities.xaml
-    /// </summary>
     public partial class AddManagerCities : Page
     {
         Service1Client server = new Service1Client();
-        DTOCities city;//אוביקט מסוג משתמש עליו עובדים
+        DTOCities city;
         bool add;
+
         public AddManagerCities()
         {
             InitializeComponent();
             city = new DTOCities();
-            this.DataContext = city;
+            DataContext = city;
             add = true;
-
         }
 
-        public AddManagerCities(DTOAreas Area)
+        public AddManagerCities(DTOCities selectedCity)
         {
             InitializeComponent();
-            this.city = city;
-            this.DataContext = Area;
+            city = selectedCity;
+            DataContext = city;
             add = false;
-
         }
-
 
         public void btnEnd_Click(object sender, RoutedEventArgs e)
         {
             if (Validation.GetHasError(txtNameCity))
             {
-                MessageBox.Show("נתונים שגויים!");
+                MessageBox.Show("נתונים שגויים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (txtNameCity.Text == "")
+            {
+                MessageBox.Show("נתונים חסרים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            bool ok;
+            if (add)
+                ok = server.AddCities(city);
+            else
+                ok = server.UpdateCities(city);
+
+            if (ok)
+            {
+                MessageBox.Show(add ? "נוסף בהצלחה!" : "עודכן בהצלחה!", "הצלחה",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigationService?.Navigate(new AllCities());
             }
             else
-            {
-                //בדיקה שאין נתונים ריקים
-                if (txtNameCity.Text == "")
-                {
-                    MessageBox.Show("נתונים חסרים!");
-                }
-                else
-                {
-                    if (add == true)
-                    { server.AddCities(city); }
-                    else
-                    {
-                        {
-                            if (server.UpdateCities(city))
-                                MessageBox.Show("עודכן בהצלחה!!😀😀😀😀😀");
-                            else
-                                MessageBox.Show("שגיאה בעדכון", "", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-
-                    }
-                    NavigationService.Navigate(new AllAreas());
-                }
-            }
-
+                MessageBox.Show("שגיאה בשמירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
     }
-
 }
-

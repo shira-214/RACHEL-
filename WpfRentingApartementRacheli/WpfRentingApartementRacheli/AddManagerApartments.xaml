@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="800"
-      Title="AddManagerApartments">
+      Title="הוספת/עריכת דירה">
 
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,26,0,-26">

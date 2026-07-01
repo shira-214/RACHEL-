@@ -61,18 +61,22 @@ namespace WpfRentingApartementRacheli
                 else
                 {
                     if (Add == true)
-                    { server.AddApartments(Apartment); }
+                    {
+                        if (server.AddApartments(Apartment))
+                            NavigationService.Navigate(new POrders(Apartment));
+                        else
+                            MessageBox.Show("שגיאה בהוספת דירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                     else
                     {
+                        if (server.UpdateApartments(Apartment))
                         {
-                            if (server.UpdateApartments(Apartment))
-                                MessageBox.Show("עודכן בהצלחה!!😀😀😀😀😀");
-                            else
-                                MessageBox.Show("שגיאה בעדכון", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("עודכן בהצלחה!");
+                            NavigationService.Navigate(new POrders(Apartment));
                         }
-
+                        else
+                            MessageBox.Show("שגיאה בעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    NavigationService.Navigate(new Image());
                 }
             }
 

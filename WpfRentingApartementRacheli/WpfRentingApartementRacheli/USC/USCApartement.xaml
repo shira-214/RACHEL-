@@ -37,26 +37,21 @@
             <!-- פרטים -->
             <StackPanel Grid.Column="1" Margin="25,0">
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
-                    <TextBlock Text="{Binding IdArea.NameArea}" FontSize="28" FontWeight="Bold"/><!--לשאול-->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
+                    <TextBlock Text="{Binding NumberHouse}" FontSize="28" FontWeight="Bold" Margin="5,0,0,0"/>
+                    <TextBlock Text="{Binding IdStreet.StreetName}" FontSize="28" FontWeight="Bold"/>
                     <TextBlock Text=" - " FontSize="28" FontWeight="Bold" Margin="5,0"/>
                     <TextBlock Text="{Binding IdCities.NameCity}" FontSize="28" FontWeight="Bold"/>
-
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
-
-                    <TextBlock Text="{Binding IdStreet.StreetName}" FontSize="18" FontWeight="Bold"/>
-
-                 <TextBlock Text="{Binding NumberHouse}" FontSize="18" Margin="0,8"/>
-                 <TextBlock Text="קומה"/>
-
                     <TextBlock Text="{Binding Floor}" FontSize="18" Margin="0,8"/>
+                    <TextBlock Text="קומה" FontSize="18"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
-                    <TextBlock Text="{Binding NumberRooms}" FontSize="18" Margin="0,8"/>
-                    <TextBlock Text="חדרים"/>
                     <TextBlock Text="{Binding NumberBeds}" FontSize="18" Margin="0,8"/>
-                    <TextBlock Text="מיטות"/>
+                    <TextBlock Text="מיטות" FontSize="18"/>
+                    <TextBlock Text="{Binding NumberRooms}" FontSize="18" Margin="0,8"/>
+                    <TextBlock Text="חדרים" FontSize="18"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
                     <TextBlock Text="מחיר התחלתי"/>
@@ -65,7 +60,7 @@
                     <TextBlock Text="{Binding ExtraForBed}" FontSize="18" Margin="0,8"/>
 
                 </StackPanel>
-                <TextBlock Text="{Binding Description}"
+                <TextBlock Text="{Binding note}"
                            FontSize="16"
                            Foreground="Gray"
                            TextWrapping="Wrap"

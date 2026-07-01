@@ -84,7 +84,7 @@ namespace WpfRentingApartementRacheli
                                 MessageBox.Show("עודכן בהצלחה!!😀😀😀😀😀");
                             else
                                 MessageBox.Show("שגיאה בעדכון", "", MessageBoxButton.OK, MessageBoxImage.Error);    
-                            NavigationService.Navigate(new AllAreas());
+                            NavigationService.Navigate(new AllHirers());
 
                         }
 

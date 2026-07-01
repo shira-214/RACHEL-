@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddManagerExtras">
+      Title="הוספת/עריכת תוספת">
 
     <Grid>
         <StackPanel>
@@ -14,7 +14,7 @@
             <TextBox x:Name="txtExtras" >
                 <TextBox.Text>
 
-                    <Binding Path="userExtras">
+                    <Binding Path="NameExtra">
                         <Binding.ValidationRules>
                             <local:isHebrewRule/>
                         </Binding.ValidationRules>

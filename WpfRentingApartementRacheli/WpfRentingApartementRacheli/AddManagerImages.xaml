@@ -3,32 +3,23 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddManagerImages">
+      Title="הוספת תמונה"
+      FlowDirection="RightToLeft">
 
-    <Grid>
-        <Grid>
-            <StackPanel>
-                <TextBlock Text="תמונה"/>
-                <TextBox x:Name="txtExtras" >
-                    <TextBox.Text>
+    <Grid Margin="20">
+        <StackPanel MaxWidth="450">
+            <TextBlock Text="הוספת תמונה לדירה" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+            <TextBlock Text="בחר דירה" Margin="0,0,0,5"/>
+            <ComboBox x:Name="cmbApartment" DisplayMemberPath="IdCities.NameCity" Height="35" Margin="0,0,0,15"/>
 
-                        <Binding Path="userExtras">
-                            <Binding.ValidationRules>
-                                <local:isHebrewRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>
-                <Button Cursor="Hand" x:Name="btnEnd" Content="סיימתי" Click="btnEnd_Click"/>
+            <Border Height="180" BorderBrush="#DDD" BorderThickness="1" Margin="0,0,0,15">
+                <Image x:Name="imagePreview" Stretch="Uniform"/>
+            </Border>
 
-            </StackPanel>
-
-
-        </Grid>
-
-
-</Grid>
+            <Button Content="בחר תמונה" Height="35" Margin="0,0,0,10" Click="btnSelect_Click"/>
+            <Button Cursor="Hand" x:Name="btnEnd" Content="שמור תמונה" Height="35" Click="btnEnd_Click"/>
+        </StackPanel>
+    </Grid>
 </Page>

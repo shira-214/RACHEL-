@@ -48,7 +48,20 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvExtras.SelectedItem is DTOExtras extra))
+            {
+                MessageBox.Show("יש לבחור תוספת למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            bool ok = server.DeleteExtra(extra.IdExtra);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvExtras.ItemsSource = server.GetExtras();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void lvExtras_SelectionChanged(object sender, SelectionChangedEventArgs e)

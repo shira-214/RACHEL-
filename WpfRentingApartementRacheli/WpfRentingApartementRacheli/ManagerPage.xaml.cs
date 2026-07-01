@@ -23,6 +23,21 @@ namespace WpfRentingApartementRacheli
         public ManagerPage()
         {
             InitializeComponent();
+
+            if (Global.CurrentRole != Global.UserRole.Manager)
+            {
+                MessageBox.Show("אין הרשאה — יש להתחבר כמנהל", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new LandingPage());
+                return;
+            }
+
+            ManagerFramre.Navigated += ManagerFramre_Navigated;
+        }
+
+        private void ManagerFramre_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (e.Content is FrameworkElement element)
+                element.FlowDirection = FlowDirection.RightToLeft;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

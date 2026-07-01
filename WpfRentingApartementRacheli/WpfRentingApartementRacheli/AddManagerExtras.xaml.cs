@@ -60,18 +60,26 @@ namespace WpfRentingApartementRacheli
                 else
                 {
                     if (Add == true)
-                    { server.AddExtras(Extra); }
+                    {
+                        if (server.AddExtras(Extra))
+                            MessageBox.Show("נוסף בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                        else
+                        {
+                            MessageBox.Show("שגיאה בהוספה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
                     else
                     {
+                        if (server.Updatextras(Extra))
+                            MessageBox.Show("עודכן בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                        else
                         {
-                            if (server.Updatextras(Extra))//למה אין לו אקסטרה ???
-                                MessageBox.Show("עודכן בהצלחה!!😀😀😀😀😀");
-                            else
-                                MessageBox.Show("שגיאה בעדכון", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("שגיאה בעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
                         }
-
                     }
-                    NavigationService.Navigate(new AllAreas());
+                    NavigationService.Navigate(new AllExtras());
                 }
             }
 

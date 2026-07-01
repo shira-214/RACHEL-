@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddManagerStreetNames">
+      Title="הוספת/עריכת רחוב">
 
     <Grid>
         <StackPanel>
@@ -14,7 +14,7 @@
             <TextBox x:Name="txtStreet" >
                 <TextBox.Text>
 
-                    <Binding Path="userExtras" >
+                    <Binding Path="StreetName" >
                         <Binding.ValidationRules>
                             <local:isHebrewRule/>
                         </Binding.ValidationRules>

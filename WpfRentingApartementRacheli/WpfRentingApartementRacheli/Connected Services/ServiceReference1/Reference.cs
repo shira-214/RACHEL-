@@ -8,244 +8,223 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfRentingApartementRacheli.ServiceReference1 {
+namespace WpfRentingApartementRacheli.ServiceReference1
+{
     using System.Runtime.Serialization;
-    using System;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOApartments", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOApartments : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOApartments : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int ExtraForBedField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int FloorField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdApartmentField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCitiesField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreetField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int MinimumPriceField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameOwnerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberBedsField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NumberHouseField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumberRoomsField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PhoneOwnerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool StatusField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string noteField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ExtraForBed {
-            get {
+        public int ExtraForBed
+        {
+            get
+            {
                 return this.ExtraForBedField;
             }
-            set {
-                if ((this.ExtraForBedField.Equals(value) != true)) {
-                    this.ExtraForBedField = value;
-                    this.RaisePropertyChanged("ExtraForBed");
-                }
+            set
+            {
+                this.ExtraForBedField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Floor {
-            get {
+        public int Floor
+        {
+            get
+            {
                 return this.FloorField;
             }
-            set {
-                if ((this.FloorField.Equals(value) != true)) {
-                    this.FloorField = value;
-                    this.RaisePropertyChanged("Floor");
-                }
+            set
+            {
+                this.FloorField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdApartment {
-            get {
+        public int IdApartment
+        {
+            get
+            {
                 return this.IdApartmentField;
             }
-            set {
-                if ((this.IdApartmentField.Equals(value) != true)) {
-                    this.IdApartmentField = value;
-                    this.RaisePropertyChanged("IdApartment");
-                }
+            set
+            {
+                this.IdApartmentField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCities {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCities
+        {
+            get
+            {
                 return this.IdCitiesField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdCitiesField, value) != true)) {
-                    this.IdCitiesField = value;
-                    this.RaisePropertyChanged("IdCities");
-                }
+            set
+            {
+                this.IdCitiesField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreet {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreet
+        {
+            get
+            {
                 return this.IdStreetField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdStreetField, value) != true)) {
-                    this.IdStreetField = value;
-                    this.RaisePropertyChanged("IdStreet");
-                }
+            set
+            {
+                this.IdStreetField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MinimumPrice {
-            get {
+        public int MinimumPrice
+        {
+            get
+            {
                 return this.MinimumPriceField;
             }
-            set {
-                if ((this.MinimumPriceField.Equals(value) != true)) {
-                    this.MinimumPriceField = value;
-                    this.RaisePropertyChanged("MinimumPrice");
-                }
+            set
+            {
+                this.MinimumPriceField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NameOwner {
-            get {
+        public string NameOwner
+        {
+            get
+            {
                 return this.NameOwnerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NameOwnerField, value) != true)) {
-                    this.NameOwnerField = value;
-                    this.RaisePropertyChanged("NameOwner");
-                }
+            set
+            {
+                this.NameOwnerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NumberBeds {
-            get {
+        public int NumberBeds
+        {
+            get
+            {
                 return this.NumberBedsField;
             }
-            set {
-                if ((this.NumberBedsField.Equals(value) != true)) {
-                    this.NumberBedsField = value;
-                    this.RaisePropertyChanged("NumberBeds");
-                }
+            set
+            {
+                this.NumberBedsField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NumberHouse {
-            get {
+        public string NumberHouse
+        {
+            get
+            {
                 return this.NumberHouseField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NumberHouseField, value) != true)) {
-                    this.NumberHouseField = value;
-                    this.RaisePropertyChanged("NumberHouse");
-                }
+            set
+            {
+                this.NumberHouseField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NumberRooms {
-            get {
+        public int NumberRooms
+        {
+            get
+            {
                 return this.NumberRoomsField;
             }
-            set {
-                if ((this.NumberRoomsField.Equals(value) != true)) {
-                    this.NumberRoomsField = value;
-                    this.RaisePropertyChanged("NumberRooms");
-                }
+            set
+            {
+                this.NumberRoomsField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PhoneOwner {
-            get {
+        public string PhoneOwner
+        {
+            get
+            {
                 return this.PhoneOwnerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.PhoneOwnerField, value) != true)) {
-                    this.PhoneOwnerField = value;
-                    this.RaisePropertyChanged("PhoneOwner");
-                }
+            set
+            {
+                this.PhoneOwnerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Status {
-            get {
+        public bool Status
+        {
+            get
+            {
                 return this.StatusField;
             }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
+            set
+            {
+                this.StatusField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string note {
-            get {
+        public string note
+        {
+            get
+            {
                 return this.noteField;
             }
-            set {
-                if ((object.ReferenceEquals(this.noteField, value) != true)) {
-                    this.noteField = value;
-                    this.RaisePropertyChanged("note");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.noteField = value;
             }
         }
     }
@@ -253,60 +232,50 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOCities", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOCities : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOCities : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdCityField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameCityField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdCity {
-            get {
+        public int IdCity
+        {
+            get
+            {
                 return this.IdCityField;
             }
-            set {
-                if ((this.IdCityField.Equals(value) != true)) {
-                    this.IdCityField = value;
-                    this.RaisePropertyChanged("IdCity");
-                }
+            set
+            {
+                this.IdCityField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NameCity {
-            get {
+        public string NameCity
+        {
+            get
+            {
                 return this.NameCityField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NameCityField, value) != true)) {
-                    this.NameCityField = value;
-                    this.RaisePropertyChanged("NameCity");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.NameCityField = value;
             }
         }
     }
@@ -314,60 +283,50 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOStreetsNames", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOStreetsNames : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOStreetsNames : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdStreetField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StreetNameField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdStreet {
-            get {
+        public int IdStreet
+        {
+            get
+            {
                 return this.IdStreetField;
             }
-            set {
-                if ((this.IdStreetField.Equals(value) != true)) {
-                    this.IdStreetField = value;
-                    this.RaisePropertyChanged("IdStreet");
-                }
+            set
+            {
+                this.IdStreetField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StreetName {
-            get {
+        public string StreetName
+        {
+            get
+            {
                 return this.StreetNameField;
             }
-            set {
-                if ((object.ReferenceEquals(this.StreetNameField, value) != true)) {
-                    this.StreetNameField = value;
-                    this.RaisePropertyChanged("StreetName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.StreetNameField = value;
             }
         }
     }
@@ -375,60 +334,50 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOAreas", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOAreas : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOAreas : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdAreaField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameAreaField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdArea {
-            get {
+        public int IdArea
+        {
+            get
+            {
                 return this.IdAreaField;
             }
-            set {
-                if ((this.IdAreaField.Equals(value) != true)) {
-                    this.IdAreaField = value;
-                    this.RaisePropertyChanged("IdArea");
-                }
+            set
+            {
+                this.IdAreaField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NameArea {
-            get {
+        public string NameArea
+        {
+            get
+            {
                 return this.NameAreaField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NameAreaField, value) != true)) {
-                    this.NameAreaField = value;
-                    this.RaisePropertyChanged("NameArea");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.NameAreaField = value;
             }
         }
     }
@@ -436,76 +385,65 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOAraesCitiesStreet", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOAraesCitiesStreet : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOAraesCitiesStreet : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOAreas IdAreaField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCitiesField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreetDToField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOAreas IdArea {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOAreas IdArea
+        {
+            get
+            {
                 return this.IdAreaField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdAreaField, value) != true)) {
-                    this.IdAreaField = value;
-                    this.RaisePropertyChanged("IdArea");
-                }
+            set
+            {
+                this.IdAreaField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCities {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOCities IdCities
+        {
+            get
+            {
                 return this.IdCitiesField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdCitiesField, value) != true)) {
-                    this.IdCitiesField = value;
-                    this.RaisePropertyChanged("IdCities");
-                }
+            set
+            {
+                this.IdCitiesField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreetDTo {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames IdStreetDTo
+        {
+            get
+            {
                 return this.IdStreetDToField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdStreetDToField, value) != true)) {
-                    this.IdStreetDToField = value;
-                    this.RaisePropertyChanged("IdStreetDTo");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.IdStreetDToField = value;
             }
         }
     }
@@ -513,60 +451,50 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOExtras", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOExtras : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOExtras : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdExtraField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameExtraField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdExtra {
-            get {
+        public int IdExtra
+        {
+            get
+            {
                 return this.IdExtraField;
             }
-            set {
-                if ((this.IdExtraField.Equals(value) != true)) {
-                    this.IdExtraField = value;
-                    this.RaisePropertyChanged("IdExtra");
-                }
+            set
+            {
+                this.IdExtraField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NameExtra {
-            get {
+        public string NameExtra
+        {
+            get
+            {
                 return this.NameExtraField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NameExtraField, value) != true)) {
-                    this.NameExtraField = value;
-                    this.RaisePropertyChanged("NameExtra");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.NameExtraField = value;
             }
         }
     }
@@ -574,76 +502,65 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOExtrasApartements", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOExtrasApartements : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOExtrasApartements : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdAapartmentField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOExtras IdExtraField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool StatusField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdAapartment {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdAapartment
+        {
+            get
+            {
                 return this.IdAapartmentField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdAapartmentField, value) != true)) {
-                    this.IdAapartmentField = value;
-                    this.RaisePropertyChanged("IdAapartment");
-                }
+            set
+            {
+                this.IdAapartmentField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOExtras IdExtra {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOExtras IdExtra
+        {
+            get
+            {
                 return this.IdExtraField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdExtraField, value) != true)) {
-                    this.IdExtraField = value;
-                    this.RaisePropertyChanged("IdExtra");
-                }
+            set
+            {
+                this.IdExtraField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Status {
-            get {
+        public bool Status
+        {
+            get
+            {
                 return this.StatusField;
             }
-            set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.StatusField = value;
             }
         }
     }
@@ -651,76 +568,65 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOHirers", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOHirers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOHirers : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string C_IDHirerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FhoneNumberHirerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameHirerField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string C_IDHirer {
-            get {
+        public string C_IDHirer
+        {
+            get
+            {
                 return this.C_IDHirerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.C_IDHirerField, value) != true)) {
-                    this.C_IDHirerField = value;
-                    this.RaisePropertyChanged("C_IDHirer");
-                }
+            set
+            {
+                this.C_IDHirerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FhoneNumberHirer {
-            get {
+        public string FhoneNumberHirer
+        {
+            get
+            {
                 return this.FhoneNumberHirerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.FhoneNumberHirerField, value) != true)) {
-                    this.FhoneNumberHirerField = value;
-                    this.RaisePropertyChanged("FhoneNumberHirer");
-                }
+            set
+            {
+                this.FhoneNumberHirerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string NameHirer {
-            get {
+        public string NameHirer
+        {
+            get
+            {
                 return this.NameHirerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.NameHirerField, value) != true)) {
-                    this.NameHirerField = value;
-                    this.RaisePropertyChanged("NameHirer");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.NameHirerField = value;
             }
         }
     }
@@ -728,92 +634,80 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTOImages", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTOImages : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTOImages : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdApartementField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] Image1Field;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int NumImageField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool StatausField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdApartement {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments IdApartement
+        {
+            get
+            {
                 return this.IdApartementField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdApartementField, value) != true)) {
-                    this.IdApartementField = value;
-                    this.RaisePropertyChanged("IdApartement");
-                }
+            set
+            {
+                this.IdApartementField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Image1 {
-            get {
+        public byte[] Image1
+        {
+            get
+            {
                 return this.Image1Field;
             }
-            set {
-                if ((object.ReferenceEquals(this.Image1Field, value) != true)) {
-                    this.Image1Field = value;
-                    this.RaisePropertyChanged("Image1");
-                }
+            set
+            {
+                this.Image1Field = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int NumImage {
-            get {
+        public int NumImage
+        {
+            get
+            {
                 return this.NumImageField;
             }
-            set {
-                if ((this.NumImageField.Equals(value) != true)) {
-                    this.NumImageField = value;
-                    this.RaisePropertyChanged("NumImage");
-                }
+            set
+            {
+                this.NumImageField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Stataus {
-            get {
+        public bool Stataus
+        {
+            get
+            {
                 return this.StatausField;
             }
-            set {
-                if ((this.StatausField.Equals(value) != true)) {
-                    this.StatausField = value;
-                    this.RaisePropertyChanged("Stataus");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.StatausField = value;
             }
         }
     }
@@ -821,131 +715,118 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DTORentings", Namespace="http://schemas.datacontract.org/2004/07/DTO")]
-    [System.SerializableAttribute()]
-    public partial class DTORentings : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DTORentings : object, System.Runtime.Serialization.IExtensibleDataObject
+    {
         
-        [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime DateField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOHirers IdHirerField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdRentingField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfRentingApartementRacheli.ServiceReference1.DTOApartments KodHapartmentField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SumBedsField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int SumPaymentField;
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
+        {
+            get
+            {
                 return this.extensionDataField;
             }
-            set {
+            set
+            {
                 this.extensionDataField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime Date {
-            get {
+        public System.DateTime Date
+        {
+            get
+            {
                 return this.DateField;
             }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
+            set
+            {
+                this.DateField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOHirers IdHirer {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOHirers IdHirer
+        {
+            get
+            {
                 return this.IdHirerField;
             }
-            set {
-                if ((object.ReferenceEquals(this.IdHirerField, value) != true)) {
-                    this.IdHirerField = value;
-                    this.RaisePropertyChanged("IdHirer");
-                }
+            set
+            {
+                this.IdHirerField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdRenting {
-            get {
+        public int IdRenting
+        {
+            get
+            {
                 return this.IdRentingField;
             }
-            set {
-                if ((this.IdRentingField.Equals(value) != true)) {
-                    this.IdRentingField = value;
-                    this.RaisePropertyChanged("IdRenting");
-                }
+            set
+            {
+                this.IdRentingField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments KodHapartment {
-            get {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments KodHapartment
+        {
+            get
+            {
                 return this.KodHapartmentField;
             }
-            set {
-                if ((object.ReferenceEquals(this.KodHapartmentField, value) != true)) {
-                    this.KodHapartmentField = value;
-                    this.RaisePropertyChanged("KodHapartment");
-                }
+            set
+            {
+                this.KodHapartmentField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SumBeds {
-            get {
+        public int SumBeds
+        {
+            get
+            {
                 return this.SumBedsField;
             }
-            set {
-                if ((this.SumBedsField.Equals(value) != true)) {
-                    this.SumBedsField = value;
-                    this.RaisePropertyChanged("SumBeds");
-                }
+            set
+            {
+                this.SumBedsField = value;
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SumPayment {
-            get {
+        public int SumPayment
+        {
+            get
+            {
                 return this.SumPaymentField;
             }
-            set {
-                if ((this.SumPaymentField.Equals(value) != true)) {
-                    this.SumPaymentField = value;
-                    this.RaisePropertyChanged("SumPayment");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            set
+            {
+                this.SumPaymentField = value;
             }
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
-    public interface IService1 {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WpfRentingApartementRacheli.ServiceReference1.IService1")]
+    public interface IService1
+    {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetApartments", ReplyAction="http://tempuri.org/IService1/GetApartmentsResponse")]
         WpfRentingApartementRacheli.ServiceReference1.DTOApartments[] GetApartments();
@@ -1126,273 +1007,500 @@ namespace WpfRentingApartementRacheli.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateStreetsNames", ReplyAction="http://tempuri.org/IService1/UpdateStreetsNamesResponse")]
         System.Threading.Tasks.Task<bool> UpdateStreetsNamesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteApartment", ReplyAction="http://tempuri.org/IService1/DeleteApartmentResponse")]
+        bool DeleteApartment(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteApartment", ReplyAction="http://tempuri.org/IService1/DeleteApartmentResponse")]
+        System.Threading.Tasks.Task<bool> DeleteApartmentAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteArea", ReplyAction="http://tempuri.org/IService1/DeleteAreaResponse")]
+        bool DeleteArea(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteArea", ReplyAction="http://tempuri.org/IService1/DeleteAreaResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAreaAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteCity", ReplyAction="http://tempuri.org/IService1/DeleteCityResponse")]
+        bool DeleteCity(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteCity", ReplyAction="http://tempuri.org/IService1/DeleteCityResponse")]
+        System.Threading.Tasks.Task<bool> DeleteCityAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteExtra", ReplyAction="http://tempuri.org/IService1/DeleteExtraResponse")]
+        bool DeleteExtra(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteExtra", ReplyAction="http://tempuri.org/IService1/DeleteExtraResponse")]
+        System.Threading.Tasks.Task<bool> DeleteExtraAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteStreetsName", ReplyAction="http://tempuri.org/IService1/DeleteStreetsNameResponse")]
+        bool DeleteStreetsName(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteStreetsName", ReplyAction="http://tempuri.org/IService1/DeleteStreetsNameResponse")]
+        System.Threading.Tasks.Task<bool> DeleteStreetsNameAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteHirer", ReplyAction="http://tempuri.org/IService1/DeleteHirerResponse")]
+        bool DeleteHirer(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteHirer", ReplyAction="http://tempuri.org/IService1/DeleteHirerResponse")]
+        System.Threading.Tasks.Task<bool> DeleteHirerAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteRenting", ReplyAction="http://tempuri.org/IService1/DeleteRentingResponse")]
+        bool DeleteRenting(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteRenting", ReplyAction="http://tempuri.org/IService1/DeleteRentingResponse")]
+        System.Threading.Tasks.Task<bool> DeleteRentingAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAraesCitiesStreet", ReplyAction="http://tempuri.org/IService1/DeleteAraesCitiesStreetResponse")]
+        bool DeleteAraesCitiesStreet(int idStreet, int idCities, int idArea);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteAraesCitiesStreet", ReplyAction="http://tempuri.org/IService1/DeleteAraesCitiesStreetResponse")]
+        System.Threading.Tasks.Task<bool> DeleteAraesCitiesStreetAsync(int idStreet, int idCities, int idArea);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteExtrasApartement", ReplyAction="http://tempuri.org/IService1/DeleteExtrasApartementResponse")]
+        bool DeleteExtrasApartement(int idExtra, int idApartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteExtrasApartement", ReplyAction="http://tempuri.org/IService1/DeleteExtrasApartementResponse")]
+        System.Threading.Tasks.Task<bool> DeleteExtrasApartementAsync(int idExtra, int idApartment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteImage", ReplyAction="http://tempuri.org/IService1/DeleteImageResponse")]
+        bool DeleteImage(int idApartment, int numImage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteImage", ReplyAction="http://tempuri.org/IService1/DeleteImageResponse")]
+        System.Threading.Tasks.Task<bool> DeleteImageAsync(int idApartment, int numImage);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : WpfRentingApartementRacheli.ServiceReference1.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : WpfRentingApartementRacheli.ServiceReference1.IService1, System.ServiceModel.IClientChannel
+    {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<WpfRentingApartementRacheli.ServiceReference1.IService1>, WpfRentingApartementRacheli.ServiceReference1.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<WpfRentingApartementRacheli.ServiceReference1.IService1>, WpfRentingApartementRacheli.ServiceReference1.IService1
+    {
         
-        public Service1Client() {
+        public Service1Client()
+        {
         }
         
         public Service1Client(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+                base(endpointConfigurationName)
+        {
         }
         
         public Service1Client(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+                base(endpointConfigurationName, remoteAddress)
+        {
         }
         
         public Service1Client(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+                base(endpointConfigurationName, remoteAddress)
+        {
         }
         
         public Service1Client(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+                base(binding, remoteAddress)
+        {
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments[] GetApartments() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOApartments[] GetApartments()
+        {
             return base.Channel.GetApartments();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOApartments[]> GetApartmentsAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOApartments[]> GetApartmentsAsync()
+        {
             return base.Channel.GetApartmentsAsync();
         }
         
-        public bool AddApartments(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartments) {
+        public bool AddApartments(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartments)
+        {
             return base.Channel.AddApartments(apartments);
         }
         
-        public System.Threading.Tasks.Task<bool> AddApartmentsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartments) {
+        public System.Threading.Tasks.Task<bool> AddApartmentsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartments)
+        {
             return base.Channel.AddApartmentsAsync(apartments);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOAreas[] GetAreas() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOAreas[] GetAreas()
+        {
             return base.Channel.GetAreas();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOAreas[]> GetAreasAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOAreas[]> GetAreasAsync()
+        {
             return base.Channel.GetAreasAsync();
         }
         
-        public bool AddArea(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas) {
+        public bool AddArea(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas)
+        {
             return base.Channel.AddArea(areas);
         }
         
-        public System.Threading.Tasks.Task<bool> AddAreaAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas) {
+        public System.Threading.Tasks.Task<bool> AddAreaAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas)
+        {
             return base.Channel.AddAreaAsync(areas);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet[] GetTOAraesCitiesStreets() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet[] GetTOAraesCitiesStreets()
+        {
             return base.Channel.GetTOAraesCitiesStreets();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet[]> GetTOAraesCitiesStreetsAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet[]> GetTOAraesCitiesStreetsAsync()
+        {
             return base.Channel.GetTOAraesCitiesStreetsAsync();
         }
         
-        public bool AddAraesCitiesStreet(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet araesCitiesStreet) {
+        public bool AddAraesCitiesStreet(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet araesCitiesStreet)
+        {
             return base.Channel.AddAraesCitiesStreet(araesCitiesStreet);
         }
         
-        public System.Threading.Tasks.Task<bool> AddAraesCitiesStreetAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet araesCitiesStreet) {
+        public System.Threading.Tasks.Task<bool> AddAraesCitiesStreetAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet araesCitiesStreet)
+        {
             return base.Channel.AddAraesCitiesStreetAsync(araesCitiesStreet);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOCities[] GetTOCities() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOCities[] GetTOCities()
+        {
             return base.Channel.GetTOCities();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOCities[]> GetTOCitiesAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOCities[]> GetTOCitiesAsync()
+        {
             return base.Channel.GetTOCitiesAsync();
         }
         
-        public bool AddCities(WpfRentingApartementRacheli.ServiceReference1.DTOCities cities) {
+        public bool AddCities(WpfRentingApartementRacheli.ServiceReference1.DTOCities cities)
+        {
             return base.Channel.AddCities(cities);
         }
         
-        public System.Threading.Tasks.Task<bool> AddCitiesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOCities cities) {
+        public System.Threading.Tasks.Task<bool> AddCitiesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOCities cities)
+        {
             return base.Channel.AddCitiesAsync(cities);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOExtras[] GetExtras() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOExtras[] GetExtras()
+        {
             return base.Channel.GetExtras();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOExtras[]> GetExtrasAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOExtras[]> GetExtrasAsync()
+        {
             return base.Channel.GetExtrasAsync();
         }
         
-        public bool AddExtras(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extras) {
+        public bool AddExtras(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extras)
+        {
             return base.Channel.AddExtras(extras);
         }
         
-        public System.Threading.Tasks.Task<bool> AddExtrasAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extras) {
+        public System.Threading.Tasks.Task<bool> AddExtrasAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extras)
+        {
             return base.Channel.AddExtrasAsync(extras);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements[] GetTOExtrasApartements() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements[] GetTOExtrasApartements()
+        {
             return base.Channel.GetTOExtrasApartements();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements[]> GetTOExtrasApartementsAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements[]> GetTOExtrasApartementsAsync()
+        {
             return base.Channel.GetTOExtrasApartementsAsync();
         }
         
-        public bool AddExtrasApartements(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements extrasApartements) {
+        public bool AddExtrasApartements(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements extrasApartements)
+        {
             return base.Channel.AddExtrasApartements(extrasApartements);
         }
         
-        public System.Threading.Tasks.Task<bool> AddExtrasApartementsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements extrasApartements) {
+        public System.Threading.Tasks.Task<bool> AddExtrasApartementsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements extrasApartements)
+        {
             return base.Channel.AddExtrasApartementsAsync(extrasApartements);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOHirers[] GetTOHirers() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOHirers[] GetTOHirers()
+        {
             return base.Channel.GetTOHirers();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOHirers[]> GetTOHirersAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOHirers[]> GetTOHirersAsync()
+        {
             return base.Channel.GetTOHirersAsync();
         }
         
-        public bool AddHirers(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirers) {
+        public bool AddHirers(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirers)
+        {
             return base.Channel.AddHirers(hirers);
         }
         
-        public System.Threading.Tasks.Task<bool> AddHirersAsync(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirers) {
+        public System.Threading.Tasks.Task<bool> AddHirersAsync(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirers)
+        {
             return base.Channel.AddHirersAsync(hirers);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOImages[] GetImages() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOImages[] GetImages()
+        {
             return base.Channel.GetImages();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOImages[]> GetImagesAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOImages[]> GetImagesAsync()
+        {
             return base.Channel.GetImagesAsync();
         }
         
-        public bool AddImages(WpfRentingApartementRacheli.ServiceReference1.DTOImages images) {
+        public bool AddImages(WpfRentingApartementRacheli.ServiceReference1.DTOImages images)
+        {
             return base.Channel.AddImages(images);
         }
         
-        public System.Threading.Tasks.Task<bool> AddImagesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOImages images) {
+        public System.Threading.Tasks.Task<bool> AddImagesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOImages images)
+        {
             return base.Channel.AddImagesAsync(images);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTORentings[] GetTORentings() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTORentings[] GetTORentings()
+        {
             return base.Channel.GetTORentings();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTORentings[]> GetTORentingsAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTORentings[]> GetTORentingsAsync()
+        {
             return base.Channel.GetTORentingsAsync();
         }
         
-        public bool Addentings(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings) {
+        public bool Addentings(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings)
+        {
             return base.Channel.Addentings(rentings);
         }
         
-        public System.Threading.Tasks.Task<bool> AddentingsAsync(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings) {
+        public System.Threading.Tasks.Task<bool> AddentingsAsync(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings)
+        {
             return base.Channel.AddentingsAsync(rentings);
         }
         
-        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames[] GetStreetsNames() {
+        public WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames[] GetStreetsNames()
+        {
             return base.Channel.GetStreetsNames();
         }
         
-        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames[]> GetStreetsNamesAsync() {
+        public System.Threading.Tasks.Task<WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames[]> GetStreetsNamesAsync()
+        {
             return base.Channel.GetStreetsNamesAsync();
         }
         
-        public bool AddStreetsNames(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsNames) {
+        public bool AddStreetsNames(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsNames)
+        {
             return base.Channel.AddStreetsNames(streetsNames);
         }
         
-        public System.Threading.Tasks.Task<bool> AddStreetsNamesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsNames) {
+        public System.Threading.Tasks.Task<bool> AddStreetsNamesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsNames)
+        {
             return base.Channel.AddStreetsNamesAsync(streetsNames);
         }
         
-        public bool UpdateArae(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas) {
+        public bool UpdateArae(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas)
+        {
             return base.Channel.UpdateArae(areas);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateAraeAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas) {
+        public System.Threading.Tasks.Task<bool> UpdateAraeAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAreas areas)
+        {
             return base.Channel.UpdateAraeAsync(areas);
         }
         
-        public bool UpdateApartments(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartment) {
+        public bool UpdateApartments(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartment)
+        {
             return base.Channel.UpdateApartments(apartment);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateApartmentsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartment) {
+        public System.Threading.Tasks.Task<bool> UpdateApartmentsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOApartments apartment)
+        {
             return base.Channel.UpdateApartmentsAsync(apartment);
         }
         
-        public bool UpdateraesCitiesStreet(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet raesCitiesStreet) {
+        public bool UpdateraesCitiesStreet(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet raesCitiesStreet)
+        {
             return base.Channel.UpdateraesCitiesStreet(raesCitiesStreet);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateraesCitiesStreetAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet raesCitiesStreet) {
+        public System.Threading.Tasks.Task<bool> UpdateraesCitiesStreetAsync(WpfRentingApartementRacheli.ServiceReference1.DTOAraesCitiesStreet raesCitiesStreet)
+        {
             return base.Channel.UpdateraesCitiesStreetAsync(raesCitiesStreet);
         }
         
-        public bool UpdateCities(WpfRentingApartementRacheli.ServiceReference1.DTOCities city) {
+        public bool UpdateCities(WpfRentingApartementRacheli.ServiceReference1.DTOCities city)
+        {
             return base.Channel.UpdateCities(city);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateCitiesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOCities city) {
+        public System.Threading.Tasks.Task<bool> UpdateCitiesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOCities city)
+        {
             return base.Channel.UpdateCitiesAsync(city);
         }
         
-        public bool Updatextras(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extra) {
+        public bool Updatextras(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extra)
+        {
             return base.Channel.Updatextras(extra);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdatextrasAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extra) {
+        public System.Threading.Tasks.Task<bool> UpdatextrasAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtras extra)
+        {
             return base.Channel.UpdatextrasAsync(extra);
         }
         
-        public bool UpdateExtrasApartements(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements ExtrasApartements) {
+        public bool UpdateExtrasApartements(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements ExtrasApartements)
+        {
             return base.Channel.UpdateExtrasApartements(ExtrasApartements);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateExtrasApartementsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements ExtrasApartements) {
+        public System.Threading.Tasks.Task<bool> UpdateExtrasApartementsAsync(WpfRentingApartementRacheli.ServiceReference1.DTOExtrasApartements ExtrasApartements)
+        {
             return base.Channel.UpdateExtrasApartementsAsync(ExtrasApartements);
         }
         
-        public bool UpdateHirers(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirer) {
+        public bool UpdateHirers(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirer)
+        {
             return base.Channel.UpdateHirers(hirer);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateHirersAsync(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirer) {
+        public System.Threading.Tasks.Task<bool> UpdateHirersAsync(WpfRentingApartementRacheli.ServiceReference1.DTOHirers hirer)
+        {
             return base.Channel.UpdateHirersAsync(hirer);
         }
         
-        public bool UpdateImages(WpfRentingApartementRacheli.ServiceReference1.DTOImages image) {
+        public bool UpdateImages(WpfRentingApartementRacheli.ServiceReference1.DTOImages image)
+        {
             return base.Channel.UpdateImages(image);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateImagesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOImages image) {
+        public System.Threading.Tasks.Task<bool> UpdateImagesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOImages image)
+        {
             return base.Channel.UpdateImagesAsync(image);
         }
         
-        public bool UpdateRentings(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings) {
+        public bool UpdateRentings(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings)
+        {
             return base.Channel.UpdateRentings(rentings);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateRentingsAsync(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings) {
+        public System.Threading.Tasks.Task<bool> UpdateRentingsAsync(WpfRentingApartementRacheli.ServiceReference1.DTORentings rentings)
+        {
             return base.Channel.UpdateRentingsAsync(rentings);
         }
         
-        public bool UpdateStreetsNames(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsName) {
+        public bool UpdateStreetsNames(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsName)
+        {
             return base.Channel.UpdateStreetsNames(streetsName);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateStreetsNamesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsName) {
+        public System.Threading.Tasks.Task<bool> UpdateStreetsNamesAsync(WpfRentingApartementRacheli.ServiceReference1.DTOStreetsNames streetsName)
+        {
             return base.Channel.UpdateStreetsNamesAsync(streetsName);
+        }
+        
+        public bool DeleteApartment(int id)
+        {
+            return base.Channel.DeleteApartment(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteApartmentAsync(int id)
+        {
+            return base.Channel.DeleteApartmentAsync(id);
+        }
+        
+        public bool DeleteArea(int id)
+        {
+            return base.Channel.DeleteArea(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAreaAsync(int id)
+        {
+            return base.Channel.DeleteAreaAsync(id);
+        }
+        
+        public bool DeleteCity(int id)
+        {
+            return base.Channel.DeleteCity(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteCityAsync(int id)
+        {
+            return base.Channel.DeleteCityAsync(id);
+        }
+        
+        public bool DeleteExtra(int id)
+        {
+            return base.Channel.DeleteExtra(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteExtraAsync(int id)
+        {
+            return base.Channel.DeleteExtraAsync(id);
+        }
+        
+        public bool DeleteStreetsName(int id)
+        {
+            return base.Channel.DeleteStreetsName(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteStreetsNameAsync(int id)
+        {
+            return base.Channel.DeleteStreetsNameAsync(id);
+        }
+        
+        public bool DeleteHirer(string id)
+        {
+            return base.Channel.DeleteHirer(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteHirerAsync(string id)
+        {
+            return base.Channel.DeleteHirerAsync(id);
+        }
+        
+        public bool DeleteRenting(int id)
+        {
+            return base.Channel.DeleteRenting(id);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteRentingAsync(int id)
+        {
+            return base.Channel.DeleteRentingAsync(id);
+        }
+        
+        public bool DeleteAraesCitiesStreet(int idStreet, int idCities, int idArea)
+        {
+            return base.Channel.DeleteAraesCitiesStreet(idStreet, idCities, idArea);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteAraesCitiesStreetAsync(int idStreet, int idCities, int idArea)
+        {
+            return base.Channel.DeleteAraesCitiesStreetAsync(idStreet, idCities, idArea);
+        }
+        
+        public bool DeleteExtrasApartement(int idExtra, int idApartment)
+        {
+            return base.Channel.DeleteExtrasApartement(idExtra, idApartment);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteExtrasApartementAsync(int idExtra, int idApartment)
+        {
+            return base.Channel.DeleteExtrasApartementAsync(idExtra, idApartment);
+        }
+        
+        public bool DeleteImage(int idApartment, int numImage)
+        {
+            return base.Channel.DeleteImage(idApartment, numImage);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteImageAsync(int idApartment, int numImage)
+        {
+            return base.Channel.DeleteImageAsync(idApartment, numImage);
         }
     }
 }

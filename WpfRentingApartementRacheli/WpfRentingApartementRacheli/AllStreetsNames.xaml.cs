@@ -1,46 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AllStreetsNames.xaml
-    /// </summary>
     public partial class AllStreetsNames : Page
     {
+        Service1Client server = new Service1Client();
+
         public AllStreetsNames()
         {
             InitializeComponent();
-            //lvStreetNames.ItemsSource = server.GET();//למה הוא לא נותן לעשות ליסט ויו?
-
+            lvStreetNames.ItemsSource = server.GetStreetsNames();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new AddManagerStreetNames());
-
+            NavigationService?.Navigate(new AddManagerStreetNames());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //if (lvs.SelectedItem != null)
-            //{
-            //    NavigationService.Navigate(new AddManagerStreetNames(lvImages.SelectedItem as DTOImages));
-            //}
+            if (lvStreetNames.SelectedItem is DTOStreetsNames street)
+                NavigationService?.Navigate(new AddManagerStreetNames(street));
+            else
+                MessageBox.Show("יש לבחור רחוב לעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (!(lvStreetNames.SelectedItem is DTOStreetsNames street))
+            {
+                MessageBox.Show("יש לבחור רחוב למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            bool ok = server.DeleteStreetsName(street.IdStreet);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvStreetNames.ItemsSource = server.GetStreetsNames();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

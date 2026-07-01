@@ -86,6 +86,21 @@
     </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="ImageManager.cs" />
+    <Compile Include="LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OwnerLoginPage.xaml.cs">
+      <DependentUpon>OwnerLoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyRentingsPage.xaml.cs">
+      <DependentUpon>MyRentingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OwnerDashboardPage.xaml.cs">
+      <DependentUpon>OwnerDashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerLoginPage.xaml.cs">
+      <DependentUpon>ManagerLoginPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LookForApartement.xaml.cs">
       <DependentUpon>LookForApartement.xaml</DependentUpon>
     </Compile>
@@ -216,6 +231,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AllStreetsNames.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LandingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OwnerLoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyRentingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OwnerDashboardPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManagerLoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

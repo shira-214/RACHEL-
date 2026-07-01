@@ -1,67 +1,119 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-            MyFrame.Navigate(new pageLogin());
+            MyFrame.Navigated += MyFrame_Navigated;
+            MyFrame.Navigate(new LandingPage());
+            UpdateToolbar();
+        }
+
+        private void MyFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.Content is FrameworkElement element)
+                element.FlowDirection = FlowDirection.RightToLeft;
+            UpdateToolbar();
+        }
+
+        public void UpdateToolbar()
+        {
+            wmain.Visibility = Visibility.Collapsed;
+            wsearch.Visibility = Visibility.Collapsed;
+            btnMyRentings.Visibility = Visibility.Collapsed;
+            wadd.Visibility = Visibility.Collapsed;
+            btnOwnerDash.Visibility = Visibility.Collapsed;
+            worder.Visibility = Visibility.Collapsed;
+            btnLogout.Visibility = Visibility.Collapsed;
+
+            if (Global.CurrentRole == Global.UserRole.None)
+                return;
+
+            wmain.Visibility = Visibility.Visible;
+            btnLogout.Visibility = Visibility.Visible;
+
+            if (Global.CurrentRole == Global.UserRole.Hirer)
+            {
+                wsearch.Visibility = Visibility.Visible;
+                btnMyRentings.Visibility = Visibility.Visible;
+            }
+            else if (Global.CurrentRole == Global.UserRole.Owner)
+            {
+                wadd.Visibility = Visibility.Visible;
+                btnOwnerDash.Visibility = Visibility.Visible;
+            }
+            else if (Global.CurrentRole == Global.UserRole.Manager)
+            {
+                worder.Visibility = Visibility.Visible;
+            }
         }
 
         private void worder_Click(object sender, RoutedEventArgs e)
         {
-            ManagerPage porr = new ManagerPage();
-            MyFrame.Navigate(porr);
-
+            if (Global.CurrentRole == Global.UserRole.Manager)
+                MyFrame.Navigate(new ManagerPage());
+            else
+                MyFrame.Navigate(new ManagerLoginPage());
         }
 
         private void wadd_Click(object sender, RoutedEventArgs e)
         {
-            AddW padd = new AddW();
-            MyFrame.Navigate(padd);
-
-
+            MyFrame.Navigate(new AddW());
         }
 
         private void wsearch_Click(object sender, RoutedEventArgs e)
         {
-            SearchW psrc = new SearchW();
-            MyFrame.Navigate(psrc);
+            if (Global.CurrentRole == Global.UserRole.Hirer)
+                MyFrame.Navigate(new SearchW());
+            else
+                MyFrame.Navigate(new pageLogin());
+        }
 
+        private void btnMyRentings_Click(object sender, RoutedEventArgs e)
+        {
+            if (Global.CurrentRole == Global.UserRole.Hirer)
+                MyFrame.Navigate(new MyRentingsPage());
+            else
+                MyFrame.Navigate(new pageLogin());
+        }
+
+        private void btnOwnerDash_Click(object sender, RoutedEventArgs e)
+        {
+            if (Global.CurrentRole == Global.UserRole.Owner)
+                MyFrame.Navigate(new OwnerDashboardPage());
+            else
+                MyFrame.Navigate(new OwnerLoginPage());
         }
 
         private void wmain_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow pmaim = new MainWindow();
-            MyFrame.Navigate(pmaim);
-
-
+            Global.Logout();
+            MyFrame.Navigate(new LandingPage());
+            UpdateToolbar();
         }
 
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Global.Logout();
+            MyFrame.Navigate(new LandingPage());
+            UpdateToolbar();
+        }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            SearchW psrc = new SearchW();
-            MyFrame.Navigate(psrc);
-
+            if (Global.CurrentRole == Global.UserRole.Hirer)
+                MyFrame.Navigate(new SearchW());
+            else if (Global.CurrentRole == Global.UserRole.Owner)
+                MyFrame.Navigate(new OwnerDashboardPage());
+            else if (Global.CurrentRole == Global.UserRole.Manager)
+                MyFrame.Navigate(new ManagerPage());
+            else
+                MyFrame.Navigate(new LandingPage());
         }
     }
 }

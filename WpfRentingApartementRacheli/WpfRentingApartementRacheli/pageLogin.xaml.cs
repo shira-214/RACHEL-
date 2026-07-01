@@ -1,46 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for pageLogin.xaml
-    /// </summary>
     public partial class pageLogin : Page
     {
         Service1Client server = new Service1Client();
+
         public pageLogin()
         {
             InitializeComponent();
+            this.DataContext = new DTOHirers();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Global.currentHirers = server.GetTOHirers().FirstOrDefault(x => x.C_IDHirer == txtId.Text);
-            if (Global.currentHirers != null)
+            if (Validation.GetHasError(txtId))
             {
+                MessageBox.Show("תעודת זהות לא תקינה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string id = txtId.Text?.Trim();
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("יש להזין תעודת זהות", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Global.isManager = false;
+            Global.CurrentHirer = server.GetTOHirers().FirstOrDefault(x => x.C_IDHirer == id);
+
+            if (Global.CurrentHirer != null)
+            {
+                Global.CurrentRole = Global.UserRole.Hirer;
                 NavigationService.Navigate(new SearchW());
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("אינך רשום במערכת, האם ברצונך להירשם כעת?", "משתמש לא נמצא", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                MessageBoxResult result = MessageBox.Show(
+                    "אינך רשום במערכת, האם ברצונך להירשם כעת?",
+                    "משתמש לא נמצא",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Information);
 
                 if (result == MessageBoxResult.OK)
                 {
-                    Global.isManager = false;
                     NavigationService.Navigate(new AddManagerHirers());
                 }
             }
@@ -50,7 +57,6 @@ namespace WpfRentingApartementRacheli
         {
             Global.isManager = false;
             NavigationService.Navigate(new AddManagerHirers());
-
         }
     }
 }

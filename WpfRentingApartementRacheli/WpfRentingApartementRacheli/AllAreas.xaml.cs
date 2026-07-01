@@ -48,7 +48,20 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvArea.SelectedItem is DTOAreas area))
+            {
+                MessageBox.Show("יש לבחור אזור למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            bool ok = server.DeleteArea(area.IdArea);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvArea.ItemsSource = server.GetAreas();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

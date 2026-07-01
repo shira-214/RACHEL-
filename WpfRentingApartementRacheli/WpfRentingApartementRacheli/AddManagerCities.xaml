@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddManagerCities">
+      Title="הוספת/עריכת עיר">
 
     <Grid>
         <StackPanel>
@@ -14,7 +14,7 @@
             <TextBox x:Name="txtNameCity" >
                 <TextBox.Text>
 
-                    <Binding Path="useNameCity">
+                    <Binding Path="NameCity">
                         <Binding.ValidationRules>
                             <local:isHebrewOrEnglish/>
                         </Binding.ValidationRules>

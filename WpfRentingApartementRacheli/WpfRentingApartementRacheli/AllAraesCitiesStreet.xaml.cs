@@ -39,16 +39,38 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //if (lvAraesCitiesStreet.SelectedItem != null)למה לא עובד???
-            //{
-            //    NavigationService.Navigate(new AddManagerAraesCitiesStreet(lvAraesCitiesStreet.SelectedItem as DTOAraesCitiesStreet));
-            //}
-
+            if (lvAraesCitiesStreet.SelectedItem is DTOAraesCitiesStreet link)
+                NavigationService?.Navigate(new AddManagerAraesCitiesStreet(link));
+            else
+                MessageBox.Show("יש לבחור רשומה לעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvAraesCitiesStreet.SelectedItem is DTOAraesCitiesStreet link))
+            {
+                MessageBox.Show("יש לבחור רשומה למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            if (link.IdStreetDTo == null || link.IdCities == null || link.IdArea == null)
+            {
+                MessageBox.Show("נתונים לא תקינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            bool ok = server.DeleteAraesCitiesStreet(
+                link.IdStreetDTo.IdStreet,
+                link.IdCities.IdCity,
+                link.IdArea.IdArea);
+
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvAraesCitiesStreet.ItemsSource = server.GetTOAraesCitiesStreets();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

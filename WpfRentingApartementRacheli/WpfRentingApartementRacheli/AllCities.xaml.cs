@@ -40,16 +40,28 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //if (lvCities.SelectedItem != null)
-            //{
-            //    NavigationService.Navigate(new AddManagerCities(lvCities.SelectedItem as DTOCities));אווף לא עובד
-            //}
-
+            if (lvCities.SelectedItem is DTOCities city)
+                NavigationService?.Navigate(new AddManagerCities(city));
+            else
+                MessageBox.Show("יש לבחור עיר לעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvCities.SelectedItem is DTOCities city))
+            {
+                MessageBox.Show("יש לבחור עיר למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            bool ok = server.DeleteCity(city.IdCity);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvCities.ItemsSource = server.GetTOCities();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

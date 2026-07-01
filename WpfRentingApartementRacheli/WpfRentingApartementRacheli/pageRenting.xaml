@@ -6,22 +6,51 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="pageRenting">
+      Title="הזמנת דירה"
+      FlowDirection="RightToLeft">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock>התחברות: </TextBlock>
-            <!--<TextBlock>הכנס תעודת זהות: </TextBlock>
-            <TextBox x:Name="txtId"></TextBox>-->
-            <!--<Button Click="Button_Click_1" >התחברות</Button>-->
-            <TextBlock>הכנס מספר מיטות</TextBlock>
-            <TextBox x:Name="txtNumBeds" TextChanged="txtNumBeds_TextChanged"></TextBox>
-            <TextBlock>תאריך:</TextBlock>
-            <DatePicker Name="dp"></DatePicker>
-            <TextBlock>סכום לתשלום: </TextBlock>
-            <TextBlock x:Name="tbSumToPay"></TextBlock>
-            <Button Click="Button_Click">סיום הזמנה</Button>
+    <Grid Background="#FDFBF7">
+        <StackPanel Margin="30" MaxWidth="450" HorizontalAlignment="Center">
+            <TextBlock Text="הזמנת דירה" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+            <TextBlock x:Name="tbApartmentInfo" FontSize="16" Margin="0,0,0,15"/>
+
+            <TextBlock Text="מספר מיטות להזמנה" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtNumBeds" TextChanged="txtNumBeds_TextChanged"/>
+
+            <TextBlock Text="תאריך" Margin="0,10,0,5"/>
+            <DatePicker x:Name="dp"/>
+
+            <TextBlock Text="סכום לתשלום" Margin="0,10,0,5"/>
+            <TextBlock x:Name="tbSumToPay" FontSize="18" FontWeight="Bold"/>
+
+            <TextBlock Text="פרטי אשראי" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
+
+            <TextBlock Text="מספר כרטיס" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtCard" MaxLength="16">
+                <TextBox.Text>
+                    <Binding UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:IsCreditCard/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Text="CVV" Margin="0,10,0,5"/>
+            <TextBox x:Name="txtCvv" MaxLength="3">
+                <TextBox.Text>
+                    <Binding UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:IsCvv/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBlock Text="תוקף (MM/YY)" Margin="0,10,0,5"/>
+            <TextBox x:Name="txtExpiry" MaxLength="5"/>
+
+            <Button Content="סיום הזמנה" Margin="0,25,0,0" Padding="10" Click="Button_Click"/>
         </StackPanel>
-        
     </Grid>
 </Page>

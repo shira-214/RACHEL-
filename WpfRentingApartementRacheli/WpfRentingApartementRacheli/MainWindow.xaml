@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfRentingApartementRacheli"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-
-
+        Title="המשכיר" Height="550" Width="900"
+        FlowDirection="RightToLeft">
 
     <Grid Background="#FDFBF7">
         <Grid.RowDefinitions>
@@ -25,37 +24,17 @@
                        HorizontalAlignment="Right" VerticalAlignment="Center" Cursor="Hand" MouseDown="TextBlock_MouseDown" />
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <!--<Button Content="כניסת מנהל" x:Name="wmanager" Click="worder_Click" Width="100"/>-->
-
-                    <!--<Button Content="בית" x:Name="mmain" Click="wmain_Click" Width="80"/>-->
-                    <Button Content="חיפוש דירה" x:Name="wsearch" Click="wsearch_Click" Width="100"/>
-                    <Button Content="הוספת דירה" x:Name="aadd" Click="wadd_Click" Width="100"/>
-                    <Button Content="אזור אישי" x:Name="worder" Click="worder_Click" Width="100"/>
-
+                    <Button Content="בית" x:Name="wmain" Click="wmain_Click" Width="80" Margin="3,0"/>
+                    <Button Content="חיפוש דירה" x:Name="wsearch" Click="wsearch_Click" Width="100" Margin="3,0"/>
+                    <Button Content="ההזמנות שלי" x:Name="btnMyRentings" Click="btnMyRentings_Click" Width="110" Margin="3,0"/>
+                    <Button Content="הוספת דירה" x:Name="wadd" Click="wadd_Click" Width="100" Margin="3,0"/>
+                    <Button Content="לוח בקרה" x:Name="btnOwnerDash" Click="btnOwnerDash_Click" Width="100" Margin="3,0"/>
+                    <Button Content="אזור ניהול" x:Name="worder" Click="worder_Click" Width="100" Margin="3,0"/>
+                    <Button Content="יציאה" x:Name="btnLogout" Click="btnLogout_Click" Width="80" Margin="3,0"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <Frame Grid.Row="1" x:Name="MyFrame" NavigationUIVisibility="Hidden" Margin="10"/>
     </Grid>
-
-    <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="6*" />
-
-            </Grid.RowDefinitions>
-            <Frame Grid.Row="1" Background="AliceBlue" Name="MyFramre"/>
-            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button  Content="בית" x:Name="wmain" Click="wmain_Click"/>
-            <Button Content="חיפוש דירה" x:Name="wsearch" Click="wsearch_Click"/>
-            <Button Content="הוספת דירה" x:Name="wadd" Click="wadd_Click"/>
-            <Button Content="הזמנות שלי" x:Name="worder" Click="worder_Click"/>
-                
-
-
-        </StackPanel>
-
-        </Grid>-->
-        
 </Window>

@@ -48,7 +48,26 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            if (!(lvImages.SelectedItem is DTOImages image))
+            {
+                MessageBox.Show("יש לבחור תמונה למחיקה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            if (image.IdApartement == null)
+            {
+                MessageBox.Show("נתוני תמונה לא תקינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            bool ok = server.DeleteImage(image.IdApartement.IdApartment, image.NumImage);
+            if (ok)
+            {
+                MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                lvImages.ItemsSource = server.GetImages();
+            }
+            else
+                MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות. מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

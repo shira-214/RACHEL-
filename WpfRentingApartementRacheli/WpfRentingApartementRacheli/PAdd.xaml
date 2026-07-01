@@ -6,25 +6,18 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddW" Background="AliceBlue">
+      Title="הוספת דירה" Background="AliceBlue"
+      FlowDirection="RightToLeft">
     <Border BorderBrush="#D3D3D3" BorderThickness="1" CornerRadius="15" Background="White" MaxWidth="550" VerticalAlignment="Center">
         <StackPanel>
-
             <Grid Margin="30,20">
-                <StackPanel x:Name="LoginPanel" Visibility="Collapsed">
-                    <TextBlock Text="שם משתמש או אימייל" Foreground="#3498DB" Margin="0,5"/>
-                    <TextBox Height="35" Margin="0,0,0,15"/>
-                    <TextBlock Text="סיסמה" Foreground="#3498DB" Margin="0,5"/>
-                    <PasswordBox Height="35" Margin="0,0,0,15"/>
-                    <Button Content="כניסה" Height="45" Click="Button_Click"/>
-                </StackPanel>
                 <ScrollViewer x:Name="RegisterPanel" Visibility="Visible" MaxHeight="600" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10">
 
                         <TextBlock Text="שם בעל הדירה*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="ApartmentsNameOwner" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="userNameOwner" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="NameOwner" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:isHebrewRule />
                                     </Binding.ValidationRules>
@@ -35,7 +28,7 @@
                         <TextBlock Text="טלפון בעל הדירה*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtPhoneOwner" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="phone" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="PhoneOwner" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsCellPhone />
                                     </Binding.ValidationRules>
@@ -44,7 +37,8 @@
                         </TextBox>
 
                         <TextBlock Text="עיר*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
-                        <ComboBox x:Name="ApartmentCities" Height="35" Margin="0,0,0,10" DisplayMemberPath="CityName"/>
+                        <ComboBox x:Name="ApartmentCities" Height="35" Margin="0,0,0,10"
+                                  DisplayMemberPath="NameCity" SelectionChanged="ApartmentCities_SelectionChanged"/>
 
                         <TextBlock Text="רחוב*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,0,0,10" DisplayMemberPath="StreetName"/>
@@ -52,7 +46,7 @@
                         <TextBlock Text="מספר בית*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtNumberHouse" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="houseNum" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="NumberHouse" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -63,7 +57,7 @@
                         <TextBlock Text="קומה*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtFloor" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="floor" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="Floor" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -74,7 +68,7 @@
                         <TextBlock Text="מספר חדרים*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtNumberRooms" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="numRooms" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="NumberRooms" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -85,7 +79,7 @@
                         <TextBlock Text="מספר מיטות*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtNumberBeds" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="numBeds" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="NumberBeds" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -96,7 +90,7 @@
                         <TextBlock Text="מחיר מינימום*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtMinimumPrice" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="minPrice" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="MinimumPrice" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -107,7 +101,7 @@
                         <TextBlock Text="תוספת למיטה*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
                         <TextBox x:Name="txtExtraForBed" Height="35" Margin="0,0,0,10">
                             <TextBox.Text>
-                                <Binding Path="extraBed" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="ExtraForBed" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <local:IsNumber />
                                     </Binding.ValidationRules>
@@ -122,11 +116,11 @@
                             </TextBox.Text>
                         </TextBox>
 
-                        <Button Content="מעבר להוספת תמונה" Height="45" Click="Register_Click"  Foreground="White" FontWeight="Bold" Cursor="Hand"/>
+                        <Button Content="הוסף דירה" Height="45" Click="Register_Click"
+                                Foreground="White" Background="#3498DB" FontWeight="Bold" Cursor="Hand"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
         </StackPanel>
     </Border>
-
 </Page>

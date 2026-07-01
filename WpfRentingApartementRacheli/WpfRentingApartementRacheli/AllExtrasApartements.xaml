@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AllExtrasApartements">
+      Title="תוספות לדירות">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,8 +22,8 @@
         <ListView x:Name="lvExtras" Background="Beige" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="שם תוספת" DisplayMemberBinding="{Binding DTOExtras.NameExtra}"/>
-                    <GridViewColumn Header="דירה(טלפון בעל הדיר" DisplayMemberBinding="{Binding DTOApartments.PhoneOwner}"/>
+                    <GridViewColumn Header="שם תוספת" DisplayMemberBinding="{Binding IdExtra.NameExtra}"/>
+                    <GridViewColumn Header="דירה (טלפון בעל)" DisplayMemberBinding="{Binding IdAapartment.PhoneOwner}"/>
 
                 </GridView>
             </ListView.View>

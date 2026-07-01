@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AllAraesCitiesStreet">
+      Title="קישור אזור-עיר-רחוב">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,9 +23,9 @@
         <ListView x:Name="lvAraesCitiesStreet" Background="Beige" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="קוד רחוב" DisplayMemberBinding="{Binding DTOStreetsNames.StreetName}"/>
-                    <GridViewColumn Header="קוד עיר " DisplayMemberBinding="{Binding DTOCities.NameCity}"/>
-                    <GridViewColumn Header="קוד אזור" DisplayMemberBinding="{Binding DTOAreas.NameArea}"/>
+                    <GridViewColumn Header="רחוב" DisplayMemberBinding="{Binding IdStreetDTo.StreetName}"/>
+                    <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding IdCities.NameCity}"/>
+                    <GridViewColumn Header="אזור" DisplayMemberBinding="{Binding IdArea.NameArea}"/>
 
                 </GridView>
             </ListView.View>

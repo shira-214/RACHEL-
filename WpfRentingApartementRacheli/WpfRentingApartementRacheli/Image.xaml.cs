@@ -1,53 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
-using WpfRentingApartementRacheli.USC;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for POrders.xaml
-    /// </summary>
     public partial class POrders : Page
     {
-        Service1Client server=new Service1Client(); 
-        public POrders()
+        Service1Client server = new Service1Client();
+        DTOApartments apartment;
+        byte[] selectedImage;
+
+        public POrders(DTOApartments apartment)
         {
             InitializeComponent();
-            createUC();
+            this.apartment = apartment;
 
-        }
-        private void createUC()
-        {
-            foreach (var item in server.GetApartments())
+            if (Global.CurrentRole != Global.UserRole.Owner && Global.CurrentRole != Global.UserRole.Manager)
             {
-                USCApartement uc = new USCApartement(item);
-                wrp.Children.Add(uc);
+                MessageBox.Show("אין הרשאה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new LandingPage());
+                return;
+            }
+
+            string city = apartment.IdCities?.NameCity ?? "";
+            string street = apartment.IdStreet?.StreetName ?? "";
+            tbApartment.Text = city + " - " + street + " " + apartment.NumberHouse;
+        }
+
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
+        {
+            selectedImage = ImageManager.UploadImage_Dlg();
+            if (selectedImage != null)
+                imagePreview.Source = ImageManager.GetImage(selectedImage);
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedImage == null)
+            {
+                MessageBox.Show("יש לבחור תמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            int nextNum = server.GetImages()
+                .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
+                .Select(x => x.NumImage)
+                .DefaultIfEmpty(0)
+                .Max() + 1;
+
+            DTOImages imageDto = new DTOImages
+            {
+                IdApartement = apartment,
+                NumImage = nextNum,
+                Image1 = selectedImage,
+                Stataus = true
+            };
+
+            if (server.AddImages(imageDto))
+            {
+                MessageBox.Show("התמונה נשמרה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                NavigateBack();
+            }
+            else
+            {
+                MessageBox.Show("שגיאה בשמירת התמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)//לשאול את המורה אם לא לעשות את הבדיקןת תקינו לפני
+        private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AllApartments());
-
+            NavigateBack();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NavigateBack()
         {
-            NavigationService.Navigate(new Image());//לשאול את המורה איך שומרים תמונה
-
+            if (Global.CurrentRole == Global.UserRole.Owner)
+                NavigationService?.Navigate(new OwnerDashboardPage());
+            else
+                NavigationService?.Navigate(new AllApartments());
         }
     }
 }

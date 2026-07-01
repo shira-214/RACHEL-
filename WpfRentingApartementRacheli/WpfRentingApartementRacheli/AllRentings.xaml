@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AllRentings">
+      Title="ניהול הזמנות">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,13 +23,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="קוד השכרה" DisplayMemberBinding="{Binding IdRenting}"/>
-                    <GridViewColumn Header="טלפון שוכר" DisplayMemberBinding="{Binding DTOHirers.FhoneNumberHirer}"/>
+                    <GridViewColumn Header="טלפון שוכר" DisplayMemberBinding="{Binding IdHirer.FhoneNumberHirer}"/>
                     <GridViewColumn Header="סכום לתשלום" DisplayMemberBinding="{Binding SumPayment}"/>
-                    <GridViewColumn Header=" תאריך" DisplayMemberBinding="{Binding Date}"/>
-                    <GridViewColumn Header=" מספר מיטות" DisplayMemberBinding="{Binding SumBeds}"/>
-                    <GridViewColumn Header=" כתובת" DisplayMemberBinding="{Binding DTOApartments.IdStreet}"/>
-                    <GridViewColumn Header=" מספר בית" DisplayMemberBinding="{Binding DTOApartments.NumberHouse}"/>
-                    <GridViewColumn Header=" עיר" DisplayMemberBinding="{Binding DTOApartments.DTOCities.NameCity}"/>
+                    <GridViewColumn Header="תאריך" DisplayMemberBinding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"/>
+                    <GridViewColumn Header="מספר מיטות" DisplayMemberBinding="{Binding SumBeds}"/>
+                    <GridViewColumn Header="רחוב" DisplayMemberBinding="{Binding KodHapartment.IdStreet.StreetName}"/>
+                    <GridViewColumn Header="מספר בית" DisplayMemberBinding="{Binding KodHapartment.NumberHouse}"/>
+                    <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding KodHapartment.IdCities.NameCity}"/>
 
 
 

@@ -9,11 +9,17 @@
 
         <Style TargetType="{x:Type Window}">
             <Setter Property="Background" Value="{StaticResource CreamyBackground}"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
 
         <Style TargetType="{x:Type Page}">
             <Setter Property="Background" Value="{StaticResource CreamyBackground}"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+        </Style>
+
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
 
         <Style TargetType="Button">

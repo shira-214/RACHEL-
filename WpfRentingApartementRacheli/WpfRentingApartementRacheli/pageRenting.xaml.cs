@@ -1,92 +1,117 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for pageRenting.xaml
-    /// </summary>
     public partial class pageRenting : Page
     {
         DTOApartments apartment;
         Service1Client service = new Service1Client();
         int sumPay;
+
         public pageRenting(DTOApartments apartment)
         {
             InitializeComponent();
             this.apartment = apartment;
             sumPay = apartment.MinimumPrice;
-            if (Global.selectedDate.Year != 0001)
-            {
+            tbSumToPay.Text = sumPay.ToString();
+
+            string city = apartment.IdCities?.NameCity ?? "";
+            string street = apartment.IdStreet?.StreetName ?? "";
+            tbApartmentInfo.Text = city + " - " + street + " " + apartment.NumberHouse;
+
+            if (Global.selectedDate.Year != 1)
                 dp.SelectedDate = Global.selectedDate;
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DTORentings renting = new DTORentings();
             if (Global.currentHirers == null)
             {
-                MessageBox.Show("לא התחברת");
+                MessageBox.Show("לא התחברת", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            renting.IdHirer = Global.currentHirers;
-            renting.KodHapartment = apartment;
-            if (dp.SelectedDate == null)
+
+            if (!int.TryParse(txtNumBeds.Text, out int beds) || beds <= 0)
             {
-                MessageBox.Show("לא נבחר תאריך");
+                MessageBox.Show("יש להזין מספר מיטות תקין", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            
-            renting.Date = dp.SelectedDate.Value;
-            if (service.GetTORentings().FirstOrDefault(x => x.KodHapartment.IdApartment == apartment.IdApartment && x.Date.Date == renting.Date.Date) != null)
+
+            if (!dp.SelectedDate.HasValue)
             {
-                MessageBox.Show("הדירה תפוסה");
+                MessageBox.Show("לא נבחר תאריך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            renting.SumPayment = sumPay;
-            renting.SumBeds = Convert.ToInt32(txtNumBeds.Text);
+
+            if (Validation.GetHasError(txtCard) || Validation.GetHasError(txtCvv) ||
+                string.IsNullOrWhiteSpace(txtCard.Text) || string.IsNullOrWhiteSpace(txtCvv.Text) ||
+                !IsExpiryValid(txtExpiry.Text))
+            {
+                MessageBox.Show("פרטי אשראי לא תקינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            DateTime rentDate = dp.SelectedDate.Value.Date;
+            if (service.GetTORentings().Any(x =>
+                x.KodHapartment != null &&
+                x.KodHapartment.IdApartment == apartment.IdApartment &&
+                x.Date.Date == rentDate))
+            {
+                MessageBox.Show("הדירה תפוסה בתאריך זה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            UpdateSumPayment(beds);
+
+            DTORentings renting = new DTORentings
+            {
+                IdHirer = Global.currentHirers,
+                KodHapartment = apartment,
+                Date = rentDate,
+                SumPayment = sumPay,
+                SumBeds = beds
+            };
+
             service.Addentings(renting);
-            MessageBox.Show("ההזמנה נוספה בהצלחה!");
+            MessageBox.Show("ההזמנה נוספה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
             NavigationService.Navigate(new SearchW());
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Global.currentHirers = service.GetTOHirers().FirstOrDefault(x => x.C_IDHirer == txtId.Text);
-            //if (Global.currentHirers == null)
-            //{
-            //    MessageBox.Show("לא נמצא");
-            //}
         }
 
         private void txtNumBeds_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
-            if (txtNumBeds.Text.Length > 0)
-            {
-                sumPay = apartment.MinimumPrice + apartment.NumberBeds * Convert.ToInt32(txtNumBeds.Text);
-                tbSumToPay.Text = sumPay.ToString();
-            }
+            if (int.TryParse(txtNumBeds.Text, out int beds) && beds > 0)
+                UpdateSumPayment(beds);
             else
             {
-                tbSumToPay.Text = apartment.MinimumPrice.ToString();
-
+                sumPay = apartment.MinimumPrice;
+                tbSumToPay.Text = sumPay.ToString();
             }
+        }
+
+        private void UpdateSumPayment(int beds)
+        {
+            sumPay = apartment.MinimumPrice + apartment.ExtraForBed * beds;
+            tbSumToPay.Text = sumPay.ToString();
+        }
+
+        private bool IsExpiryValid(string expiry)
+        {
+            if (string.IsNullOrWhiteSpace(expiry) || expiry.Length != 5 || expiry[2] != '/')
+                return false;
+
+            if (!int.TryParse(expiry.Substring(0, 2), out int month) || month < 1 || month > 12)
+                return false;
+
+            if (!int.TryParse(expiry.Substring(3, 2), out int year))
+                return false;
+
+            year += 2000;
+            var expiryDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+            return expiryDate >= DateTime.Today;
         }
     }
 }

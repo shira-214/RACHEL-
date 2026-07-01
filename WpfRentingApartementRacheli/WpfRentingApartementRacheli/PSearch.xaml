@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="SearchW">
+      Title="חיפוש דירה">
 
     <Grid Margin="0,0,0,10">
         <Grid.ColumnDefinitions>
@@ -19,9 +19,9 @@
                     <TextBlock Text="עיר " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
 
                     <!--<ComboBox x:Name="cbCity" Height="35" Margin="0,5" SelectionChanged="Filter_Changed"/>-->
-                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCities" SelectedValue="{Binding Cities}"  DisplayMemberPath="NameCity" ></ComboBox>
+                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCities" SelectedValue="{Binding Cities}" DisplayMemberPath="NameCity" SelectionChanged="Filter_Changed"/>
                     <TextBlock Text="רחוב " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentStreetsNames" SelectedValue="{Binding StreetsNames}"  DisplayMemberPath="StreetName" ></ComboBox>
+                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentStreetsNames" SelectedValue="{Binding StreetsNames}" DisplayMemberPath="StreetName" SelectionChanged="Filter_Changed"/>
 
                     <TextBlock>חיפוש לפי תאריכים</TextBlock>
                     <DatePicker Name="dp" SelectedDateChanged="DatePicker_SelectedDateChanged"></DatePicker>
@@ -71,7 +71,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SearchW">
+      Title="חיפוש דירה">
 
     <Grid Margin="0,0,0,10">
         <Border Background="#007ACC" 

@@ -3,27 +3,23 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="POrders">
+      Title="הוספת תמונה"
+      FlowDirection="RightToLeft">
 
-    <!--<Grid>
-        <WrapPanel x:Name="wrp"></WrapPanel>
-    </Grid>-->
-    <Grid>
-        <WrapPanel x:Name="wrp"></WrapPanel>
+    <Grid Background="#FDFBF7">
+        <StackPanel Margin="30" MaxWidth="450" HorizontalAlignment="Center">
+            <TextBlock Text="הוספת תמונה לדירה" FontSize="24" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock x:Name="tbApartment" FontSize="16" Margin="0,0,0,20"/>
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
-            <!--<TextBlock Text="הוספת " FontSize="28" FontWeight="Bold"  HorizontalAlignment="Center"  Margin="0,0,0,25" />-->
-            <!--<Button Content="בחר תמונה" Click="Button_Click_1"></Button>-->
-            <Border Height="100" Width="100" BorderBrush="Black" BorderThickness="3">
-                    <Image x:Name="image"></Image>
-                </Border>
+            <Border Height="200" Width="280" BorderBrush="#DDD" BorderThickness="1" Margin="0,0,0,15">
+                <Image x:Name="imagePreview" Stretch="Uniform"/>
+            </Border>
 
-            <Button Click="Button_Click">בחירת תמונה נוספת</Button><!--להבין לאן מנווטים-->
-            <Button Click="Button_Click_1">סיום והעלאת הדירה</Button>
+            <Button Content="בחר תמונה" Height="40" Margin="0,0,0,10" Click="btnSelect_Click"/>
+            <Button Content="שמור תמונה" Height="40" Margin="0,0,0,10" Click="btnSave_Click"/>
+            <Button Content="חזרה ללוח בקרה" Height="40" Click="btnBack_Click"/>
         </StackPanel>
     </Grid>
-
 </Page>

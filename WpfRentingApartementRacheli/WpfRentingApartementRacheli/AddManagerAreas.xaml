@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddManagerAreas">
+      Title="הוספת/עריכת אזור">
 
     <Grid>
         <StackPanel>
