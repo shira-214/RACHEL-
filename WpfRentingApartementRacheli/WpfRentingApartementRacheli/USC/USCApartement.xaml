@@ -30,8 +30,7 @@
                     BorderBrush="#DDD"
                     BorderThickness="1">
 
-                <Image x:Name="image" Source="{Binding Image}"
-                       Stretch="UniformToFill"/>
+                <Image x:Name="image" Stretch="UniformToFill"/>
             </Border>
 
             <!-- פרטים -->
