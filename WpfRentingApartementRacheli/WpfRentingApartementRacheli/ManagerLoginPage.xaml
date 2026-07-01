@@ -17,6 +17,7 @@
             <TextBlock Text="סיסמה"/>
             <PasswordBox x:Name="txtPass" Margin="0,5,0,15"/>
             <Button Content="התחבר" Height="35" Click="Button_Click"/>
+            <Button Content="חזרה" Margin="0,15,0,0" Click="btnBack_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -25,6 +25,7 @@
             <TextBlock Text="לדוגמה: 123456782" FontSize="12" Foreground="Gray" Margin="0,0,0,10"/>
             <Button Click="Button_Click" Margin="0,10,0,0">התחבר</Button>
             <Button Click="Button_Click_1">לרישום לחץ כאן</Button>
+            <Button Content="חזרה" Margin="0,15,0,0" Click="btnBack_Click"/>
         </StackPanel>
     </Grid>
 </Page>

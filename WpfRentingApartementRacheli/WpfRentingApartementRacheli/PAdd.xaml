@@ -132,6 +132,7 @@
 
                         <Button x:Name="btnSave" Content="הוסף דירה" Height="45" Click="Register_Click"
                                 Foreground="White" Background="#3498DB" FontWeight="Bold" Cursor="Hand"/>
+                        <Button Content="חזרה" Height="40" Margin="0,10,0,0" Click="btnBack_Click"/>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

@@ -29,5 +29,13 @@ namespace WpfRentingApartementRacheli
                 MessageBox.Show("פרטי כניסה שגויים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+            else
+                NavigationService.Navigate(new LandingPage());
+        }
     }
 }

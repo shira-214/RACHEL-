@@ -21,7 +21,7 @@
             <Button Content="ערים" Click="Button_Click_3"/>
             <Button Content="תוספות בדירה" Click="Button_Click_4"/>
             <Button Content="רשימת משכירים" Click="Button_Click_6"/>
-            <Button Content="בעלי דירות" Click="Button_Click_8"/>
+            <Button Content="הזמנות" Click="Button_Click_8"/>
             <Button Content="רחובות" Click="Button_Click_9"/>
         </StackPanel>
     </Grid>

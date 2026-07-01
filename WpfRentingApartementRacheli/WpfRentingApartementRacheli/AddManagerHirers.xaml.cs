@@ -74,5 +74,13 @@ namespace WpfRentingApartementRacheli
                 NavigationService.Navigate(new AllHirers());
             }
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+            else
+                NavigationService.Navigate(new LandingPage());
+        }
     }
 }

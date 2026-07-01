@@ -350,5 +350,13 @@ namespace WpfRentingApartementRacheli
                     a.IdStreet != null && apartment.IdStreet != null &&
                     a.IdStreet.IdStreet == apartment.IdStreet.IdStreet);
         }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+            else
+                NavigationService.Navigate(new LandingPage());
+        }
     }
 }

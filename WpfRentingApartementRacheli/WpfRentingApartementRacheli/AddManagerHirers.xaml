@@ -45,6 +45,7 @@
             </TextBox>
 
             <Button Cursor="Hand" x:Name="btnEnd" Content="סיימתי" Click="btnEnd_Click"/>
+            <Button Content="חזרה" Margin="0,10,0,0" Click="btnBack_Click"/>
 
         </StackPanel>
 
