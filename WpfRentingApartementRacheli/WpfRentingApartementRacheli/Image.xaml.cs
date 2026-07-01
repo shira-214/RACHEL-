@@ -14,7 +14,6 @@ namespace WpfRentingApartementRacheli
         public POrders(DTOApartments apartment)
         {
             InitializeComponent();
-            this.apartment = apartment;
 
             if (Global.CurrentRole != Global.UserRole.Owner && Global.CurrentRole != Global.UserRole.Manager)
             {
@@ -23,9 +22,40 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
-            string city = apartment.IdCities?.NameCity ?? "";
-            string street = apartment.IdStreet?.StreetName ?? "";
-            tbApartment.Text = city + " - " + street + " " + apartment.NumberHouse;
+            this.apartment = ResolveApartment(apartment);
+            if (this.apartment == null || this.apartment.IdApartment <= 0)
+            {
+                MessageBox.Show("לא נמצא מזהה דירה תקין. שמרי קודם את הדירה ונסי שוב.",
+                    "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new OwnerDashboardPage());
+                return;
+            }
+
+            string city = this.apartment.IdCities?.NameCity ?? "";
+            string street = this.apartment.IdStreet?.StreetName ?? "";
+            tbApartment.Text = city + " - " + street + " " + this.apartment.NumberHouse;
+        }
+
+        private DTOApartments ResolveApartment(DTOApartments apt)
+        {
+            if (apt == null)
+                return null;
+
+            if (apt.IdApartment > 0)
+            {
+                var byId = server.GetApartments().FirstOrDefault(a => a.IdApartment == apt.IdApartment);
+                if (byId != null)
+                    return byId;
+            }
+
+            return server.GetApartments().FirstOrDefault(a =>
+                a.NameOwner == apt.NameOwner &&
+                a.PhoneOwner == apt.PhoneOwner &&
+                a.NumberHouse == apt.NumberHouse &&
+                a.IdCities != null && apt.IdCities != null &&
+                a.IdCities.IdCity == apt.IdCities.IdCity &&
+                a.IdStreet != null && apt.IdStreet != null &&
+                a.IdStreet.IdStreet == apt.IdStreet.IdStreet);
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -43,6 +73,14 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
+            apartment = ResolveApartment(apartment);
+            if (apartment == null || apartment.IdApartment <= 0)
+            {
+                MessageBox.Show("לא נמצא מזהה דירה תקין לשמירת התמונה",
+                    "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             int nextNum = server.GetImages()
                 .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
                 .Select(x => x.NumImage)
@@ -51,20 +89,30 @@ namespace WpfRentingApartementRacheli
 
             DTOImages imageDto = new DTOImages
             {
-                IdApartement = apartment,
+                IdApartement = new DTOApartments { IdApartment = apartment.IdApartment },
                 NumImage = nextNum,
                 Image1 = selectedImage,
                 Stataus = true
             };
 
-            if (server.AddImages(imageDto))
+            try
             {
-                MessageBox.Show("התמונה נשמרה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigateBack();
+                if (server.AddImages(imageDto))
+                {
+                    MessageBox.Show("התמונה נשמרה בהצלחה!", "הצלחה",
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigateBack();
+                }
+                else
+                {
+                    MessageBox.Show("שגיאה בשמירת התמונה. ודאי ש-Host.exe רץ.",
+                        "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                MessageBox.Show("שגיאה בשמירת התמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("שגיאה בשמירת התמונה:\n" + ex.Message,
+                    "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

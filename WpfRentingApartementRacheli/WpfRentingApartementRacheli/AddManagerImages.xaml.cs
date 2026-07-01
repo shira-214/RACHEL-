@@ -74,7 +74,7 @@ namespace WpfRentingApartementRacheli
 
                 imageDto = new DTOImages
                 {
-                    IdApartement = apartment,
+                    IdApartement = new DTOApartments { IdApartment = apartment.IdApartment },
                     NumImage = nextNum,
                     Image1 = selectedImage,
                     Stataus = chkStatus.IsChecked == true
@@ -83,7 +83,7 @@ namespace WpfRentingApartementRacheli
             }
             else
             {
-                imageDto.IdApartement = apartment;
+                imageDto.IdApartement = new DTOApartments { IdApartment = apartment.IdApartment };
                 imageDto.Image1 = selectedImage;
                 imageDto.Stataus = chkStatus.IsChecked == true;
                 ok = server.UpdateImages(imageDto);

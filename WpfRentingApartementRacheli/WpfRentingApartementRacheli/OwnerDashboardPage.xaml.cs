@@ -49,7 +49,11 @@ namespace WpfRentingApartementRacheli
         private void btnAddImage_Click(object sender, RoutedEventArgs e)
         {
             if (lvApartments.SelectedItem is DTOApartments apartment)
-                NavigationService?.Navigate(new POrders(apartment));
+            {
+                var fresh = server.GetApartments()
+                    .FirstOrDefault(a => a.IdApartment == apartment.IdApartment) ?? apartment;
+                NavigationService?.Navigate(new POrders(fresh));
+            }
             else
                 MessageBox.Show("יש לבחור דירה מהרשימה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }

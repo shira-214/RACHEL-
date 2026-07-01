@@ -23,14 +23,19 @@ namespace BL
 
         public Image ConvertToDAL(DTOImages imDTO)
         {
+            if (imDTO == null || imDTO.IdApartement == null || imDTO.IdApartement.IdApartment <= 0)
+                throw new InvalidOperationException("Apartment id is required for image save.");
+
+            string fileName = ImageClass.SaveImage(imDTO.Image1);
+            if (string.IsNullOrEmpty(fileName))
+                throw new InvalidOperationException("Failed to save image file.");
+
             Image imEF = new Image();
             imEF.NumImage = imDTO.NumImage;
-            imEF.Image1 = ImageClass.SaveImage(imDTO.Image1);
+            imEF.Image1 = fileName;
             imEF.Stataus = imDTO.Stataus;
             imEF.IdApartement = imDTO.IdApartement.IdApartment;
             return imEF;
-
-
         }
         public bool AddImages(DTOImages images)
         {
