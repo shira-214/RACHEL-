@@ -127,5 +127,18 @@ namespace WpfRentingApartementRacheli
         {
             RefreshData();
         }
+
+        private void btnClearFilters_Click(object sender, RoutedEventArgs e)
+        {
+            ApartmentAreas.SelectedItem = null;
+            ApartmentCities.SelectedItem = null;
+            ApartmentStreetsNames.SelectedItem = null;
+            ApartmentExtras.SelectedItem = null;
+            dp.SelectedDate = null;
+            slPrice.Value = 5000;
+            slBeds.Value = 1;
+            Global.selectedDate = default(DateTime);
+            RefreshData();
+        }
     }
 }

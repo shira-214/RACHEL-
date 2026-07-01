@@ -22,6 +22,10 @@ namespace WpfRentingApartementRacheli.USC
             this.apartment = apartment;
             DataContext = apartment;
 
+            string city = apartment.IdCities?.NameCity ?? "";
+            string street = apartment.IdStreet?.StreetName ?? "";
+            tbAddress.Text = city + " - " + street + " " + apartment.NumberHouse;
+
             if (allImages == null)
             {
                 var service = new Service1Client();

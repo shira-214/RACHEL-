@@ -36,11 +36,8 @@
             <!-- פרטים -->
             <StackPanel Grid.Column="1" Margin="25,0">
 
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
-                    <TextBlock Text="{Binding NumberHouse}" FontSize="28" FontWeight="Bold" Margin="5,0,0,0"/>
-                    <TextBlock Text="{Binding IdStreet.StreetName}" FontSize="28" FontWeight="Bold"/>
-                    <TextBlock Text=" - " FontSize="28" FontWeight="Bold" Margin="5,0"/>
-                    <TextBlock Text="{Binding IdCities.NameCity}" FontSize="28" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20">
+                    <TextBlock x:Name="tbAddress" FontSize="28" FontWeight="Bold" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,20" FlowDirection="RightToLeft">
                     <TextBlock Text="{Binding Floor}" FontSize="18" Margin="0,8"/>
