@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
@@ -54,14 +55,11 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
-            if (Validation.GetHasError(txtCard) || Validation.GetHasError(txtCvv) ||
-                string.IsNullOrWhiteSpace(txtCard.Text) || string.IsNullOrWhiteSpace(txtCvv.Text) ||
-                !IsExpiryValid(txtExpiry.Text))
+            if (!IsCreditCardValid(txtCard.Text) || !IsCvvValid(txtCvv.Text) || !IsExpiryValid(txtExpiry.Text))
             {
                 MessageBox.Show("פרטי אשראי לא תקינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
             DateTime rentDate = dp.SelectedDate.Value.Date;
             if (service.GetTORentings().Any(x =>
                 x.KodHapartment != null &&
@@ -119,6 +117,21 @@ namespace WpfRentingApartementRacheli
             year += 2000;
             var expiryDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
             return expiryDate >= DateTime.Today;
+        }
+
+        private bool IsCreditCardValid(string card)
+        {
+            return !string.IsNullOrWhiteSpace(card) && card.Length == 16 && card.All(char.IsDigit);
+        }
+
+        private bool IsCvvValid(string cvv)
+        {
+            return !string.IsNullOrWhiteSpace(cvv) && cvv.Length == 3 && cvv.All(char.IsDigit);
+        }
+
+        private void DigitsOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !e.Text.All(char.IsDigit);
         }
     }
 }
