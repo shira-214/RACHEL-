@@ -15,7 +15,8 @@
         </Grid.ColumnDefinitions>
 
         <Border Background="#007ACC" CornerRadius="20" Width="280"
-                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Padding="15">
+                HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="20" Padding="15">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock Text="חפש דירה" FontSize="22" FontWeight="Bold" Foreground="White"
                            HorizontalAlignment="Center" Margin="0,0,0,15"/>
@@ -57,9 +58,10 @@
                 <Button Content="מצא לי דירה" Background="White" Margin="0,15,0,0"
                         FontWeight="Bold" Click="Button_Click"/>
             </StackPanel>
+            </ScrollViewer>
         </Border>
 
-        <ScrollViewer Grid.Column="1">
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <WrapPanel x:Name="wrp"/>
         </ScrollViewer>
     </Grid>

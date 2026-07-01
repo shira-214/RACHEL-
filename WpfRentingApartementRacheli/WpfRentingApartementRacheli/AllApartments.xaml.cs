@@ -61,5 +61,16 @@ namespace WpfRentingApartementRacheli
             else
                 MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות (הזמנות/תמונות). מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            if (!(lvApartment.SelectedItem is DTOApartments apt))
+            {
+                MessageBox.Show("יש לבחור דירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            NavigationService.Navigate(new POrders(apt));
+        }
     }
 }

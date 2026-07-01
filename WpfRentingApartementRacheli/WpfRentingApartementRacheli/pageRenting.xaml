@@ -10,31 +10,27 @@
       FlowDirection="RightToLeft">
 
     <Grid Background="#FDFBF7">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="30" MaxWidth="450" HorizontalAlignment="Center">
             <TextBlock Text="הזמנת דירה" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
             <TextBlock x:Name="tbApartmentInfo" FontSize="16" Margin="0,0,0,15"/>
 
             <TextBlock Text="מספר מיטות להזמנה" Margin="0,0,0,5"/>
-            <TextBox x:Name="txtNumBeds" TextChanged="txtNumBeds_TextChanged"/>
+            <TextBlock Text="{Binding ElementName=txtNumBeds, Path=Tag}" FontSize="12" Foreground="Gray" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtNumBeds" MaxLength="2" PreviewTextInput="DigitsOnly_PreviewTextInput"
+                     TextChanged="txtNumBeds_TextChanged"/>
 
-            <TextBlock Text="תאריך" Margin="0,10,0,5"/>
+            <TextBlock Text="תאריך (שבת בלבד)" Margin="0,10,0,5"/>
             <DatePicker x:Name="dp"/>
 
             <TextBlock Text="סכום לתשלום" Margin="0,10,0,5"/>
             <TextBlock x:Name="tbSumToPay" FontSize="18" FontWeight="Bold"/>
 
-            <TextBlock Text="פרטי אשראי" FontSize="18" FontWeight="Bold" Margin="0,20,0,10"/>
+            <TextBlock Text="מה יש בדירה?" FontSize="16" FontWeight="Bold" Margin="0,15,0,5"/>
+            <ListBox x:Name="lbExtras" Height="80" Margin="0,0,0,15"/>
 
-            <TextBlock Text="מספר כרטיס" Margin="0,0,0,5"/>
-            <TextBox x:Name="txtCard" MaxLength="16" PreviewTextInput="DigitsOnly_PreviewTextInput"/>
-
-            <TextBlock Text="CVV" Margin="0,10,0,5"/>
-            <TextBox x:Name="txtCvv" MaxLength="3" PreviewTextInput="DigitsOnly_PreviewTextInput"/>
-
-            <TextBlock Text="תוקף (MM/YY)" Margin="0,10,0,5"/>
-            <TextBox x:Name="txtExpiry" MaxLength="5"/>
-
-            <Button Content="סיום הזמנה" Margin="0,25,0,0" Padding="10" Click="Button_Click"/>
+            <Button Content="המשך לתשלום" Margin="0,10,0,0" Padding="10" Click="btnContinue_Click"/>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

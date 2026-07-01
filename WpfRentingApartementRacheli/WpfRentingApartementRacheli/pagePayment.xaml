@@ -1,0 +1,39 @@
+<Page x:Class="WpfRentingApartementRacheli.pagePayment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfRentingApartementRacheli"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="תשלום"
+      FlowDirection="RightToLeft">
+
+    <Grid Background="#FDFBF7">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="30" MaxWidth="450" HorizontalAlignment="Center">
+            <TextBlock Text="תשלום והשלמת הזמנה" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+            <TextBlock x:Name="tbOrderInfo" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+            <TextBlock Text="שם מלא" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtName" Height="35" Margin="0,0,0,10"/>
+
+            <TextBlock Text="תעודת זהות" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtId" Height="35" Margin="0,0,0,15" IsReadOnly="True" Background="#EEE"/>
+
+            <TextBlock Text="פרטי אשראי" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <TextBlock Text="מספר כרטיס" Margin="0,0,0,5"/>
+            <TextBox x:Name="txtCard" MaxLength="16" PreviewTextInput="DigitsOnly_PreviewTextInput"/>
+
+            <TextBlock Text="CVV" Margin="0,10,0,5"/>
+            <TextBox x:Name="txtCvv" MaxLength="3" PreviewTextInput="DigitsOnly_PreviewTextInput"/>
+
+            <TextBlock Text="תוקף (MM/YY)" Margin="0,10,0,5"/>
+            <TextBox x:Name="txtExpiry" MaxLength="5"/>
+
+            <Button Content="שלח הזמנה" Margin="0,25,0,0" Padding="10" Click="btnSubmit_Click"/>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

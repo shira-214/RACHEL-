@@ -8,27 +8,29 @@
       Title="לוח בקרה - משכיר"
       FlowDirection="RightToLeft">
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="txtWelcome" FontSize="22" FontWeight="Bold" Margin="0,0,0,10"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
             <Button Content="יציאה" Width="80" Margin="5,0" Click="btnLogout_Click"/>
+            <Button Content="רענון" Width="80" Margin="5,0" Click="btnRefresh_Click"/>
             <Button Content="ערוך דירה" Width="100" Margin="5,0" Click="btnEdit_Click"/>
             <Button Content="הוסף תמונה" Width="110" Margin="5,0" Click="btnAddImage_Click"/>
             <Button Content="הוסף דירה חדשה" Width="130" Margin="5,0" Click="btnAdd_Click"/>
         </StackPanel>
 
         <TextBlock Grid.Row="2" Text="הדירות שלי" FontSize="16" FontWeight="Bold" Margin="0,0,0,5"/>
-        <ListView Grid.Row="3" x:Name="lvApartments" Margin="0,0,0,10">
+        <ListView Grid.Row="3" x:Name="lvApartments" Margin="0,0,0,10" MinHeight="120" MaxHeight="200">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding IdCities.NameCity}" Width="120"/>
@@ -41,14 +43,18 @@
         </ListView>
 
         <TextBlock Grid.Row="4" Text="הזמנות על דירותי" FontSize="16" FontWeight="Bold" Margin="0,5,0,5"/>
-        <DataGrid Grid.Row="5" x:Name="dgRentings" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+        <DataGrid Grid.Row="5" x:Name="dgRentings" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" MinHeight="150" MaxHeight="250">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="תאריך" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" Width="100"/>
-                <DataGridTextColumn Header="עיר" Binding="{Binding KodHapartment.IdCities.NameCity}" Width="120"/>
-                <DataGridTextColumn Header="רחוב" Binding="{Binding KodHapartment.IdStreet.StreetName}" Width="120"/>
-                <DataGridTextColumn Header="מחיר" Binding="{Binding SumPayment}" Width="80"/>
-                <DataGridTextColumn Header="מיטות" Binding="{Binding SumBeds}" Width="70"/>
+                <DataGridTextColumn Header="תאריך" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" Width="90"/>
+                <DataGridTextColumn Header="שם שוכר" Binding="{Binding IdHirer.NameHirer}" Width="110"/>
+                <DataGridTextColumn Header="ת.ז." Binding="{Binding IdHirer.C_IDHirer}" Width="90"/>
+                <DataGridTextColumn Header="עיר" Binding="{Binding KodHapartment.IdCities.NameCity}" Width="100"/>
+                <DataGridTextColumn Header="רחוב" Binding="{Binding KodHapartment.IdStreet.StreetName}" Width="100"/>
+                <DataGridTextColumn Header="בית" Binding="{Binding KodHapartment.NumberHouse}" Width="50"/>
+                <DataGridTextColumn Header="מחיר" Binding="{Binding SumPayment}" Width="70"/>
+                <DataGridTextColumn Header="מיטות" Binding="{Binding SumBeds}" Width="60"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+    </ScrollViewer>
 </Page>

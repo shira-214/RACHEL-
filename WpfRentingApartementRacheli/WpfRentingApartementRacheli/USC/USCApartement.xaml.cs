@@ -30,9 +30,11 @@ namespace WpfRentingApartementRacheli.USC
 
             var apartmentImage = allImages
                 .Where(x => x.Stataus && x.Image1 != null && x.Image1.Length > 0)
-                .FirstOrDefault(x =>
+                .Where(x =>
                     x.IdApartement != null &&
-                    x.IdApartement.IdApartment == apartment.IdApartment);
+                    x.IdApartement.IdApartment == apartment.IdApartment)
+                .OrderBy(x => x.NumImage)
+                .FirstOrDefault();
 
             if (apartmentImage != null)
                 image.Source = ImageManager.GetImage(apartmentImage.Image1);
@@ -40,25 +42,22 @@ namespace WpfRentingApartementRacheli.USC
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav?.Navigate(new pageRenting(apartment));
+            if (Global.currentHirers == null)
+            {
+                MessageBox.Show("יש להתחבר כשוכר כדי להזמין", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService nav = NavigationService.GetNavigationService(this);
+                nav?.Navigate(new pageLogin());
+                return;
+            }
+
+            NavigationService nav2 = NavigationService.GetNavigationService(this);
+            nav2?.Navigate(new pageRenting(apartment));
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string city = apartment.IdCities?.NameCity ?? "";
-            string street = apartment.IdStreet?.StreetName ?? "";
-            string details =
-                $"עיר: {city}\n" +
-                $"רחוב: {street} {apartment.NumberHouse}\n" +
-                $"קומה: {apartment.Floor}\n" +
-                $"חדרים: {apartment.NumberRooms}\n" +
-                $"מיטות: {apartment.NumberBeds}\n" +
-                $"מחיר התחלתי: {apartment.MinimumPrice} ש''ח\n" +
-                $"תוספת למיטה: {apartment.ExtraForBed} ש''ח\n\n" +
-                apartment.note;
-
-            MessageBox.Show(details, "פרטי דירה", MessageBoxButton.OK, MessageBoxImage.Information);
+            NavigationService nav = NavigationService.GetNavigationService(this);
+            nav?.Navigate(new ApartmentDetailsPage(apartment));
         }
     }
 }

@@ -22,7 +22,14 @@ namespace WpfRentingApartementRacheli
             }
 
             txtWelcome.Text = "שלום, " + Global.CurrentOwner.NameOwner;
+            Loaded += OwnerDashboardPage_Loaded;
             LoadData();
+        }
+
+        private void OwnerDashboardPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Global.CurrentRole == Global.UserRole.Owner && Global.CurrentOwner != null)
+                LoadData();
         }
 
         private void LoadData()
@@ -39,6 +46,11 @@ namespace WpfRentingApartementRacheli
                 .Where(r => r.KodHapartment != null && apartmentIds.Contains(r.KodHapartment.IdApartment))
                 .OrderBy(r => r.Date)
                 .ToList();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            LoadData();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

@@ -39,7 +39,18 @@
                           DisplayMemberPath="NameCity" SelectionChanged="ApartmentCities_SelectionChanged"/>
 
                 <TextBlock Text="רחוב*" FontWeight="Bold" Margin="0,5"/>
-                <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,0,0,10" DisplayMemberPath="StreetName"/>
+                <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,0,0,10" DisplayMemberPath="StreetName"
+                          SelectionChanged="ApartmentStreetsNames_SelectionChanged"/>
+                <TextBox x:Name="txtOtherStreet" Height="35" Margin="0,0,0,10" Visibility="Collapsed"
+                         ToolTip="הקלידי שם רחוב חדש"/>
+
+                <TextBlock Text="תוספות לדירה" FontWeight="Bold" Margin="0,5"/>
+                <ComboBox x:Name="cmbExtras" Height="35" Margin="0,0,0,5" DisplayMemberPath="NameExtra"
+                          SelectionChanged="cmbExtras_SelectionChanged"/>
+                <TextBox x:Name="txtOtherExtra" Height="35" Margin="0,0,0,5" Visibility="Collapsed"
+                         ToolTip="הקלידי שם תוספת חדשה"/>
+                <Button Content="הוסף תוספת" Height="30" Margin="0,0,0,5" Click="btnAddExtra_Click"/>
+                <ListBox x:Name="lbSelectedExtras" Height="80" Margin="0,0,0,10"/>
 
                 <TextBlock Text="מספר בית*" FontWeight="Bold" Margin="0,5"/>
                 <TextBox x:Name="txtNumberHouse" Height="35" Margin="0,0,0,10">

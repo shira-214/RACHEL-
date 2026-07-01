@@ -19,6 +19,20 @@ namespace WpfRentingApartementRacheli
             cmbApartment.ItemsSource = server.GetApartments();
         }
 
+        public AddManagerImages(DTOApartments apartment)
+        {
+            InitializeComponent();
+            add = true;
+            cmbApartment.ItemsSource = server.GetApartments();
+            if (apartment != null)
+            {
+                cmbApartment.SelectedItem = server.GetApartments()
+                    .FirstOrDefault(a => a.IdApartment == apartment.IdApartment);
+                cmbApartment.IsEnabled = false;
+            }
+            LoadExistingImages();
+        }
+
         public AddManagerImages(DTOImages existing)
         {
             InitializeComponent();
@@ -40,6 +54,34 @@ namespace WpfRentingApartementRacheli
                 imagePreview.Source = ImageManager.GetImage(selectedImage);
 
             chkStatus.IsChecked = existing.Stataus;
+            LoadExistingImages();
+        }
+
+        private void LoadExistingImages()
+        {
+            if (!(cmbApartment.SelectedItem is DTOApartments apartment))
+            {
+                lvExistingImages.ItemsSource = null;
+                return;
+            }
+
+            lvExistingImages.ItemsSource = server.GetImages()
+                .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
+                .OrderBy(x => x.NumImage)
+                .ToList();
+        }
+
+        private void ClearNewImageForm()
+        {
+            selectedImage = null;
+            imagePreview.Source = null;
+            chkStatus.IsChecked = true;
+        }
+
+        private void cmbApartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (add)
+                LoadExistingImages();
         }
 
         private void btnSelect_Click(object sender, RoutedEventArgs e)
@@ -93,10 +135,21 @@ namespace WpfRentingApartementRacheli
             {
                 MessageBox.Show(add ? "התמונה נשמרה בהצלחה!" : "התמונה עודכנה בהצלחה!",
                     "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
-                NavigationService?.Navigate(new AllImages());
+                if (add)
+                {
+                    ClearNewImageForm();
+                    LoadExistingImages();
+                }
+                else
+                    NavigationService?.Navigate(new AllImages());
             }
             else
                 MessageBox.Show("שגיאה בשמירת התמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        private void btnAddAnother_Click(object sender, RoutedEventArgs e)
+        {
+            ClearNewImageForm();
         }
     }
 }

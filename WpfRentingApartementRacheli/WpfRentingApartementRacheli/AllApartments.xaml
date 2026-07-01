@@ -17,6 +17,7 @@
             <Button Content="דירה חדשה" Margin="3,0" Click="Button_Click" />
             <Button Content="עדכון דירה" Margin="3,0" Click="Button_Click_1"/>
             <Button Content="מחיקת דירה" Margin="3,0" Click="Button_Click_2"/>
+            <Button Content="הוסף תמונה" Margin="3,0" Click="Button_Click_3"/>
 
         </StackPanel>
         <ListView x:Name="lvApartment" Background="White" Grid.Row="1" >

@@ -110,6 +110,9 @@
     <Compile Include="pageRenting.xaml.cs">
       <DependentUpon>pageRenting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="pagePayment.xaml.cs">
+      <DependentUpon>pagePayment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="USC\USCApartement.xaml.cs">
       <DependentUpon>USCApartement.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,9 @@
     </Compile>
     <Compile Include="AllStreetsNames.xaml.cs">
       <DependentUpon>AllStreetsNames.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ApartmentDetailsPage.xaml.cs">
+      <DependentUpon>ApartmentDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -238,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ApartmentDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +296,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pageRenting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pagePayment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

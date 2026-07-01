@@ -8,17 +8,18 @@
       Title="ההזמנות שלי"
       FlowDirection="RightToLeft">
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <Grid Margin="20" Background="#FDFBF7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="ההזמנות שלי" FontSize="24" FontWeight="Bold" Margin="0,0,0,15"/>
 
         <DataGrid x:Name="dgRentings" Grid.Row="1" AutoGenerateColumns="False"
-                  IsReadOnly="True" CanUserAddRows="False">
+                  IsReadOnly="True" CanUserAddRows="False" MinHeight="200">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="תאריך" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}" Width="100"/>
                 <DataGridTextColumn Header="עיר" Binding="{Binding KodHapartment.IdCities.NameCity}" Width="120"/>
@@ -31,4 +32,5 @@
         <Button Grid.Row="2" Content="חזרה לחיפוש" Width="140" HorizontalAlignment="Right"
                 Margin="0,15,0,0" Click="btnBack_Click"/>
     </Grid>
+    </ScrollViewer>
 </Page>

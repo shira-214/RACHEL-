@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WpfRentingApartementRacheli.ServiceReference1;
@@ -7,9 +8,13 @@ namespace WpfRentingApartementRacheli
 {
     public partial class AddManagerApartments : Page
     {
+        const int OtherStreetId = -1;
+        const int OtherExtraId = -1;
+
         Service1Client server = new Service1Client();
         DTOApartments Apartment;
         bool Add;
+        List<string> selectedExtraNames = new List<string>();
 
         public AddManagerApartments()
         {
@@ -18,6 +23,7 @@ namespace WpfRentingApartementRacheli
             DataContext = Apartment;
             Add = true;
             ApartmentCities.ItemsSource = server.GetTOCities();
+            LoadExtrasCombo();
         }
 
         public AddManagerApartments(DTOApartments apartment)
@@ -27,6 +33,7 @@ namespace WpfRentingApartementRacheli
             DataContext = Apartment;
             Add = false;
             ApartmentCities.ItemsSource = server.GetTOCities();
+            LoadExtrasCombo();
 
             if (Apartment.IdCities != null)
             {
@@ -47,9 +54,18 @@ namespace WpfRentingApartementRacheli
             }
         }
 
+        private void LoadExtrasCombo()
+        {
+            var extras = server.GetExtras().ToList();
+            extras.Add(new DTOExtras { IdExtra = OtherExtraId, NameExtra = "אחר" });
+            cmbExtras.ItemsSource = extras;
+        }
+
         private void ApartmentCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ApartmentStreetsNames.ItemsSource = null;
+            txtOtherStreet.Visibility = Visibility.Collapsed;
+            txtOtherStreet.Text = "";
             ApartmentStreetsNames.SelectedItem = null;
 
             if (ApartmentCities.SelectedItem is DTOCities city)
@@ -58,11 +74,154 @@ namespace WpfRentingApartementRacheli
 
         private void LoadStreetsForCity(int cityId)
         {
-            ApartmentStreetsNames.ItemsSource = server.GetTOAraesCitiesStreets()
+            var streets = server.GetTOAraesCitiesStreets()
                 .Where(x => x.IdCities != null && x.IdCities.IdCity == cityId && x.IdStreetDTo != null)
                 .GroupBy(x => x.IdStreetDTo.IdStreet)
                 .Select(g => g.First().IdStreetDTo)
                 .ToList();
+            streets.Add(new DTOStreetsNames { IdStreet = OtherStreetId, StreetName = "אחר" });
+            ApartmentStreetsNames.ItemsSource = streets;
+        }
+
+        private void ApartmentStreetsNames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (IsOtherStreetSelected())
+            {
+                txtOtherStreet.Visibility = Visibility.Visible;
+                txtOtherStreet.Text = "";
+            }
+            else
+            {
+                txtOtherStreet.Visibility = Visibility.Collapsed;
+                txtOtherStreet.Text = "";
+            }
+        }
+
+        private void cmbExtras_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbExtras.SelectedItem is DTOExtras extra && extra.IdExtra == OtherExtraId)
+            {
+                txtOtherExtra.Visibility = Visibility.Visible;
+                txtOtherExtra.Text = "";
+            }
+            else
+            {
+                txtOtherExtra.Visibility = Visibility.Collapsed;
+                txtOtherExtra.Text = "";
+            }
+        }
+
+        private void btnAddExtra_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(cmbExtras.SelectedItem is DTOExtras selected))
+            {
+                MessageBox.Show("יש לבחור תוספת", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string name;
+            if (selected.IdExtra == OtherExtraId)
+            {
+                if (string.IsNullOrWhiteSpace(txtOtherExtra.Text))
+                {
+                    MessageBox.Show("יש להקליד שם תוספת", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+                name = txtOtherExtra.Text.Trim();
+            }
+            else
+                name = selected.NameExtra;
+
+            if (selectedExtraNames.Contains(name))
+            {
+                MessageBox.Show("תוספת זו כבר נוספה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            selectedExtraNames.Add(name);
+            lbSelectedExtras.ItemsSource = null;
+            lbSelectedExtras.ItemsSource = selectedExtraNames.ToList();
+            txtOtherExtra.Text = "";
+            txtOtherExtra.Visibility = Visibility.Collapsed;
+        }
+
+        private bool IsOtherStreetSelected()
+        {
+            return ApartmentStreetsNames.SelectedItem is DTOStreetsNames street && street.IdStreet == OtherStreetId;
+        }
+
+        private DTOStreetsNames ResolveSelectedStreet()
+        {
+            if (!(ApartmentStreetsNames.SelectedItem is DTOStreetsNames street))
+                return null;
+
+            if (street.IdStreet != OtherStreetId)
+                return street;
+
+            if (string.IsNullOrWhiteSpace(txtOtherStreet.Text))
+                return null;
+
+            string name = txtOtherStreet.Text.Trim();
+            var existing = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
+            if (existing != null)
+                return existing;
+
+            if (!server.AddStreetsNames(new DTOStreetsNames { StreetName = name }))
+                return null;
+
+            var newStreet = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
+            if (newStreet == null)
+                return null;
+
+            if (!(ApartmentCities.SelectedItem is DTOCities city))
+                return null;
+
+            var cityLink = server.GetTOAraesCitiesStreets()
+                .FirstOrDefault(x => x.IdCities != null && x.IdCities.IdCity == city.IdCity && x.IdArea != null);
+            DTOAreas area = cityLink?.IdArea ?? server.GetAreas().FirstOrDefault();
+            if (area == null)
+                return null;
+
+            server.AddAraesCitiesStreet(new DTOAraesCitiesStreet
+            {
+                IdCities = city,
+                IdStreetDTo = newStreet,
+                IdArea = area
+            });
+
+            return newStreet;
+        }
+
+        private void SaveSelectedExtras()
+        {
+            if (Apartment.IdApartment <= 0 || selectedExtraNames.Count == 0)
+                return;
+
+            foreach (string name in selectedExtraNames)
+            {
+                DTOExtras extra = server.GetExtras().FirstOrDefault(x => x.NameExtra == name);
+                if (extra == null)
+                {
+                    server.AddExtras(new DTOExtras { NameExtra = name });
+                    extra = server.GetExtras().FirstOrDefault(x => x.NameExtra == name);
+                }
+                if (extra == null)
+                    continue;
+
+                bool exists = server.GetTOExtrasApartements().Any(x =>
+                    x.IdExtra != null && x.IdAapartment != null &&
+                    x.IdExtra.IdExtra == extra.IdExtra &&
+                    x.IdAapartment.IdApartment == Apartment.IdApartment);
+                if (exists)
+                    continue;
+
+                server.AddExtrasApartements(new DTOExtrasApartements
+                {
+                    IdExtra = extra,
+                    IdAapartment = new DTOApartments { IdApartment = Apartment.IdApartment },
+                    Status = true
+                });
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -86,8 +245,20 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
+            if (IsOtherStreetSelected() && string.IsNullOrWhiteSpace(txtOtherStreet.Text))
+            {
+                MessageBox.Show("יש להקליד שם רחוב", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             Apartment.IdCities = (DTOCities)ApartmentCities.SelectedItem;
-            Apartment.IdStreet = (DTOStreetsNames)ApartmentStreetsNames.SelectedItem;
+            DTOStreetsNames street = ResolveSelectedStreet();
+            if (street == null)
+            {
+                MessageBox.Show("שגיאה בשמירת הרחוב", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            Apartment.IdStreet = street;
 
             if (Add)
             {
@@ -107,12 +278,14 @@ namespace WpfRentingApartementRacheli
                 }
 
                 Apartment = saved;
+                SaveSelectedExtras();
                 NavigationService?.Navigate(new POrders(Apartment));
             }
             else
             {
                 if (server.UpdateApartments(Apartment))
                 {
+                    SaveSelectedExtras();
                     MessageBox.Show("עודכן בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
                     NavigationService?.Navigate(new POrders(Apartment));
                 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,23 +17,86 @@ namespace WpfRentingApartementRacheli
         public pageRenting(DTOApartments apartment)
         {
             InitializeComponent();
+
+            if (Global.currentHirers == null)
+            {
+                MessageBox.Show("יש להתחבר כשוכר כדי להזמין", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new pageLogin());
+                return;
+            }
+
             this.apartment = apartment;
             sumPay = apartment.MinimumPrice;
             tbSumToPay.Text = sumPay.ToString();
+            txtNumBeds.Tag = "מקסימום " + apartment.NumberBeds + " מיטות";
 
             string city = apartment.IdCities?.NameCity ?? "";
             string street = apartment.IdStreet?.StreetName ?? "";
             tbApartmentInfo.Text = city + " - " + street + " " + apartment.NumberHouse;
 
-            if (Global.selectedDate.Year != 1)
-                dp.SelectedDate = Global.selectedDate;
+            LoadExtras();
+            SetupDatePickerBlackouts();
+
+            if (Global.selectedDate.Year != 1 && IsValidRentDate(Global.selectedDate.Date))
+                dp.SelectedDate = Global.selectedDate.Date;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoadExtras()
+        {
+            var extras = service.GetTOExtrasApartements()
+                .Where(x => x.Status &&
+                            x.IdAapartment != null &&
+                            x.IdAapartment.IdApartment == apartment.IdApartment &&
+                            x.IdExtra != null)
+                .Select(x => x.IdExtra.NameExtra)
+                .ToList();
+
+            if (extras.Count == 0)
+                lbExtras.ItemsSource = new List<string> { "אין תוספות רשומות" };
+            else
+                lbExtras.ItemsSource = extras;
+        }
+
+        private void SetupDatePickerBlackouts()
+        {
+            dp.BlackoutDates.Clear();
+
+            DateTime today = DateTime.Today;
+            if (today > DateTime.MinValue)
+                dp.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, today.AddDays(-1)));
+
+            var bookedDates = service.GetTORentings()
+                .Where(x => x.KodHapartment != null && x.KodHapartment.IdApartment == apartment.IdApartment)
+                .Select(x => x.Date.Date)
+                .ToList();
+
+            DateTime end = today.AddYears(2);
+            for (DateTime date = today; date <= end; date = date.AddDays(1))
+            {
+                if (date.DayOfWeek != DayOfWeek.Saturday || bookedDates.Contains(date))
+                    dp.BlackoutDates.Add(new CalendarDateRange(date));
+            }
+        }
+
+        private bool IsValidRentDate(DateTime date)
+        {
+            if (date.Date < DateTime.Today)
+                return false;
+            if (date.DayOfWeek != DayOfWeek.Saturday)
+                return false;
+
+            return !service.GetTORentings().Any(x =>
+                x.KodHapartment != null &&
+                x.KodHapartment.IdApartment == apartment.IdApartment &&
+                x.Date.Date == date.Date);
+        }
+
+        private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
             if (Global.currentHirers == null)
             {
                 MessageBox.Show("לא התחברת", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                NavigationService?.Navigate(new pageLogin());
                 return;
             }
 
@@ -55,35 +119,15 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
-            if (!IsCreditCardValid(txtCard.Text) || !IsCvvValid(txtCvv.Text) || !IsExpiryValid(txtExpiry.Text))
-            {
-                MessageBox.Show("פרטי אשראי לא תקינים", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
             DateTime rentDate = dp.SelectedDate.Value.Date;
-            if (service.GetTORentings().Any(x =>
-                x.KodHapartment != null &&
-                x.KodHapartment.IdApartment == apartment.IdApartment &&
-                x.Date.Date == rentDate))
+            if (!IsValidRentDate(rentDate))
             {
-                MessageBox.Show("הדירה תפוסה בתאריך זה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("ניתן לבחור רק תאריך שבת פנוי", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             UpdateSumPayment(beds);
-
-            DTORentings renting = new DTORentings
-            {
-                IdHirer = Global.currentHirers,
-                KodHapartment = apartment,
-                Date = rentDate,
-                SumPayment = sumPay,
-                SumBeds = beds
-            };
-
-            service.Addentings(renting);
-            MessageBox.Show("ההזמנה נוספה בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
-            NavigationService.Navigate(new SearchW());
+            NavigationService?.Navigate(new pagePayment(apartment, beds, rentDate, sumPay));
         }
 
         private void txtNumBeds_TextChanged(object sender, TextChangedEventArgs e)
@@ -101,32 +145,6 @@ namespace WpfRentingApartementRacheli
         {
             sumPay = apartment.MinimumPrice + apartment.ExtraForBed * beds;
             tbSumToPay.Text = sumPay.ToString();
-        }
-
-        private bool IsExpiryValid(string expiry)
-        {
-            if (string.IsNullOrWhiteSpace(expiry) || expiry.Length != 5 || expiry[2] != '/')
-                return false;
-
-            if (!int.TryParse(expiry.Substring(0, 2), out int month) || month < 1 || month > 12)
-                return false;
-
-            if (!int.TryParse(expiry.Substring(3, 2), out int year))
-                return false;
-
-            year += 2000;
-            var expiryDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
-            return expiryDate >= DateTime.Today;
-        }
-
-        private bool IsCreditCardValid(string card)
-        {
-            return !string.IsNullOrWhiteSpace(card) && card.Length == 16 && card.All(char.IsDigit);
-        }
-
-        private bool IsCvvValid(string cvv)
-        {
-            return !string.IsNullOrWhiteSpace(cvv) && cvv.Length == 3 && cvv.All(char.IsDigit);
         }
 
         private void DigitsOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)

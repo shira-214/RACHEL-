@@ -34,6 +34,21 @@ namespace WpfRentingApartementRacheli
             string city = this.apartment.IdCities?.NameCity ?? "";
             string street = this.apartment.IdStreet?.StreetName ?? "";
             tbApartment.Text = city + " - " + street + " " + this.apartment.NumberHouse;
+            LoadExistingImages();
+        }
+
+        private void LoadExistingImages()
+        {
+            lvExistingImages.ItemsSource = server.GetImages()
+                .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
+                .OrderBy(x => x.NumImage)
+                .ToList();
+        }
+
+        private void ClearNewImageForm()
+        {
+            selectedImage = null;
+            imagePreview.Source = null;
         }
 
         private DTOApartments ResolveApartment(DTOApartments apt)
@@ -101,7 +116,8 @@ namespace WpfRentingApartementRacheli
                 {
                     MessageBox.Show("התמונה נשמרה בהצלחה!", "הצלחה",
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    NavigateBack();
+                    ClearNewImageForm();
+                    LoadExistingImages();
                 }
                 else
                 {
@@ -114,6 +130,11 @@ namespace WpfRentingApartementRacheli
                 MessageBox.Show("שגיאה בשמירת התמונה:\n" + ex.Message,
                     "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void btnAddAnother_Click(object sender, RoutedEventArgs e)
+        {
+            ClearNewImageForm();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

@@ -9,10 +9,12 @@
       FlowDirection="RightToLeft">
 
     <Grid Margin="20" Background="#FDFBF7">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="450">
             <TextBlock x:Name="tbTitle" Text="הוספת תמונה לדירה" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
             <TextBlock Text="בחר דירה" Margin="0,0,0,5"/>
-            <ComboBox x:Name="cmbApartment" DisplayMemberPath="NumberHouse" Height="35" Margin="0,0,0,15"/>
+            <ComboBox x:Name="cmbApartment" DisplayMemberPath="NumberHouse" Height="35" Margin="0,0,0,15"
+                      SelectionChanged="cmbApartment_SelectionChanged"/>
 
             <Border Height="180" BorderBrush="#DDD" BorderThickness="1" Margin="0,0,0,15">
                 <Image x:Name="imagePreview" Stretch="Uniform"/>
@@ -21,7 +23,19 @@
             <CheckBox x:Name="chkStatus" Content="תמונה פעילה" IsChecked="True" Margin="0,0,0,15"/>
 
             <Button Content="בחר תמונה" Height="35" Margin="0,0,0,10" Click="btnSelect_Click"/>
-            <Button Cursor="Hand" x:Name="btnEnd" Content="שמור תמונה" Height="35" Click="btnEnd_Click"/>
+            <Button Cursor="Hand" x:Name="btnEnd" Content="שמור תמונה" Height="35" Margin="0,0,0,10" Click="btnEnd_Click"/>
+            <Button Content="הוסף תמונה נוספת" Height="35" Margin="0,0,0,10" Click="btnAddAnother_Click"/>
+
+            <TextBlock Text="תמונות קיימות" FontSize="16" FontWeight="Bold" Margin="0,5,0,5"/>
+            <ListView x:Name="lvExistingImages" Height="120" Margin="0,0,0,10">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="מספר" DisplayMemberBinding="{Binding NumImage}" Width="60"/>
+                        <GridViewColumn Header="פעילה" DisplayMemberBinding="{Binding Stataus}" Width="60"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
