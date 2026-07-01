@@ -10,17 +10,61 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
+
+        <StackPanel Orientation="Horizontal" Margin="3">
             <Button Content="דירה חדשה" Margin="3,0" Click="Button_Click" />
             <Button Content="עדכון דירה" Margin="3,0" Click="Button_Click_1"/>
             <Button Content="מחיקת דירה" Margin="3,0" Click="Button_Click_2"/>
             <Button Content="הוסף תמונה" Margin="3,0" Click="Button_Click_3"/>
-
         </StackPanel>
-        <ListView x:Name="lvApartment" Background="White" Grid.Row="1" >
+
+        <Border Grid.Row="1" Background="#F0F8FF" BorderBrush="#CCC" BorderThickness="1"
+                Margin="3,8,3,8" Padding="10">
+            <WrapPanel>
+                <StackPanel Margin="5,0,15,5" Width="130">
+                    <TextBlock Text="עיר" FontWeight="Bold"/>
+                    <ComboBox x:Name="cmbCity" Height="30" DisplayMemberPath="NameCity"
+                              SelectionChanged="Filter_Changed"/>
+                </StackPanel>
+                <StackPanel Margin="5,0,15,5" Width="130">
+                    <TextBlock Text="רחוב" FontWeight="Bold"/>
+                    <ComboBox x:Name="cmbStreet" Height="30" DisplayMemberPath="StreetName"
+                              SelectionChanged="Filter_Changed"/>
+                </StackPanel>
+                <StackPanel Margin="5,0,15,5" Width="130">
+                    <TextBlock Text="מיטות (מינימום)" FontWeight="Bold"/>
+                    <Slider x:Name="slBeds" Minimum="1" Maximum="30" Value="1"
+                            TickFrequency="1" IsSnapToTickEnabled="True"
+                            ValueChanged="Filter_Changed"/>
+                    <TextBlock Text="{Binding ElementName=slBeds, Path=Value, StringFormat={}{0:F0}}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="5,0,15,5" Width="130">
+                    <TextBlock Text="מחיר (עד)" FontWeight="Bold"/>
+                    <Slider x:Name="slPrice" Minimum="100" Maximum="5000" Value="5000"
+                            TickFrequency="100" IsSnapToTickEnabled="True"
+                            ValueChanged="Filter_Changed"/>
+                    <TextBlock Text="{Binding ElementName=slPrice, Path=Value, StringFormat=עד {0:F0}}"
+                               HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Margin="5,0,15,5" Width="130">
+                    <TextBlock Text="סטטוס" FontWeight="Bold"/>
+                    <ComboBox x:Name="cmbStatus" Height="30" SelectionChanged="Filter_Changed">
+                        <ComboBoxItem Content="הכל" IsSelected="True"/>
+                        <ComboBoxItem Content="פעיל"/>
+                        <ComboBoxItem Content="לא פעיל"/>
+                    </ComboBox>
+                </StackPanel>
+                <Button Content="נקה סינון" Height="30" VerticalAlignment="Bottom"
+                        Margin="5,0,0,5" Click="btnClearFilters_Click"/>
+            </WrapPanel>
+        </Border>
+
+        <ListView x:Name="lvApartment" Background="White" Grid.Row="2" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="קוד דירה" DisplayMemberBinding="{Binding IdApartment}"/>
@@ -36,11 +80,8 @@
                     <GridViewColumn Header="הערות" DisplayMemberBinding="{Binding note}"/>
                     <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding IdCities.NameCity}"/>
                     <GridViewColumn Header="טלפון בעל הדירה" DisplayMemberBinding="{Binding PhoneOwner}"/>
-
                 </GridView>
             </ListView.View>
         </ListView>
-
-
     </Grid>
 </Page>

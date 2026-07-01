@@ -1,47 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AllApartments.xaml
-    /// </summary>
     public partial class AllApartments : Page
     {
         Service1Client server = new Service1Client();
+        List<DTOApartments> allApartments;
+
         public AllApartments()
         {
             InitializeComponent();
-            lvApartment.ItemsSource = server.GetApartments();
+            allApartments = server.GetApartments().ToList();
+            cmbCity.ItemsSource = server.GetTOCities();
+            cmbStreet.ItemsSource = server.GetStreetsNames();
+            Loaded += AllApartments_Loaded;
+        }
+
+        private void AllApartments_Loaded(object sender, RoutedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void Filter_Changed(object sender, RoutedEventArgs e)
+        {
+            if (!IsLoaded)
+                return;
+
+            ApplyFilters();
+        }
+
+        private void ApplyFilters()
+        {
+            if (slPrice == null || slBeds == null || lvApartment == null)
+                return;
+
+            IEnumerable<DTOApartments> filtered = allApartments;
+
+            if (cmbCity.SelectedItem is DTOCities city)
+            {
+                filtered = filtered.Where(a =>
+                    a.IdCities != null && a.IdCities.IdCity == city.IdCity);
+            }
+
+            if (cmbStreet.SelectedItem is DTOStreetsNames street)
+            {
+                filtered = filtered.Where(a =>
+                    a.IdStreet != null && a.IdStreet.IdStreet == street.IdStreet);
+            }
+
+            int minBeds = (int)slBeds.Value;
+            filtered = filtered.Where(a => a.NumberBeds >= minBeds);
+
+            int maxPrice = (int)slPrice.Value;
+            filtered = filtered.Where(a => a.MinimumPrice <= maxPrice);
+
+            if (cmbStatus.SelectedItem is ComboBoxItem statusItem)
+            {
+                string statusText = statusItem.Content?.ToString();
+                if (statusText == "פעיל")
+                    filtered = filtered.Where(a => a.Status);
+                else if (statusText == "לא פעיל")
+                    filtered = filtered.Where(a => !a.Status);
+            }
+
+            lvApartment.ItemsSource = filtered.ToList();
+        }
+
+        private void btnClearFilters_Click(object sender, RoutedEventArgs e)
+        {
+            cmbCity.SelectedItem = null;
+            cmbStreet.SelectedItem = null;
+            slBeds.Value = 1;
+            slPrice.Value = 5000;
+            cmbStatus.SelectedIndex = 0;
+            ApplyFilters();
+        }
+
+        private void ReloadApartments()
+        {
+            allApartments = server.GetApartments().ToList();
+            ApplyFilters();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService nav = NavigationService.GetNavigationService(this);
-            nav.Navigate(new AddManagerApartments());
+            NavigationService?.Navigate(new AddManagerApartments());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (lvApartment.SelectedItem != null)
-            {
-                NavigationService.Navigate(new AddManagerApartments(lvApartment.SelectedItem as DTOApartments));
-            }
-
+                NavigationService?.Navigate(new AddManagerApartments(lvApartment.SelectedItem as DTOApartments));
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -56,7 +109,7 @@ namespace WpfRentingApartementRacheli
             if (ok)
             {
                 MessageBox.Show("נמחק בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
-                lvApartment.ItemsSource = server.GetApartments();
+                ReloadApartments();
             }
             else
                 MessageBox.Show("לא ניתן למחוק — קיימות רשומות מקושרות (הזמנות/תמונות). מחק קודם את התלויות.", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -70,7 +123,7 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
-            NavigationService.Navigate(new POrders(apt));
+            NavigationService?.Navigate(new POrders(apt));
         }
     }
 }

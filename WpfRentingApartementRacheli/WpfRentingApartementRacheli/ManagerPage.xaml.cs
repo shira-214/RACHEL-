@@ -65,31 +65,16 @@ namespace WpfRentingApartementRacheli
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             ManagerFramre.Navigate(new AllExtras());
-
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            ManagerFramre.Navigate(new AllExtrasApartements());
-
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             ManagerFramre.Navigate(new AllHirers());
-
-        }
-
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-            ManagerFramre.Navigate(new AllImages());
-
         }
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
             ManagerFramre.Navigate(new AllRentings());
-
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)

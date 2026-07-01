@@ -11,24 +11,18 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="6*" />
-
             <ColumnDefinition Width="2*" />
-
         </Grid.ColumnDefinitions>
         <Frame Grid.Row="1" Background="AliceBlue" Name="ManagerFramre"/>
         <StackPanel Grid.Column ="1" >
-            <Button Content="דירה  " Click="Button_Click" />
-            <Button Content="אזורי רחוב בערים  " Click="Button_Click_1"/>
+            <Button Content="דירות" Click="Button_Click" />
+            <Button Content="אזורי רחוב בערים" Click="Button_Click_1"/>
             <Button Content="אזורים" Click="Button_Click_2"/>
             <Button Content="ערים" Click="Button_Click_3"/>
-            <Button Content="תוספות" Click="Button_Click_4"/>
-            <Button Content="תוספת לדירה" Click="Button_Click_5"/>
-            <Button Content="שוכר" Click="Button_Click_6"/>
-            <Button Content="תמונה" Click="Button_Click_7"/>
-            <Button Content="השכרה" Click="Button_Click_8"/>
+            <Button Content="תוספות בדירה" Click="Button_Click_4"/>
+            <Button Content="רשימת משכירים" Click="Button_Click_6"/>
+            <Button Content="בעלי דירות" Click="Button_Click_8"/>
             <Button Content="רחובות" Click="Button_Click_9"/>
-
         </StackPanel>
-
     </Grid>
 </Page>
