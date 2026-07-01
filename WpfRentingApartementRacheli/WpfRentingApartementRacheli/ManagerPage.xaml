@@ -20,7 +20,8 @@
             <Button Content="אזורים" Click="Button_Click_2"/>
             <Button Content="ערים" Click="Button_Click_3"/>
             <Button Content="תוספות בדירה" Click="Button_Click_4"/>
-            <Button Content="רשימת משכירים" Click="Button_Click_6"/>
+            <Button Content="שוכרים" Click="Button_Click_6"/>
+            <Button Content="משכירים" Click="Button_Click_10"/>
             <Button Content="הזמנות" Click="Button_Click_8"/>
             <Button Content="רחובות" Click="Button_Click_9"/>
         </StackPanel>

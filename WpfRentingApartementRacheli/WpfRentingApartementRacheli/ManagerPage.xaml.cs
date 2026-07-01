@@ -77,6 +77,11 @@ namespace WpfRentingApartementRacheli
             ManagerFramre.Navigate(new AllRentings());
         }
 
+        private void Button_Click_10(object sender, RoutedEventArgs e)
+        {
+            ManagerFramre.Navigate(new AllOwners());
+        }
+
         private void Button_Click_9(object sender, RoutedEventArgs e)
         {
             ManagerFramre.Navigate(new AllStreetsNames());

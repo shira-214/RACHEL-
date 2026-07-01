@@ -138,6 +138,9 @@
     <Compile Include="AllHirers.xaml.cs">
       <DependentUpon>AllHirers.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AllOwners.xaml.cs">
+      <DependentUpon>AllOwners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AllImages.xaml.cs">
       <DependentUpon>AllImages.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AllHirers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllOwners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
