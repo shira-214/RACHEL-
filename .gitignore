@@ -39,3 +39,10 @@ Desktop.ini
 
 # Cursor (optional local)
 .cursor/
+
+# LocalDB (machine-specific)
+*.mdf
+*.ldf
+
+# Local test project
+RacheliProject/BlTest/
