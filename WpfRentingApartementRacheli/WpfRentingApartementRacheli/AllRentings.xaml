@@ -1,4 +1,4 @@
-<Page x:Class="WpfRentingApartementRacheli.AllRentings"
+﻿<Page x:Class="WpfRentingApartementRacheli.AllRentings"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="����� ������">
+      Title="ניהול הזמנות" FlowDirection="RightToLeft">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,22 +14,22 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="����� ����" Margin="3,0" Click="Button_Click"/>
-            <Button Content="����� �����" Margin="3,0" Click="Button_Click_1"/>
-            <Button Content="����� �����" Click="Button_Click_2"/>
+            <Button Content="הזמנה חדשה" Margin="3,0" Click="Button_Click"/>
+            <Button Content="עדכון הזמנה" Margin="3,0" Click="Button_Click_1"/>
+            <Button Content="מחיקת הזמנה" Click="Button_Click_2"/>
         </StackPanel>
         <DataGrid x:Name="dg1" Grid.Row="1"/>
         <ListView x:Name="lvRentings" Background="White" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="��� �����" DisplayMemberBinding="{Binding IdRenting}"/>
-                    <GridViewColumn Header="����� ����" DisplayMemberBinding="{Binding IdHirer.FhoneNumberHirer}"/>
-                    <GridViewColumn Header="���� ������" DisplayMemberBinding="{Binding SumPayment}"/>
-                    <GridViewColumn Header="�����" DisplayMemberBinding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"/>
-                    <GridViewColumn Header="���� �����" DisplayMemberBinding="{Binding SumBeds}"/>
-                    <GridViewColumn Header="����" DisplayMemberBinding="{Binding KodHapartment.IdStreet.StreetName}"/>
-                    <GridViewColumn Header="���� ���" DisplayMemberBinding="{Binding KodHapartment.NumberHouse}"/>
-                    <GridViewColumn Header="���" DisplayMemberBinding="{Binding KodHapartment.IdCities.NameCity}"/>
+                    <GridViewColumn Header="קוד השכרה" DisplayMemberBinding="{Binding IdRenting}"/>
+                    <GridViewColumn Header="טלפון שוכר" DisplayMemberBinding="{Binding IdHirer.FhoneNumberHirer}"/>
+                    <GridViewColumn Header="סכום לתשלום" DisplayMemberBinding="{Binding SumPayment}"/>
+                    <GridViewColumn Header="תאריך" DisplayMemberBinding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"/>
+                    <GridViewColumn Header="מספר מיטות" DisplayMemberBinding="{Binding SumBeds}"/>
+                    <GridViewColumn Header="רחוב" DisplayMemberBinding="{Binding KodHapartment.IdStreet.StreetName}"/>
+                    <GridViewColumn Header="מספר בית" DisplayMemberBinding="{Binding KodHapartment.NumberHouse}"/>
+                    <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding KodHapartment.IdCities.NameCity}"/>
 
 
 
