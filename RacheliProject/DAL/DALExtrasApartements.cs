@@ -42,23 +42,22 @@ namespace DAL
         }
         public bool Update(ExtrasApartement entity)
         {
-            RacheliEntities db = new RacheliEntities();
-            try
+            using (RacheliEntities db = new RacheliEntities())
             {
-                db.ExtrasApartements.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
-
-                db.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                if (ex.InnerException != null)
-                    Debug.WriteLine(ex.InnerException.Message);
-
-                return false;
+                try
+                {
+                    db.ExtrasApartements.Attach(entity);
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    if (ex.InnerException != null)
+                        Debug.WriteLine(ex.InnerException.Message);
+                    return false;
+                }
             }
         }
 

@@ -41,6 +41,13 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
+            if (beds > apartment.NumberBeds)
+            {
+                MessageBox.Show($"מספר המיטות גדול מהקיבולת בדירה ({apartment.NumberBeds})",
+                    "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             if (!dp.SelectedDate.HasValue)
             {
                 MessageBox.Show("לא נבחר תאריך", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);

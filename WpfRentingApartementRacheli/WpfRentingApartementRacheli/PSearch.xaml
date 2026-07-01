@@ -5,114 +5,62 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="חיפוש דירה">
+      Title="חיפוש דירה"
+      FlowDirection="RightToLeft">
 
-    <Grid Margin="0,0,0,10">
+    <Grid Margin="0,0,0,10" Background="#FDFBF7">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition ></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Border Background="#007ACC" CornerRadius="20" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Padding="15">
-                <StackPanel>
-                    <TextBlock Text="חפש דירה" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,15"/>
-                    <TextBlock Text="עיר " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
 
-                    <!--<ComboBox x:Name="cbCity" Height="35" Margin="0,5" SelectionChanged="Filter_Changed"/>-->
-                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCities" SelectedValue="{Binding Cities}" DisplayMemberPath="NameCity" SelectionChanged="Filter_Changed"/>
-                    <TextBlock Text="רחוב " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentStreetsNames" SelectedValue="{Binding StreetsNames}" DisplayMemberPath="StreetName" SelectionChanged="Filter_Changed"/>
-
-                    <TextBlock>חיפוש לפי תאריכים</TextBlock>
-                    <DatePicker Name="dp" SelectedDateChanged="DatePicker_SelectedDateChanged"></DatePicker>
-
-                    <TextBlock Text="מחיר ללילה " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <Slider x:Name="slPrice" Minimum="100" Maximum="5000" Value="5000" Margin="0,5" 
-                            ValueChanged="Filter_Changed" TickFrequency="100" IsSnapToTickEnabled="True"/>
-
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="עד — " Foreground="White" FontSize="12"/>
-                        <TextBlock Text="{Binding ElementName=slPrice, Path=Value}" Foreground="White" FontSize="12" FontWeight="Bold"/>
-                        <TextBlock Text=" ש''ח" Foreground="White" FontSize="12"/>
-                    </StackPanel>
-
-                    <TextBlock Text="מספר מיטות " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                    <Slider x:Name="slBeds" Minimum="1" Maximum="30" Value="1" Margin="0,5" ValueChanged="Filter_Changed"/>
-                    <TextBlock Text="{Binding ElementName=slBeds, Path=Value, StringFormat={}{0:F0}}" Foreground="White" HorizontalAlignment="Center" FontSize="12"/>
-
-                    <TextBlock Text="מה יש בדירה?" Foreground="White" HorizontalAlignment="Right" Margin="0,15,0,5" FontWeight="Bold"/>
-                    <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCit" SelectedValue="{Binding Cities}"  DisplayMemberPath="NameCity" />
-                    <Button Content="מצא לי דירה" Background="White" Click="Button_Click"/>
-
-                </StackPanel>
-            </Border>
-        </StackPanel>
-
-        <ScrollViewer Grid.Column="1">
-            <WrapPanel Name="wrp"></WrapPanel>
-        </ScrollViewer>
-        <!--<ListView x:Name="lvApartments" Margin="10" MinWidth="450">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="שם דירה" DisplayMemberBinding="{Binding ApartName}" Width="150"/>
-                        <GridViewColumn Header="עיר" DisplayMemberBinding="{Binding cityName}" Width="100"/>
-                        <GridViewColumn Header="מחיר" DisplayMemberBinding="{Binding MinimunPrice}" Width="80"/>
-                        <GridViewColumn Header="מיטות" DisplayMemberBinding="{Binding numberBeds}" Width="60"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>-->
-    </Grid>
-</Page>
-<!--<Page x:Class="WpfRentingApartementRacheli.SearchW"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfRentingApartementRacheli"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="חיפוש דירה">
-
-    <Grid Margin="0,0,0,10">
-        <Border Background="#007ACC" 
-        CornerRadius="20" 
-        Width="280" 
-        HorizontalAlignment="Left" 
-        VerticalAlignment="Top" 
-        Margin="20" 
-        Padding="15">
-
+        <Border Background="#007ACC" CornerRadius="20" Width="280"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20" Padding="15">
             <StackPanel>
-                <TextBlock Text="חפש דירה" FontSize="22" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBlock Text="חפש דירה" FontSize="22" FontWeight="Bold" Foreground="White"
+                           HorizontalAlignment="Center" Margin="0,0,0,15"/>
 
-                <ComboBox Height="35" Margin="0,5" SelectedIndex="0">
-                    <ComboBoxItem Content="כל הערים..."/>
-                </ComboBox>
+                <TextBlock Text="אזור" Foreground="White" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                <ComboBox x:Name="ApartmentAreas" Height="35" Margin="0,5"
+                          DisplayMemberPath="NameArea" SelectionChanged="Filter_Changed"/>
 
-                <ComboBox Height="35" Margin="0,5" SelectedIndex="0">
-                    <ComboBoxItem Content="כל התאריכים..."/>
-                </ComboBox>
+                <TextBlock Text="עיר" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <ComboBox x:Name="ApartmentCities" Height="35" Margin="0,5"
+                          DisplayMemberPath="NameCity" SelectionChanged="Filter_Changed"/>
 
-                <TextBlock Text="מחיר " Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                <Slider Minimum="100" Maximum="5000" Margin="0,5"/>
-                <TextBlock Text="100 — 5000" Foreground="White" HorizontalAlignment="Center" FontSize="12"/>
+                <TextBlock Text="רחוב" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,5"
+                          DisplayMemberPath="StreetName" SelectionChanged="Filter_Changed"/>
 
-                <TextBlock Text="מספר מיטות" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                <Slider Minimum="1" Maximum="30" Margin="0,5"/>
-                <TextBlock Text="1 — 30" Foreground="White" HorizontalAlignment="Center" FontSize="12"/>
+                <TextBlock Text="תאריך" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <DatePicker x:Name="dp" Margin="0,5" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
 
-                <TextBlock Text="מה יש בדירה?" Foreground="White" HorizontalAlignment="Right" Margin="0,15,0,5" FontWeight="Bold"/>
+                <TextBlock Text="מחיר ללילה (עד)" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <Slider x:Name="slPrice" Minimum="100" Maximum="5000" Value="5000" Margin="0,5"
+                        ValueChanged="Filter_Changed" TickFrequency="100" IsSnapToTickEnabled="True"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="עד " Foreground="White" FontSize="12"/>
+                    <TextBlock Text="{Binding ElementName=slPrice, Path=Value}" Foreground="White" FontSize="12" FontWeight="Bold"/>
+                    <TextBlock Text=" ש''ח" Foreground="White" FontSize="12"/>
+                </StackPanel>
 
-                <CheckBox Content="בריכה" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="ג'קוזי" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="גנרטור" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="מיזוג אוויר" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="מכונת כביסה" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="מעלית" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="מרפסת/חצר" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
-                <CheckBox Content="גינה" Foreground="White" FlowDirection="RightToLeft" Margin="0,2" HorizontalAlignment="Right"/>
+                <TextBlock Text="מספר מיטות (מינימום)" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                <Slider x:Name="slBeds" Minimum="1" Maximum="30" Value="1" Margin="0,5" ValueChanged="Filter_Changed"/>
+                <TextBlock Text="{Binding ElementName=slBeds, Path=Value, StringFormat={}{0:F0}}"
+                           Foreground="White" HorizontalAlignment="Center" FontSize="12"/>
 
+                <TextBlock Text="מה יש בדירה?" Foreground="White" HorizontalAlignment="Center"
+                           Margin="0,15,0,5" FontWeight="Bold"/>
+                <ComboBox x:Name="ApartmentExtras" Height="35" Margin="0,5"
+                          DisplayMemberPath="NameExtra" SelectionChanged="Filter_Changed"/>
+
+                <Button Content="מצא לי דירה" Background="White" Margin="0,15,0,0"
+                        FontWeight="Bold" Click="Button_Click"/>
             </StackPanel>
         </Border>
+
+        <ScrollViewer Grid.Column="1">
+            <WrapPanel x:Name="wrp"/>
+        </ScrollViewer>
     </Grid>
-</Page>-->
+</Page>

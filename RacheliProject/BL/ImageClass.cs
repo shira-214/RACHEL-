@@ -1,25 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BL
 {
     public class ImageClass
     {
-        private const string BasePath = @"C:\Users\1\Downloads\פרוייקט\";
+        public static string GetProjectRoot()
+        {
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            for (int i = 0; i < 6 && !string.IsNullOrEmpty(dir); i++)
+            {
+                if (Directory.Exists(Path.Combine(dir, "Pictures")))
+                    return dir;
+                dir = Directory.GetParent(dir)?.FullName;
+            }
+
+            return @"C:\Users\1\Downloads\פרוייקט";
+        }
 
         public static string GetCurrentPath()
         {
-            return BasePath;
+            string root = GetProjectRoot();
+            return root.EndsWith("\\") ? root : root + "\\";
         }
 
-        private static string GetPicturesPath()
+        public static string GetPicturesPath()
         {
-            string path = BasePath + @"Pictures";
+            string path = Path.Combine(GetProjectRoot(), "Pictures");
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             return path;
@@ -38,7 +46,7 @@ namespace BL
                 return null;
 
             string fileName = NextName();
-            string path = GetPicturesPath() + @"\" + fileName;
+            string path = Path.Combine(GetPicturesPath(), fileName);
             using (var stream = new MemoryStream(imageArray))
             using (Image img = Image.FromStream(stream))
             {
@@ -52,7 +60,7 @@ namespace BL
             if (string.IsNullOrEmpty(fileName))
                 return null;
 
-            string path = GetPicturesPath() + @"\" + fileName;
+            string path = Path.Combine(GetPicturesPath(), fileName);
             if (File.Exists(path))
                 return File.ReadAllBytes(path);
             return null;

@@ -57,9 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddApartement.xaml.cs">
-      <DependentUpon>AddApartement.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddManagerApartments.xaml.cs">
       <DependentUpon>AddManagerApartments.xaml</DependentUpon>
     </Compile>
@@ -74,6 +71,12 @@
     </Compile>
     <Compile Include="AddManagerExtras.xaml.cs">
       <DependentUpon>AddManagerExtras.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerExtrasApartements.xaml.cs">
+      <DependentUpon>AddManagerExtrasApartements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddManagerRentings.xaml.cs">
+      <DependentUpon>AddManagerRentings.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddManagerHirers.xaml.cs">
       <DependentUpon>AddManagerHirers.xaml</DependentUpon>
@@ -100,9 +103,6 @@
     </Compile>
     <Compile Include="ManagerLoginPage.xaml.cs">
       <DependentUpon>ManagerLoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LookForApartement.xaml.cs">
-      <DependentUpon>LookForApartement.xaml</DependentUpon>
     </Compile>
     <Compile Include="pageLogin.xaml.cs">
       <DependentUpon>pageLogin.xaml</DependentUpon>
@@ -158,10 +158,6 @@
     <Compile Include="PSearch.xaml.cs">
       <DependentUpon>PSearch.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddApartement.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AddManagerApartments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +175,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddManagerExtras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerExtrasApartements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddManagerRentings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,10 +255,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManagerLoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LookForApartement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

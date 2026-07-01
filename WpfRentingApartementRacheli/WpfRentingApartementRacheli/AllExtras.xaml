@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfRentingApartementRacheli.AllExtras"
+<Page x:Class="WpfRentingApartementRacheli.AllExtras"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ניהול תוספות">
+      Title="����� ������">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,16 +14,16 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="תוספת חדשה " Margin="3,0" Click="Button_Click"/>
-            <Button Content="עדכון תוספת" Margin="3,0 " Click="Button_Click_1"/>
-            <Button Content="מחיקת תוספת" Click="Button_Click_2"/>
+            <Button Content="����� ���� " Margin="3,0" Click="Button_Click"/>
+            <Button Content="����� �����" Margin="3,0 " Click="Button_Click_1"/>
+            <Button Content="����� �����" Click="Button_Click_2"/>
         </StackPanel>
         <DataGrid x:Name="dg1" Grid.Row="1"/>
-        <ListView x:Name="lvExtras" Background="Beige" Grid.Row="1" SelectionChanged="lvExtras_SelectionChanged" >
+        <ListView x:Name="lvExtras" Background="White" Grid.Row="1" SelectionChanged="lvExtras_SelectionChanged" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="קוד תוספת" DisplayMemberBinding="{Binding IdExtra}"/>
-                    <GridViewColumn Header="שם תוספת " DisplayMemberBinding="{Binding NameExtra}"/>
+                    <GridViewColumn Header="��� �����" DisplayMemberBinding="{Binding IdExtra}"/>
+                    <GridViewColumn Header="�� ����� " DisplayMemberBinding="{Binding NameExtra}"/>
 
                 </GridView>
             </ListView.View>

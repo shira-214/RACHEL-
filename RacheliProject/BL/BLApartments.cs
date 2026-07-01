@@ -80,55 +80,6 @@ namespace BL
                 Apartments.Add(ConvertToDTO(cApartments));
             }
             return Apartments;
-            //להפעיל את הפעולות שבדאל
-
-      
         }
-
-        //public DTOApartments GetCityByCode(int? code)
-        //{
-        //    DALApartments = new DALApartments();
-        //    Apartment result = DALApartments.GetById(code);
-        //    return convertToDTO(result);
-        //}
-        //public bool UpdateCity(DTOApartments dto)
-        //{
-        //    DALApartments dal = new DALApartments();
-        //    //ממירים את האוביקט שקיבלנו לשכבת הנתונים דטה
-        //    Apartment data = convertToData(dto);
-        //    return dal.Update(data);
-        //}
-        //public bool DeleteCity(int code)
-        //{
-        //    DALApartments dal = new DALApartments();
-        //    return dal.Delete(code);
-        //}
     }
-
-    //public DTOApartments GetApartmentById(string id)
-    //{
-    //    DALApartments dal = new DALApartments();
-    //    Apartment result = dal.GetById(id);
-    //    return ConvertToDTO(result);
-    //}
-
-    //public bool UpdateApartments(DTOApartments dto)
-    //{
-    //    DALApartments dal = new DALApartments();
-    //    //ממירים את האוביקט שקיבלנו לשכבת הנתונים דטה
-    //    Apartment data = conver(dto);
-    //    return dal.Update(data);
-    //}
-
-    ////public bool DeleteUser(string id)
-    ////{
-    ////    UserDAL dal = new UserDAL();
-    //    return dal.Delete(id);
-    //}
-
-
 }
-
-
-
-

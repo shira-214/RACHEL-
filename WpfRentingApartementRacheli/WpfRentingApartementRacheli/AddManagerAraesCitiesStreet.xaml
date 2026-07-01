@@ -3,36 +3,23 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="קישור אזור-עיר-רחוב">
+      Title="קישור אזור-עיר-רחוב"
+      FlowDirection="RightToLeft">
 
-    <Grid>
-        <StackPanel>
-            <TextBlock Text="עיר "/>
-            <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCities" SelectedValue="{Binding Cities}"  DisplayMemberPath="NameCity" />
+    <Grid Margin="20" Background="#FDFBF7">
+        <StackPanel MaxWidth="450">
+            <TextBlock Text="עיר" Margin="0,0,0,5"/>
+            <ComboBox x:Name="ApartmentCities" Height="35" Margin="0,0,0,15" DisplayMemberPath="NameCity"/>
 
-            <TextBlock Text="רחוב"/>
+            <TextBlock Text="רחוב" Margin="0,0,0,5"/>
+            <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,0,0,15" DisplayMemberPath="StreetName"/>
 
-            <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentStreetsNames" SelectedValue="{Binding StreetsNames}"  DisplayMemberPath="StreetName" ></ComboBox>
+            <TextBlock Text="אזור" Margin="0,0,0,5"/>
+            <ComboBox x:Name="ApartmentArea" Height="35" Margin="0,0,0,15" DisplayMemberPath="NameArea"/>
 
-
-            <TextBlock Text="אזורי רחובות בערים"/>
-            <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentArea" SelectedValue="{Binding Areas}"  DisplayMemberPath="NameArea" ></ComboBox>
-
-            <!--<TextBox x:Name="txtNameArea" >
-                <TextBox.Text>-->
-
-                    <!--<Binding Path="StreetName">
-                        <Binding.ValidationRules>
-                            <local:isHebrewOrEnglish/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>-->
-            <Button Cursor="Hand" x:Name="btnEnd" Content="סיימתי" Click="btnEnd_Click"/>
-
+            <Button Cursor="Hand" x:Name="btnEnd" Content="שמור" Height="40" Click="btnEnd_Click"/>
         </StackPanel>
-</Grid>
+    </Grid>
 </Page>

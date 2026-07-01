@@ -1,97 +1,137 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
-
 
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for AddManagerApartments.xaml
-    /// </summary>
     public partial class AddManagerApartments : Page
     {
         Service1Client server = new Service1Client();
-        DTOApartments Apartment;//אוביקט מסוג משתמש עליו עובדים
+        DTOApartments Apartment;
         bool Add;
+
         public AddManagerApartments()
         {
             InitializeComponent();
-            Apartment = new DTOApartments();
-            this.DataContext = Apartment;
+            Apartment = new DTOApartments { Status = true };
+            DataContext = Apartment;
             Add = true;
             ApartmentCities.ItemsSource = server.GetTOCities();
-
         }
 
-        public AddManagerApartments(DTOApartments Apartment)
+        public AddManagerApartments(DTOApartments apartment)
         {
             InitializeComponent();
-            this.Apartment = Apartment;
-            this.DataContext = Apartment;
+            Apartment = apartment;
+            DataContext = Apartment;
             Add = false;
+            ApartmentCities.ItemsSource = server.GetTOCities();
 
+            if (Apartment.IdCities != null)
+            {
+                ApartmentCities.SelectedItem = server.GetTOCities()
+                    .FirstOrDefault(c => c.IdCity == Apartment.IdCities.IdCity);
+                LoadStreetsForCity(Apartment.IdCities.IdCity);
+                if (Apartment.IdStreet != null && ApartmentStreetsNames.ItemsSource is System.Collections.IEnumerable streets)
+                {
+                    foreach (DTOStreetsNames street in streets)
+                    {
+                        if (street.IdStreet == Apartment.IdStreet.IdStreet)
+                        {
+                            ApartmentStreetsNames.SelectedItem = street;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ApartmentCities_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApartmentStreetsNames.ItemsSource = null;
+            ApartmentStreetsNames.SelectedItem = null;
+
+            if (ApartmentCities.SelectedItem is DTOCities city)
+                LoadStreetsForCity(city.IdCity);
+        }
+
+        private void LoadStreetsForCity(int cityId)
+        {
+            ApartmentStreetsNames.ItemsSource = server.GetTOAraesCitiesStreets()
+                .Where(x => x.IdCities != null && x.IdCities.IdCity == cityId && x.IdStreetDTo != null)
+                .GroupBy(x => x.IdStreetDTo.IdStreet)
+                .Select(g => g.First().IdStreetDTo)
+                .ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //בדיקה על הבדיקות תקינות
-            if (Validation.GetHasError(ApartmentsNameOwner) == true || Validation.GetHasError(ApartmentCities) == true || Validation.GetHasError(ApartmentStreetsNames) == true || Validation.GetHasError(txtNumberHouse) == true || Validation.GetHasError(txtFloor)  == true  || Validation.GetHasError(txtNumberRooms) == true || Validation.GetHasError(txtNumberBeds) == true || Validation.GetHasError(txtMinimumPrice) == true || Validation.GetHasError(txtExtraForBed) == true || Validation.GetHasError(txtnote) == true || Validation.GetHasError(txtPhoneOwner) == true)
+            if (Validation.GetHasError(ApartmentsNameOwner) || Validation.GetHasError(txtPhoneOwner) ||
+                Validation.GetHasError(txtNumberHouse) || Validation.GetHasError(txtFloor) ||
+                Validation.GetHasError(txtNumberRooms) || Validation.GetHasError(txtNumberBeds) ||
+                Validation.GetHasError(txtMinimumPrice) || Validation.GetHasError(txtExtraForBed))
             {
-                MessageBox.Show("נתונים שגויים!");
+                MessageBox.Show("נתונים שגויים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (ApartmentsNameOwner.Text == "" || txtPhoneOwner.Text == "" ||
+                ApartmentCities.SelectedItem == null || ApartmentStreetsNames.SelectedItem == null ||
+                txtNumberHouse.Text == "" || txtFloor.Text == "" || txtNumberRooms.Text == "" ||
+                txtNumberBeds.Text == "" || txtMinimumPrice.Text == "" || txtExtraForBed.Text == "" ||
+                txtnote.Text == "")
+            {
+                MessageBox.Show("נתונים חסרים!", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            Apartment.IdCities = (DTOCities)ApartmentCities.SelectedItem;
+            Apartment.IdStreet = (DTOStreetsNames)ApartmentStreetsNames.SelectedItem;
+
+            if (Add)
+            {
+                if (!server.AddApartments(Apartment))
+                {
+                    MessageBox.Show("שגיאה בהוספת הדירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                var saved = RefreshApartmentFromServer(Apartment);
+                if (saved == null)
+                {
+                    MessageBox.Show("הדירה נוספה אך לא ניתן לטעון את המזהה", "אזהרה",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
+                    NavigationService?.Navigate(new AllApartments());
+                    return;
+                }
+
+                Apartment = saved;
+                NavigationService?.Navigate(new POrders(Apartment));
             }
             else
             {
-                //בדיקה שאין נתונים ריקים
-                if (ApartmentsNameOwner.Text == "" || ApartmentCities.SelectedItem == null || ApartmentStreetsNames.SelectedItem == null || (txtNumberHouse.Text == "") || (txtFloor.Text == "") || (txtNumberRooms.Text == "") || (txtNumberBeds.Text == "") || txtMinimumPrice.Text == "" || txtExtraForBed.Text == "" || txtnote.Text == "" || txtPhoneOwner.Text == "")
+                if (server.UpdateApartments(Apartment))
                 {
-                    MessageBox.Show("נתונים חסרים!");
+                    MessageBox.Show("עודכן בהצלחה!", "הצלחה", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService?.Navigate(new POrders(Apartment));
                 }
                 else
-                {
-                    if (Add == true)
-                    {
-                        if (server.AddApartments(Apartment))
-                            NavigationService.Navigate(new POrders(Apartment));
-                        else
-                            MessageBox.Show("שגיאה בהוספת דירה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    else
-                    {
-                        if (server.UpdateApartments(Apartment))
-                        {
-                            MessageBox.Show("עודכן בהצלחה!");
-                            NavigationService.Navigate(new POrders(Apartment));
-                        }
-                        else
-                            MessageBox.Show("שגיאה בעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
+                    MessageBox.Show("שגיאה בעדכון", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
-        //{
-        //    byte[] arr = ImageManager.UploadImage_Dlg();
-        //    //מגדירים את המקור של הפקד של התמונה שכתבנו בסעיף הקודם שיהיה התמונה שנבחרה           
-        //    image.Source = ImageManager.GetImage(arr);
-        //    //מבצעים השמה לתכונה תמונה של האוביקט אותו רוצים להוסיף לפי ה די טי או
-        //    user.image = arr;//כי מקושר לי.... מה לעשות כאן??
-
-
-        //}
+        private DTOApartments RefreshApartmentFromServer(DTOApartments apartment)
+        {
+            return server.GetApartments()
+                .FirstOrDefault(a =>
+                    a.NameOwner == apartment.NameOwner &&
+                    a.PhoneOwner == apartment.PhoneOwner &&
+                    a.NumberHouse == apartment.NumberHouse &&
+                    a.IdCities != null && apartment.IdCities != null &&
+                    a.IdCities.IdCity == apartment.IdCities.IdCity &&
+                    a.IdStreet != null && apartment.IdStreet != null &&
+                    a.IdStreet.IdStreet == apartment.IdStreet.IdStreet);
+        }
     }
-
 }

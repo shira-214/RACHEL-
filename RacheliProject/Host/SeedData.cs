@@ -9,7 +9,22 @@ namespace Host
 {
     public static class SeedData
     {
-        private const string PicturesPath = @"C:\Users\1\Downloads\פרוייקט\Pictures\";
+        private static string GetPicturesPath()
+        {
+            string dir = AppDomain.CurrentDomain.BaseDirectory;
+            for (int i = 0; i < 6 && !string.IsNullOrEmpty(dir); i++)
+            {
+                string pictures = Path.Combine(dir, "Pictures");
+                if (Directory.Exists(pictures))
+                    return pictures;
+                dir = Directory.GetParent(dir)?.FullName;
+            }
+
+            string fallback = Path.Combine(@"C:\Users\1\Downloads\פרוייקט", "Pictures");
+            if (!Directory.Exists(fallback))
+                Directory.CreateDirectory(fallback);
+            return fallback;
+        }
 
         public static void SeedIfEmpty()
         {
@@ -194,10 +209,11 @@ namespace Host
 
         private static void EnsurePictureFile(string fileName)
         {
-            if (!Directory.Exists(PicturesPath))
-                Directory.CreateDirectory(PicturesPath);
+            string picturesPath = GetPicturesPath();
+            if (!Directory.Exists(picturesPath))
+                Directory.CreateDirectory(picturesPath);
 
-            string fullPath = PicturesPath + fileName;
+            string fullPath = Path.Combine(picturesPath, fileName);
             if (File.Exists(fullPath))
                 return;
 

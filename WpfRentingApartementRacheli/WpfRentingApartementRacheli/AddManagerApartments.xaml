@@ -6,119 +6,121 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="800"
-      Title="הוספת/עריכת דירה">
+      Title="הוספת/עריכת דירה"
+      FlowDirection="RightToLeft">
 
-    <Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,26,0,-26">
+    <Grid Background="#FDFBF7">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="20">
+            <StackPanel MaxWidth="550">
+                <TextBlock Text="שם בעל הדירה*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="ApartmentsNameOwner" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="NameOwner" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:isHebrewRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-            <StackPanel>
-            <TextBlock Text="שם משכיר"/>
-            <TextBox x:Name="ApartmentsNameOwner" >
-                <TextBox.Text>
+                <TextBlock Text="טלפון בעל הדירה*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtPhoneOwner" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="PhoneOwner" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsCellPhone />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-                    <Binding Path="userNameOwner">
-                    <Binding.ValidationRules>
-                        <local:isHebrewOrEnglish/>
-                    </Binding.ValidationRules>
-                </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="עיר"/>
-            <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentCities" SelectedValue="{Binding Cities}"  DisplayMemberPath="NameCity" ></ComboBox>
+                <TextBlock Text="עיר*" FontWeight="Bold" Margin="0,5"/>
+                <ComboBox x:Name="ApartmentCities" Height="35" Margin="0,0,0,10"
+                          DisplayMemberPath="NameCity" SelectionChanged="ApartmentCities_SelectionChanged"/>
 
-            <TextBlock Text="רחוב"/>
-            <ComboBox Foreground="Pink" Background="Aqua" x:Name="ApartmentStreetsNames" SelectedValue="{Binding StreetsNames}"  DisplayMemberPath="StreetName" ></ComboBox>
-            <TextBlock Text="מספר בית"/>
-            <TextBox x:Name="txtNumberHouse">
-                <TextBox.Text>
-                    <Binding Path="userNumberHouse">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="קומה"/>
-            <TextBox x:Name="txtFloor">
-                <TextBox.Text>
-                    <Binding Path="userFloor">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="מספר חדרים"/>
-            <TextBox x:Name="txtNumberRooms">
-                <TextBox.Text>
-                    <Binding Path="userNumberRooms">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="מספר מיטות"/>
-            <TextBox x:Name="txtNumberBeds">
-                <TextBox.Text>
-                    <Binding Path="userNumberBeds">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text=" מחיר מינימלי"/>
-            <TextBox x:Name="txtMinimumPrice">
-                <TextBox.Text>
-                    <Binding Path="userMinimumPrice">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text=" תוספת למיטה"/>
-            <TextBox x:Name="txtExtraForBed">
-                <TextBox.Text>
-                    <Binding Path="userExtraForBed">
-                        <Binding.ValidationRules>
-                            <local:IsNumber/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-                <!--<Button Content="בחר תמונה" Click="Button_Click_1"></Button>-->
-                <!--<Border Height="100" Width="100" BorderBrush="Black" BorderThickness="3">
-                    <Image x:Name="image"></Image>
-                </Border>-->
+                <TextBlock Text="רחוב*" FontWeight="Bold" Margin="0,5"/>
+                <ComboBox x:Name="ApartmentStreetsNames" Height="35" Margin="0,0,0,10" DisplayMemberPath="StreetName"/>
 
-                <TextBlock Text=" סטטוס"/>
-            <CheckBox />
-            <TextBlock Text=" הערות "/>
-            <TextBox x:Name="txtnote" >
-                <TextBox.Text>
+                <TextBlock Text="מספר בית*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtNumberHouse" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="NumberHouse" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-                    <Binding Path="usenote">
-                        <Binding.ValidationRules>
-                            <local:isHebrewOrEnglish/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text=" טלפון "/>
-            <TextBox x:Name="txtPhoneOwner" >
-                <TextBox.Text>
+                <TextBlock Text="קומה*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtFloor" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="Floor" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
-                    <Binding Path="userPhoneOwner">
-                        <Binding.ValidationRules>
-                            <local:isHebrewOrEnglish/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <Button Cursor="Hand" x:Name="btnEnd" Content="לסיום והוספת תמונות" Click="Button_Click"/>
-        </StackPanel>
-       </ScrollViewer>
+                <TextBlock Text="מספר חדרים*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtNumberRooms" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="NumberRooms" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBlock Text="מספר מיטות*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtNumberBeds" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="NumberBeds" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBlock Text="מחיר מינימום*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtMinimumPrice" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="MinimumPrice" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <TextBlock Text="תוספת למיטה*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtExtraForBed" Height="35" Margin="0,0,0,10">
+                    <TextBox.Text>
+                        <Binding Path="ExtraForBed" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:IsNumber />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <CheckBox x:Name="chkStatus" Content="דירה פעילה (מוצגת בחיפוש)"
+                          IsChecked="{Binding Status, Mode=TwoWay}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="הערות*" FontWeight="Bold" Margin="0,5"/>
+                <TextBox x:Name="txtnote" Height="60" TextWrapping="Wrap" Margin="0,0,0,20">
+                    <TextBox.Text>
+                        <Binding Path="note" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+
+                <Button Cursor="Hand" x:Name="btnEnd" Content="שמור והמשך לתמונות"
+                        Height="45" Click="Button_Click"
+                        Foreground="White" Background="#3498DB" FontWeight="Bold"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

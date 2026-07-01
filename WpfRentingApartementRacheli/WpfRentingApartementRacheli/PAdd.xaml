@@ -110,13 +110,16 @@
                         </TextBox>
 
                         <TextBlock Text="הערות*" Foreground="#3498DB" Margin="0,5" FontWeight="Bold"/>
-                        <TextBox x:Name="txtnote" Height="60" TextWrapping="Wrap" Margin="0,0,0,20">
+                        <TextBox x:Name="txtnote" Height="60" TextWrapping="Wrap" Margin="0,0,0,10">
                             <TextBox.Text>
                                 <Binding Path="note" UpdateSourceTrigger="PropertyChanged"/>
                             </TextBox.Text>
                         </TextBox>
 
-                        <Button Content="הוסף דירה" Height="45" Click="Register_Click"
+                        <CheckBox x:Name="chkStatus" Content="דירה פעילה (מוצגת בחיפוש)"
+                                  Visibility="Collapsed" Margin="0,0,0,20"/>
+
+                        <Button x:Name="btnSave" Content="הוסף דירה" Height="45" Click="Register_Click"
                                 Foreground="White" Background="#3498DB" FontWeight="Bold" Cursor="Hand"/>
                     </StackPanel>
                 </ScrollViewer>

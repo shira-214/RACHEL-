@@ -1,0 +1,27 @@
+<Page x:Class="WpfRentingApartementRacheli.AddManagerExtrasApartements"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="הוספת/עריכת תוספת לדירה"
+      FlowDirection="RightToLeft">
+
+    <Grid Margin="20" Background="#FDFBF7">
+        <StackPanel MaxWidth="450">
+            <TextBlock Text="תוספת לדירה" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <TextBlock Text="דירה*" Margin="0,0,0,5"/>
+            <ComboBox x:Name="cmbApartment" Height="35" Margin="0,0,0,15" DisplayMemberPath="NameOwner"/>
+
+            <TextBlock Text="תוספת*" Margin="0,0,0,5"/>
+            <ComboBox x:Name="cmbExtra" Height="35" Margin="0,0,0,15" DisplayMemberPath="NameExtra"/>
+
+            <CheckBox x:Name="chkStatus" Content="פעיל"
+                      IsChecked="{Binding Status, Mode=TwoWay}" Margin="0,0,0,20"/>
+
+            <Button Cursor="Hand" x:Name="btnEnd" Content="שמור" Height="40" Click="btnEnd_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

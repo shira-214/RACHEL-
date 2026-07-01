@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfRentingApartementRacheli.ServiceReference1;
 using WpfRentingApartementRacheli.USC;
 
-
-
 namespace WpfRentingApartementRacheli
 {
-    /// <summary>
-    /// Interaction logic for SearchW.xaml
-    /// </summary>
     public partial class SearchW : Page
     {
-        // יצירת מופע של השרת
         Service1Client service = new Service1Client();
         List<DTOApartments> lApartments;
         List<DTORentings> lRentings;
@@ -40,12 +25,13 @@ namespace WpfRentingApartementRacheli
                 return;
             }
 
+            ApartmentAreas.ItemsSource = service.GetAreas();
             ApartmentCities.ItemsSource = service.GetTOCities();
             ApartmentStreetsNames.ItemsSource = service.GetStreetsNames();
+            ApartmentExtras.ItemsSource = service.GetExtras();
             RefreshData();
         }
 
-        // האירוע שקישרנו ב-XAML לכל הפקדים
         private void Filter_Changed(object sender, RoutedEventArgs e)
         {
             RefreshData();
@@ -57,6 +43,17 @@ namespace WpfRentingApartementRacheli
             lRentings = service.GetTORentings().ToList();
 
             IEnumerable<DTOApartments> filtered = lApartments.Where(a => a.Status);
+
+            if (ApartmentAreas.SelectedItem is DTOAreas selectedArea)
+            {
+                var cityIds = service.GetTOAraesCitiesStreets()
+                    .Where(x => x.IdArea != null && x.IdArea.IdArea == selectedArea.IdArea && x.IdCities != null)
+                    .Select(x => x.IdCities.IdCity)
+                    .Distinct()
+                    .ToList();
+
+                filtered = filtered.Where(a => a.IdCities != null && cityIds.Contains(a.IdCities.IdCity));
+            }
 
             if (ApartmentCities.SelectedItem is DTOCities selectedCity)
             {
@@ -76,6 +73,17 @@ namespace WpfRentingApartementRacheli
             int minBeds = (int)slBeds.Value;
             filtered = filtered.Where(a => a.NumberBeds >= minBeds);
 
+            if (ApartmentExtras.SelectedItem is DTOExtras selectedExtra)
+            {
+                var apartmentIds = service.GetTOExtrasApartements()
+                    .Where(x => x.IdExtra != null && x.IdExtra.IdExtra == selectedExtra.IdExtra &&
+                                x.Status && x.IdAapartment != null)
+                    .Select(x => x.IdAapartment.IdApartment)
+                    .ToList();
+
+                filtered = filtered.Where(a => apartmentIds.Contains(a.IdApartment));
+            }
+
             if (dp.SelectedDate.HasValue)
             {
                 DateTime searchDate = dp.SelectedDate.Value.Date;
@@ -89,9 +97,7 @@ namespace WpfRentingApartementRacheli
 
             wrp.Children.Clear();
             foreach (DTOApartments apartment in filtered)
-            {
                 wrp.Children.Add(new USCApartement(apartment));
-            }
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

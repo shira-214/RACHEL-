@@ -1,4 +1,4 @@
-﻿<Page x:Class="WpfRentingApartementRacheli.AllImages"
+<Page x:Class="WpfRentingApartementRacheli.AllImages"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfRentingApartementRacheli"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ניהול תמונות">
+      Title="����� ������">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,18 +14,18 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="תמונה חדשה" Margin="3,0" Click="Button_Click" />
-            <Button Content="עדכון תמונה" Margin="3,0" Click="Button_Click_1"/>
-            <Button Content="מחיקת תמונה" Click="Button_Click_2"/>
+            <Button Content="����� ����" Margin="3,0" Click="Button_Click" />
+            <Button Content="����� �����" Margin="3,0" Click="Button_Click_1"/>
+            <Button Content="����� �����" Click="Button_Click_2"/>
         </StackPanel>
         <DataGrid x:Name="dg1" Grid.Row="1"/>
-        <ListView x:Name="lvImages" Background="Beige" Grid.Row="1" >
+        <ListView x:Name="lvImages" Background="White" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header=" מספר תמונה" DisplayMemberBinding="{Binding NumImage}"/>
-                    <GridViewColumn Header=" מיקום תמונה " DisplayMemberBinding="{Binding Image1}"/>
-                    <GridViewColumn Header=" סטטוס" DisplayMemberBinding="{Binding Stataus}"/>
-                    <GridViewColumn Header="דירה(טלפון בעל הדירה" DisplayMemberBinding="{Binding DTOApartments.PhoneOwner}"/>
+                    <GridViewColumn Header=" ���� �����" DisplayMemberBinding="{Binding NumImage}"/>
+                    <GridViewColumn Header=" ����� ����� " DisplayMemberBinding="{Binding Image1}"/>
+                    <GridViewColumn Header=" �����" DisplayMemberBinding="{Binding Stataus}"/>
+                    <GridViewColumn Header="����(����� ��� �����" DisplayMemberBinding="{Binding DTOApartments.PhoneOwner}"/>
 
 
                 </GridView>

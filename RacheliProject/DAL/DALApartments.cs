@@ -32,7 +32,7 @@ namespace DAL
             }
         }
 
-        public Apartment GetById(string id)
+        public Apartment GetById(int id)
         {
             using (RacheliEntities db = new RacheliEntities())
             {
@@ -41,23 +41,22 @@ namespace DAL
         }
         public bool Update(Apartment entity)
         {
-            RacheliEntities db = new RacheliEntities();
-            try
+            using (RacheliEntities db = new RacheliEntities())
             {
-                db.Apartments.Attach(entity);
-                db.Entry(entity).State = EntityState.Modified;
-
-                db.SaveChanges();
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                if (ex.InnerException != null)
-                    Debug.WriteLine(ex.InnerException.Message);
-
-                return false;
+                try
+                {
+                    db.Apartments.Attach(entity);
+                    db.Entry(entity).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    if (ex.InnerException != null)
+                        Debug.WriteLine(ex.InnerException.Message);
+                    return false;
+                }
             }
         }
         public bool Delete(int id)

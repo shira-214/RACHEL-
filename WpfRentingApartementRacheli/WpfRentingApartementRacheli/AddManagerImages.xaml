@@ -5,18 +5,20 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="הוספת תמונה"
+      Title="הוספת/עריכת תמונה"
       FlowDirection="RightToLeft">
 
-    <Grid Margin="20">
+    <Grid Margin="20" Background="#FDFBF7">
         <StackPanel MaxWidth="450">
-            <TextBlock Text="הוספת תמונה לדירה" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
+            <TextBlock x:Name="tbTitle" Text="הוספת תמונה לדירה" FontSize="20" FontWeight="Bold" Margin="0,0,0,15"/>
             <TextBlock Text="בחר דירה" Margin="0,0,0,5"/>
-            <ComboBox x:Name="cmbApartment" DisplayMemberPath="IdCities.NameCity" Height="35" Margin="0,0,0,15"/>
+            <ComboBox x:Name="cmbApartment" DisplayMemberPath="NumberHouse" Height="35" Margin="0,0,0,15"/>
 
             <Border Height="180" BorderBrush="#DDD" BorderThickness="1" Margin="0,0,0,15">
                 <Image x:Name="imagePreview" Stretch="Uniform"/>
             </Border>
+
+            <CheckBox x:Name="chkStatus" Content="תמונה פעילה" IsChecked="True" Margin="0,0,0,15"/>
 
             <Button Content="בחר תמונה" Height="35" Margin="0,0,0,10" Click="btnSelect_Click"/>
             <Button Cursor="Hand" x:Name="btnEnd" Content="שמור תמונה" Height="35" Click="btnEnd_Click"/>

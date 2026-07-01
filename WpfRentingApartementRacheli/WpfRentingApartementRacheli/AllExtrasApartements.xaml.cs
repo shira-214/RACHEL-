@@ -16,10 +16,15 @@ namespace WpfRentingApartementRacheli
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService?.Navigate(new AddManagerExtrasApartements());
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (lvExtras.SelectedItem is DTOExtrasApartements item)
+                NavigationService?.Navigate(new AddManagerExtrasApartements(item));
+            else
+                MessageBox.Show("יש לבחור רשומה לעריכה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
