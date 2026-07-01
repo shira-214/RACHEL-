@@ -12,15 +12,24 @@ namespace Host
         private static string GetPicturesPath()
         {
             string dir = AppDomain.CurrentDomain.BaseDirectory;
-            for (int i = 0; i < 6 && !string.IsNullOrEmpty(dir); i++)
+            for (int i = 0; i < 10 && !string.IsNullOrEmpty(dir); i++)
             {
-                string pictures = Path.Combine(dir, "Pictures");
-                if (Directory.Exists(pictures))
-                    return pictures;
+                if (Directory.Exists(Path.Combine(dir, "WpfRentingApartementRacheli")) &&
+                    Directory.Exists(Path.Combine(dir, "RacheliProject")))
+                    return Path.Combine(dir, "Pictures");
                 dir = Directory.GetParent(dir)?.FullName;
             }
 
-            string fallback = Path.Combine(@"C:\Users\1\Downloads\פרוייקט", "Pictures");
+            dir = AppDomain.CurrentDomain.BaseDirectory;
+            string outermostWithPictures = null;
+            for (int i = 0; i < 10 && !string.IsNullOrEmpty(dir); i++)
+            {
+                if (Directory.Exists(Path.Combine(dir, "Pictures")))
+                    outermostWithPictures = Path.Combine(dir, "Pictures");
+                dir = Directory.GetParent(dir)?.FullName;
+            }
+
+            string fallback = outermostWithPictures ?? Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Pictures");
             if (!Directory.Exists(fallback))
                 Directory.CreateDirectory(fallback);
             return fallback;

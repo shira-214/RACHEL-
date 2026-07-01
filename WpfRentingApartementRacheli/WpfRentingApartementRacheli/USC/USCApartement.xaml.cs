@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -8,21 +9,33 @@ namespace WpfRentingApartementRacheli.USC
 {
     public partial class USCApartement : UserControl
     {
-        Service1Client service = new Service1Client();
         DTOApartments apartment;
 
         public USCApartement(DTOApartments apartment)
+            : this(apartment, null)
+        {
+        }
+
+        public USCApartement(DTOApartments apartment, IList<DTOImages> allImages)
         {
             InitializeComponent();
             this.apartment = apartment;
             DataContext = apartment;
 
-            var imagesForAprtment = service.GetImages()
-                .Where(x => x.IdApartement != null && x.IdApartement.IdApartment == apartment.IdApartment)
-                .ToList();
+            if (allImages == null)
+            {
+                var service = new Service1Client();
+                allImages = service.GetImages();
+            }
 
-            if (imagesForAprtment.Count > 0)
-                image.Source = ImageManager.GetImage(imagesForAprtment[0].Image1);
+            var apartmentImage = allImages
+                .Where(x => x.Stataus && x.Image1 != null && x.Image1.Length > 0)
+                .FirstOrDefault(x =>
+                    x.IdApartement != null &&
+                    x.IdApartement.IdApartment == apartment.IdApartment);
+
+            if (apartmentImage != null)
+                image.Source = ImageManager.GetImage(apartmentImage.Image1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -107,8 +107,9 @@ namespace WpfRentingApartementRacheli
             }
 
             wrp.Children.Clear();
+            var allImages = service.GetImages();
             foreach (DTOApartments apartment in filtered)
-                wrp.Children.Add(new USCApartement(apartment));
+                wrp.Children.Add(new USCApartement(apartment, allImages));
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
