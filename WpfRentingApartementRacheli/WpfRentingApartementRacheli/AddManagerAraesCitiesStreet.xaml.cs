@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using WpfRentingApartementRacheli.ServiceReference1;
 
@@ -47,6 +48,25 @@ namespace WpfRentingApartementRacheli
             link.IdCities = (DTOCities)ApartmentCities.SelectedItem;
             link.IdStreetDTo = (DTOStreetsNames)ApartmentStreetsNames.SelectedItem;
             link.IdArea = (DTOAreas)ApartmentArea.SelectedItem;
+
+            if (add)
+            {
+                var exists = server.GetTOAraesCitiesStreets().FirstOrDefault(x =>
+                    x.IdStreetDTo != null && x.IdCities != null &&
+                    x.IdStreetDTo.IdStreet == link.IdStreetDTo.IdStreet &&
+                    x.IdCities.IdCity == link.IdCities.IdCity);
+
+                if (exists != null)
+                {
+                    string areaName = exists.IdArea?.NameArea ?? "";
+                    MessageBox.Show(
+                        "קישור עיר-רחוב זה כבר קיים" +
+                        (areaName != "" ? $" (אזור: {areaName})" : "") + ".\n" +
+                        "לכל עיר ורחוב ניתן לשייך רשומה אחת בלבד.",
+                        "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
 
             bool ok;
             if (add)

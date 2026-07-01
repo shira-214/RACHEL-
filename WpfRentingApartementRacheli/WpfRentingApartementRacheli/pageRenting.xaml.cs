@@ -133,7 +133,17 @@ namespace WpfRentingApartementRacheli
         private void txtNumBeds_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (int.TryParse(txtNumBeds.Text, out int beds) && beds > 0)
+            {
+                if (beds > apartment.NumberBeds)
+                {
+                    beds = apartment.NumberBeds;
+                    txtNumBeds.Text = beds.ToString();
+                    txtNumBeds.CaretIndex = txtNumBeds.Text.Length;
+                    MessageBox.Show($"מספר המיטות לא יכול לעלות על {apartment.NumberBeds}",
+                        "שגיאה", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
                 UpdateSumPayment(beds);
+            }
             else
             {
                 sumPay = apartment.MinimumPrice;
@@ -149,7 +159,19 @@ namespace WpfRentingApartementRacheli
 
         private void DigitsOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !e.Text.All(char.IsDigit);
+            if (!e.Text.All(char.IsDigit))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            if (sender is TextBox box)
+            {
+                string newText = box.Text.Remove(box.SelectionStart, box.SelectionLength)
+                    .Insert(box.SelectionStart, e.Text);
+                if (int.TryParse(newText, out int value) && value > apartment.NumberBeds)
+                    e.Handled = true;
+            }
         }
     }
 }

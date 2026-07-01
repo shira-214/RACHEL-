@@ -202,19 +202,24 @@ namespace WpfRentingApartementRacheli
                 return null;
 
             string name = txtOtherStreet.Text.Trim();
-            var existing = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
-            if (existing != null)
-                return existing;
-
-            if (!server.AddStreetsNames(new DTOStreetsNames { StreetName = name }))
-                return null;
-
-            var newStreet = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
-            if (newStreet == null)
-                return null;
-
             if (!(ApartmentCities.SelectedItem is DTOCities city))
                 return null;
+
+            var streetRecord = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
+            if (streetRecord == null)
+            {
+                if (!server.AddStreetsNames(new DTOStreetsNames { StreetName = name }))
+                    return null;
+                streetRecord = server.GetStreetsNames().FirstOrDefault(s => s.StreetName == name);
+            }
+            if (streetRecord == null)
+                return null;
+
+            bool linkedToCity = server.GetTOAraesCitiesStreets().Any(x =>
+                x.IdCities != null && x.IdCities.IdCity == city.IdCity &&
+                x.IdStreetDTo != null && x.IdStreetDTo.IdStreet == streetRecord.IdStreet);
+            if (linkedToCity)
+                return streetRecord;
 
             var cityLink = server.GetTOAraesCitiesStreets()
                 .FirstOrDefault(x => x.IdCities != null && x.IdCities.IdCity == city.IdCity && x.IdArea != null);
@@ -222,14 +227,15 @@ namespace WpfRentingApartementRacheli
             if (area == null)
                 return null;
 
-            server.AddAraesCitiesStreet(new DTOAraesCitiesStreet
+            if (!server.AddAraesCitiesStreet(new DTOAraesCitiesStreet
             {
                 IdCities = city,
-                IdStreetDTo = newStreet,
+                IdStreetDTo = streetRecord,
                 IdArea = area
-            });
+            }))
+                return null;
 
-            return newStreet;
+            return streetRecord;
         }
 
         private void SaveSelectedExtras()

@@ -24,7 +24,7 @@
 
             <Button Content="בחר תמונה" Height="35" Margin="0,0,0,10" Click="btnSelect_Click"/>
             <Button Cursor="Hand" x:Name="btnEnd" Content="שמור תמונה" Height="35" Margin="0,0,0,10" Click="btnEnd_Click"/>
-            <Button Content="הוסף תמונה נוספת" Height="35" Margin="0,0,0,10" Click="btnAddAnother_Click"/>
+            <Button Content="בחר תמונה נוספת" Height="35" Margin="0,0,0,10" Click="btnAddAnother_Click"/>
 
             <TextBlock Text="תמונות קיימות" FontSize="16" FontWeight="Bold" Margin="0,5,0,5"/>
             <ListView x:Name="lvExistingImages" Height="120" Margin="0,0,0,10">

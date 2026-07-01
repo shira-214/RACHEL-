@@ -25,9 +25,19 @@ namespace DAL
         {
             using (RacheliEntities db = new RacheliEntities())
             {
-                db.AraesCitiesStreets.Add(araesCitiesStreet);
-                db.SaveChanges();
-                return true;
+                try
+                {
+                    db.AraesCitiesStreets.Add(araesCitiesStreet);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    if (ex.InnerException != null)
+                        Debug.WriteLine(ex.InnerException.Message);
+                    return false;
+                }
             }
         }
 
