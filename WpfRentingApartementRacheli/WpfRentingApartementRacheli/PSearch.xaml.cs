@@ -29,16 +29,27 @@ namespace WpfRentingApartementRacheli
             ApartmentCities.ItemsSource = service.GetTOCities();
             ApartmentStreetsNames.ItemsSource = service.GetStreetsNames();
             ApartmentExtras.ItemsSource = service.GetExtras();
+            Loaded += SearchW_Loaded;
+        }
+
+        private void SearchW_Loaded(object sender, RoutedEventArgs e)
+        {
             RefreshData();
         }
 
         private void Filter_Changed(object sender, RoutedEventArgs e)
         {
+            if (!IsLoaded)
+                return;
+
             RefreshData();
         }
 
         private void RefreshData()
         {
+            if (slPrice == null || slBeds == null || wrp == null)
+                return;
+
             lApartments = service.GetApartments().ToList();
             lRentings = service.GetTORentings().ToList();
 
@@ -102,6 +113,9 @@ namespace WpfRentingApartementRacheli
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!IsLoaded)
+                return;
+
             if (dp.SelectedDate.HasValue)
                 Global.selectedDate = dp.SelectedDate.Value;
 
