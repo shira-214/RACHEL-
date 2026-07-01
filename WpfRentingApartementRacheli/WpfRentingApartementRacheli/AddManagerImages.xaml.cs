@@ -146,11 +146,5 @@ namespace WpfRentingApartementRacheli
             else
                 MessageBox.Show("שגיאה בשמירת התמונה", "שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
-        private void btnAddAnother_Click(object sender, RoutedEventArgs e)
-        {
-            ClearNewImageForm();
-            btnSelect_Click(sender, e);
-        }
     }
 }

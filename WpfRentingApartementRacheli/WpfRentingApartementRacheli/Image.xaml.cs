@@ -132,12 +132,6 @@ namespace WpfRentingApartementRacheli
             }
         }
 
-        private void btnAddAnother_Click(object sender, RoutedEventArgs e)
-        {
-            ClearNewImageForm();
-            btnSelect_Click(sender, e);
-        }
-
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             NavigateBack();
